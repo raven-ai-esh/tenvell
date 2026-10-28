@@ -8,7 +8,9 @@ export default {
     }
 
     const indexUrl = new URL(request.url);
-    indexUrl.pathname = "/index.html";
+    // The asset service redirects /index.html to /; fetch the canonical URL
+    // so the response body preserves the visitor's requested app route.
+    indexUrl.pathname = "/";
     indexUrl.search = "";
     return env.ASSETS.fetch(new Request(indexUrl, request));
   },

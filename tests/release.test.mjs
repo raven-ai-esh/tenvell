@@ -12,7 +12,7 @@ import {color,colors,contexts,over,ratio,tokensFor} from './helpers/control-colo
 
 const read=file=>readFile(path.join(root,file),'utf8');
 const digest=data=>createHash('sha256').update(data).digest('hex');
-const packedStyles=()=>execFileSync('tar',['-xOf',path.join(root,'public/releases/0.1.0/tenvell-0.1.0.tgz'),'package/dist/styles.css'],{encoding:'utf8'});
+const packedStyles=()=>execFileSync('tar',['-xOf',path.join(root,'public/releases/0.1.1/tenvell-0.1.1.tgz'),'package/dist/styles.css'],{encoding:'utf8'});
 
 test('distribution does not depend on catalog fixtures, preview globals or host paths',async()=>{
  const graph=await sourceGraph(['src/kit/index.jsx','src/components/ui/glass-chart-shapes.jsx']);
@@ -54,15 +54,15 @@ test('registry files pass the official schema and have a closed local import gra
  }
 });
 test('release archives include licences and exclude private/dev workspace material',async()=>{
- const base=path.join(root,'public/releases/0.1.0');
- const files=execFileSync('tar',['-tzf',path.join(base,'tenvell-0.1.0.tgz')],{encoding:'utf8'}).trim().split('\n');
+ const base=path.join(root,'public/releases/0.1.1');
+ const files=execFileSync('tar',['-tzf',path.join(base,'tenvell-0.1.1.tgz')],{encoding:'utf8'}).trim().split('\n');
  for(const file of files){assert.ok(file.startsWith('package/'));assert.doesNotMatch(file,/node_modules|evidence|AGENTS|\.env|\.git\/|\.DS_Store/);}
  for(const file of ['package/LICENSE','package/FONT-LICENSE.txt','package/dist/index.d.ts','package/dist/styles.css','package/source/provider.jsx'])assert.ok(files.includes(file),file);
- const source=execFileSync('unzip',['-Z1',path.join(base,'tenvell-source-0.1.0.zip')],{encoding:'utf8'});assert.doesNotMatch(source,/(?:^|\n)(?:evidence|node_modules|AGENTS\.md|\.env|\.git\/)/);
- const hosting=JSON.parse(execFileSync('unzip',['-p',path.join(base,'tenvell-source-0.1.0.zip'),'.openai/hosting.json'],{encoding:'utf8'}));assert.equal(hosting.project_id,undefined,'A public source fork must not inherit the original hosted Site identity');
+ const source=execFileSync('unzip',['-Z1',path.join(base,'tenvell-source-0.1.1.zip')],{encoding:'utf8'});assert.doesNotMatch(source,/(?:^|\n)(?:evidence|node_modules|AGENTS\.md|\.env|\.git\/)/);
+ const hosting=JSON.parse(execFileSync('unzip',['-p',path.join(base,'tenvell-source-0.1.1.zip'),'.openai/hosting.json'],{encoding:'utf8'}));assert.equal(hosting.project_id,undefined,'A public source fork must not inherit the original hosted Site identity');
 });
 test('release manifest identifies the actual archives and final source inputs',async()=>{
- const manifest=JSON.parse(await read('public/releases/0.1.0/manifest.json'));assert.equal(manifest.version,'0.1.0');
+ const manifest=JSON.parse(await read('public/releases/0.1.1/manifest.json'));assert.equal(manifest.version,'0.1.1');
  for(const artifact of manifest.artifacts){const data=await readFile(path.join(root,'public',artifact.url));assert.equal(data.length,artifact.bytes);assert.equal(digest(data),artifact.sha256);}
  for(const [file,hash] of Object.entries(manifest.sourceHashes))assert.equal(digest(await readFile(path.join(root,file))),hash,'Stale generated release: '+file);
  const pkg=JSON.parse(await readFile(path.join(output,'package/package.json'),'utf8'));assert.equal(pkg.name,'tenvell');assert.equal(pkg.private,undefined);assert.ok(pkg.peerDependenciesMeta.recharts.optional);assert.equal(JSON.parse(await read('package.json')).private,true);

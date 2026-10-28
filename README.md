@@ -26,7 +26,7 @@ The release build generates the core npm archive, source-first shadcn registry, 
 
 Official Site and repository URLs are declared in release/project.json. Set TENVELL_SITE_URL when rebuilding for a different public origin. The source export removes the original Sites project_id so a fork does not share the hosted Site identity. No npm publication is implied; the core is installed from the Site archive or registry.
 
-The release/output folder is generated. Public endpoints are /r/registry.json, /r/tenvell.json and /releases/0.1.0/manifest.json. The npm tarball contains its own exports, types, editable sources, scoped CSS and licences. /releases/0.1.0/tenvell-starter-0.1.0.zip contains a runnable locked starter with the tarball included. See release/docs/PACKAGE-README.md for the core API and initial export scope.
+The release/output folder is generated. Public endpoints are /r/registry.json, /r/tenvell.json and /releases/0.1.1/manifest.json. The npm tarball contains its own exports, types, editable sources, scoped CSS and licences. /releases/0.1.1/tenvell-starter-0.1.1.zip contains a runnable locked starter with the tarball included. See release/docs/PACKAGE-README.md for the core API and initial export scope.
 
 ## Existing examples
 

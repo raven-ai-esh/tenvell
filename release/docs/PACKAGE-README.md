@@ -10,7 +10,7 @@ A React19 UI kit with four glass finishes, independent themes, readable controls
 
 The prepared0.1 release is distributed as a tarball. From the folder containing it:
 
-    npm install ./tenvell-0.1.0.tgz
+    npm install ./tenvell-0.1.1.tgz
 
 This does not assume that the name is already published on npm. The downloadable starter includes the same tarball and a lockfile; unzip it, run npm ci, then npm run dev.
 

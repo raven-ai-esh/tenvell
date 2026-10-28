@@ -22,7 +22,7 @@ async function typedBarrel(graph,apiFile,directory,name,partial=false){
 }
 
 const project=JSON.parse(await readFile(path.join(root,'release/project.json'),'utf8'));
-const version='0.1.0',site=new URL(process.env.TENVELL_SITE_URL||project.siteUrl||'http://localhost:4187').origin;
+const version='0.1.1',site=new URL(process.env.TENVELL_SITE_URL||project.siteUrl||'http://localhost:4187').origin;
 if(!/^https?:/.test(site))throw new Error('TENVELL_SITE_URL must be an HTTP(S) origin');
 const packageDir=path.join(output,'package'),registryDir=path.join(output,'registry'),starterDir=path.join(output,'starter'),repoDir=path.join(output,'repository');
 const downloads=path.join(root,'public/releases',version),registryPublic=path.join(root,'public/r');

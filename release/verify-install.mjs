@@ -19,13 +19,13 @@ async function addProof(directory,registry=false){
 }
 
 const minimal=path.join(scratch,'minimal');await mkdir(minimal);
-await cp(path.join(root,'public/releases/0.1.0/tenvell-0.1.0.tgz'),path.join(minimal,'tenvell-0.1.0.tgz'));
-await json(path.join(minimal,'package.json'),{private:true,type:'module',dependencies:{tenvell:'file:./tenvell-0.1.0.tgz',react:'19.2.0','react-dom':'19.2.0'}});
+await cp(path.join(root,'public/releases/0.1.1/tenvell-0.1.1.tgz'),path.join(minimal,'tenvell-0.1.1.tgz'));
+await json(path.join(minimal,'package.json'),{private:true,type:'module',dependencies:{tenvell:'file:./tenvell-0.1.1.tgz',react:'19.2.0','react-dom':'19.2.0'}});
 run('npm',['install','--ignore-scripts','--no-audit','--no-fund'],minimal);
 run('node',['--input-type=module','-e',"import React from 'react';import {renderToString} from 'react-dom/server';import {TenvellProvider,Button,Dialog,DialogContent} from 'tenvell';let markup=renderToString(React.createElement(TenvellProvider,null,React.createElement(Button,null,'Installed'),React.createElement(Dialog,{defaultOpen:true},React.createElement(DialogContent,null,'Server'))));if(!markup.includes('Installed')||!markup.includes('data-tenvell'))throw new Error('SSR render failed');console.log('Core imports and renders without Recharts or a document global.');"],minimal);
 
 const npmDir=path.join(scratch,'npm');await mkdir(npmDir,{recursive:true});
-run('unzip',['-q',path.join(root,'public/releases/0.1.0/tenvell-starter-0.1.0.zip'),'-d',npmDir],scratch);
+run('unzip',['-q',path.join(root,'public/releases/0.1.1/tenvell-starter-0.1.1.zip'),'-d',npmDir],scratch);
 run('npm',['ci','--ignore-scripts','--no-audit','--no-fund'],npmDir);
 await addProof(npmDir);
 run('npm',['run','build'],npmDir);
