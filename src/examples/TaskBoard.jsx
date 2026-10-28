@@ -1,3 +1,4 @@
+import {t} from "../i18n/translate.js";
 import {useEffect,useRef,useState} from "react";
 import {DndContext,DragOverlay,KeyboardSensor,MeasuringStrategy,PointerSensor,closestCorners,pointerWithin,useDroppable,useSensor,useSensors} from "@dnd-kit/core";
 import {SortableContext,useSortable,verticalListSortingStrategy} from "@dnd-kit/sortable";
@@ -13,11 +14,13 @@ function useReducedMotion(){
   return reduce;
 }
 
+export const taskText=(task,key="title")=>task?.demo?t(task?.[key]):task?.[key]||"";
+
 function TaskCard({task,surface,registerCard,onMove,moved,dragging,overlay,handleProps,onPointerDown}){
-  return <Card surface={surface} ref={registerCard} tabIndex={overlay?undefined:-1} className={"task-card"+(overlay?" task-drag-preview":"")} data-task-id={overlay?undefined:task.id} data-moved={moved||undefined} data-dragging={dragging||undefined} aria-label={task.title} aria-hidden={overlay||undefined} onPointerDown={onPointerDown}>
-    <div className="task-card-top"><span className="task-tag">{task.tag}</span><span className="task-id">D-{String(task.id).padStart(2,"0")}</span><button type="button" className="task-drag-handle" data-drag-handle tabIndex={overlay?-1:0} {...handleProps} aria-label={"Переместить задачу «"+task.title+"»"} title="Переместить карточку"><GripVertical size={16} strokeWidth={1.5} aria-hidden="true"/></button></div>
-    <h3>{task.title}</h3>{task.description&&<p>{task.description}</p>}
-    <footer><Button variant="ghost" size="sm" tabIndex={overlay?-1:0} onClick={onMove} aria-label={(task.status==="todo"?"Начать":task.status==="doing"?"Завершить":"Вернуть")+" задачу "+task.title}>{task.status==="todo"?"В работу":task.status==="doing"?"Готово":"Вернуть"}{task.status==="doing"?<Check size={14} aria-hidden="true"/>:<ArrowRight size={14} aria-hidden="true"/>}</Button></footer>
+  return <Card surface={surface} ref={registerCard} tabIndex={overlay?undefined:-1} className={"task-card"+(overlay?" task-drag-preview":"")} data-task-id={overlay?undefined:task.id} data-moved={moved||undefined} data-dragging={dragging||undefined} aria-label={taskText(task)} aria-hidden={overlay||undefined} onPointerDown={onPointerDown}>
+    <div className="task-card-top"><span className="task-tag">{t(task.tag)}</span><span className="task-id">D-{t(String(task.id).padStart(2,"0"))}</span><button type="button" className="task-drag-handle" data-drag-handle tabIndex={overlay?-1:0} {...handleProps} aria-label={t("Переместить задачу «{title}»",{title:taskText(task)})} title={t("Переместить карточку")}><GripVertical size={16} strokeWidth={1.5} aria-hidden="true"/></button></div>
+    <h3>{taskText(task)}</h3>{task.description&&<p>{taskText(task,"description")}</p>}
+    <footer><Button variant="ghost" size="sm" tabIndex={overlay?-1:0} onClick={onMove} aria-label={t(task.status==="todo"?"Начать задачу {title}":task.status==="doing"?"Завершить задачу {title}":"Вернуть задачу {title}",{title:taskText(task)})}>{t(task.status==="todo"?"В работу":task.status==="doing"?"Готово":"Вернуть")}{task.status==="doing"?<Check size={14} aria-hidden="true"/>:<ArrowRight size={14} aria-hidden="true"/>}</Button></footer>
   </Card>;
 }
 
@@ -34,10 +37,10 @@ function SortableTask({task,surface,cardRefs,onMove,moved,reduceMotion}){
 
 function TaskColumn({column,items,surface,cardRefs,onMove,moved,activeId,targetColumn,reduceMotion}){
   const {setNodeRef}=useDroppable({id:"column:"+column.id,data:{type:"column",status:column.id}});
-  return <section className="task-column" data-column={column.id} data-drop-target={activeId!==null&&targetColumn===column.id||undefined} ref={setNodeRef} aria-label={column.title}>
-    <header><h2>{column.title}</h2><span>{items.length}</span></header>
+  return <section className="task-column" data-column={column.id} data-drop-target={activeId!==null&&targetColumn===column.id||undefined} ref={setNodeRef} aria-label={t(column.title)}>
+    <header><h2>{t(column.title)}</h2><span>{t(items.length)}</span></header>
     <SortableContext id={column.id} items={items.map(task=>task.id)} strategy={verticalListSortingStrategy}>
-      <div className="task-column-body">{items.length?items.map(task=><SortableTask key={task.id} task={task} surface={surface} cardRefs={cardRefs} onMove={onMove} moved={moved?.id===task.id} reduceMotion={reduceMotion}/>):<div className="task-column-empty">{activeId!==null?<><MoveRight size={17} aria-hidden="true"/>Перетащите сюда</>:"Задач нет"}</div>}</div>
+      <div className="task-column-body">{items.length?items.map(task=><SortableTask key={task.id} task={task} surface={surface} cardRefs={cardRefs} onMove={onMove} moved={moved?.id===task.id} reduceMotion={reduceMotion}/>):<div className="task-column-empty">{t(activeId!==null?<><MoveRight size={17} aria-hidden="true"/>{t("Перетащите сюда")}</>:"Задач нет")}</div>}</div>
     </SortableContext>
   </section>;
 }
@@ -117,11 +120,11 @@ export function TaskBoard({tasks,columns,isTaskShown,cardRefs,onMove,onFinish,mo
   }
   const announcement=({active,over})=>{
     const task=snapshotRef.current.find(item=>item.id===active.id),status=targetStatus(over);
-    return status?"Задача «"+task?.title+"». Колонка «"+columns.find(column=>column.id===status)?.title+"».":"Задача вне области переноса.";
+    return status?t("Задача «{title}». Колонка «{column}».",{title:taskText(task),column:t(columns.find(column=>column.id===status)?.title)}):t("Задача вне области переноса.");
   };
   return <>
-    <p className="task-drag-help"><GripVertical size={14} aria-hidden="true"/>Перетащите карточку в нужную колонку</p>
-    <DndContext sensors={sensors} collisionDetection={collision} measuring={{droppable:{strategy:MeasuringStrategy.Always}}} onDragStart={start} onDragOver={over} onDragEnd={event=>finish(event)} onDragCancel={event=>finish(event,true)} accessibility={{restoreFocus:false,screenReaderInstructions:{draggable:"Нажмите Пробел, чтобы поднять карточку. Стрелки влево и вправо меняют колонку, вверх и вниз — позицию. Пробел — отпустить, Escape — отменить."},announcements:{onDragStart:({active})=>"Поднята задача «"+tasks.find(task=>task.id===active.id)?.title+"».",onDragOver:announcement,onDragEnd:({over})=>over?"Карточка отпущена.":"Перемещение отменено.",onDragCancel:()=>"Перемещение отменено."}}}>
+    <p className="task-drag-help"><GripVertical size={14} aria-hidden="true"/>{t("Перетащите карточку в нужную колонку")}</p>
+    <DndContext sensors={sensors} collisionDetection={collision} measuring={{droppable:{strategy:MeasuringStrategy.Always}}} onDragStart={start} onDragOver={over} onDragEnd={event=>finish(event)} onDragCancel={event=>finish(event,true)} accessibility={{restoreFocus:false,screenReaderInstructions:{draggable:t("Нажмите Пробел, чтобы поднять карточку. Стрелки влево и вправо меняют колонку, вверх и вниз — позицию. Пробел — отпустить, Escape — отменить.")},announcements:{onDragStart:({active})=>t("Поднята задача «{title}».",{title:taskText(tasks.find(task=>task.id===active.id))}),onDragOver:announcement,onDragEnd:({over})=>t(over?"Карточка отпущена.":"Перемещение отменено."),onDragCancel:()=>t("Перемещение отменено.")}}}>
       <div className="task-board" data-dragging={activeId!==null||undefined} data-last-drag-input={inputRef.current||undefined}>{columns.map(column=><TaskColumn key={column.id} column={column} items={shown.filter(task=>task.status===column.id)} surface={surface} cardRefs={cardRefs} onMove={onMove} moved={moved} activeId={activeId} targetColumn={targetColumn} reduceMotion={reduceMotion}/>)}</div>
       <DragOverlay dropAnimation={reduceMotion?null:{duration:230,easing:"cubic-bezier(.2,.8,.2,1)"}} zIndex={30}>{activeTask?<TaskCard task={activeTask} surface={surface} overlay/>:null}</DragOverlay>
     </DndContext>

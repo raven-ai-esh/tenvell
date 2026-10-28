@@ -22,7 +22,7 @@ async function typedBarrel(graph,apiFile,directory,name,partial=false){
 }
 
 const project=JSON.parse(await readFile(path.join(root,'release/project.json'),'utf8'));
-const version='0.1.1',site=new URL(process.env.TENVELL_SITE_URL||project.siteUrl||'http://localhost:4187').origin;
+const version='0.2.0',site=new URL(process.env.TENVELL_SITE_URL||project.siteUrl||'http://localhost:4187').origin;
 if(!/^https?:/.test(site))throw new Error('TENVELL_SITE_URL must be an HTTP(S) origin');
 const packageDir=path.join(output,'package'),registryDir=path.join(output,'registry'),starterDir=path.join(output,'starter'),repoDir=path.join(output,'repository');
 const downloads=path.join(root,'public/releases',version),registryPublic=path.join(root,'public/r');
@@ -96,4 +96,4 @@ const sourceHashes={};for(const file of new Set(inputs))sourceHashes[path.relati
 const manifest={name:'tenvell',version,site,react:'19',artifacts,registry:'/r/tenvell.json',registryItems:definitions.map(item=>item[0]),sourceHashes};
 await writeFile(path.join(downloads,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 await writeFile(path.join(output,'package-files.json'),JSON.stringify(pack[0].files,null,2)+'\n');
-console.log('tenvell0.1 prepared: '+artifacts.map(file=>file.file+' ('+file.bytes+' bytes)').join(', '));
+console.log('tenvell '+version+' prepared: '+artifacts.map(file=>file.file+' ('+file.bytes+' bytes)').join(', '));

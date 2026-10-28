@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -17,48 +17,69 @@
     .controls{display:flex;align-items:center;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:14px}.controls label{display:flex;align-items:center;gap:12px}.controls input{width:160px;accent-color:#71858b}.weights{display:flex;gap:7px}.weights button[aria-pressed=true]{border-color:var(--focus)}
     .editable{font-size:var(--preview-size,32px);font-weight:var(--preview-weight,400);padding:32px 0;min-height:130px;overflow-wrap:anywhere;border-radius:5px}.samples{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:38px}.size-label{font-size:12px;color:var(--muted);margin:0 0 8px}.sample-text{font-size:16px;line-height:1.7}
     .mono{font-family:"Lamina Mono",monospace;font-size:15px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}.downloads{display:flex;flex-wrap:wrap;gap:10px}.download{border:1px solid var(--edge);background:var(--surface);border-radius:9px;padding:10px 16px;font-size:14px}
+    .nav-actions,.language{display:flex;align-items:center;gap:6px}.language button{padding:5px 6px;min-width:28px;font-size:11px}.language button[aria-pressed=true]{border-color:var(--focus)}
     @media(max-width:600px){main{padding:24px 23px 55px}nav{font-size:12px;gap:15px}h1{margin-top:60px}.lead{font-size:18px}.samples{grid-template-columns:1fr;gap:24px}.alphabet{font-size:23px;line-height:1.9}.controls{gap:14px}.controls input{width:130px}section{padding-top:30px}}
   </style>
 </head>
 <body>
 <main>
-  <nav><a href="/#buttons">← tenvell · каталог</a><button id="theme" type="button" aria-label="Включить тёмную тему">Тёмная тема</button></nav>
+  <nav><a id="back" href="/?lang=en#buttons" data-copy="back">← tenvell · catalog</a><div class="nav-actions"><div class="language" role="group" aria-label="Interface language"><button type="button" data-language="en" lang="en" aria-label="English">EN</button><button type="button" data-language="ru" lang="ru" aria-label="Русский">RU</button></div><button id="theme" type="button" aria-label="Switch to dark theme">Dark theme</button></div></nav>
   <h1>Lamina UI</h1>
-  <p class="lead">Оригинальная гарнитура tenvell. Кириллица, латиница и моноширинный вариант.</p>
-  <p class="meta">Рабочая версия 0.3 · 246 знаков · Regular 400 / Medium 500 · кириллица и латиница</p>
+  <p class="lead" data-copy="lead">Оригинальная гарнитура tenvell. Кириллица, латиница и моноширинный вариант.</p>
+  <p class="meta" data-copy="meta">Рабочая версия 0.3 · 246 знаков · Regular 400 / Medium 500 · кириллица и латиница</p>
   <section>
-    <h2>Попробовать шрифт</h2>
-    <div class="controls"><label for="size">Размер <input id="size" type="range" min="14" max="72" value="32" /><output id="size-value">32 px</output></label><div class="weights" role="group" aria-label="Начертание"><button type="button" data-weight="400" aria-pressed="true">Regular</button><button type="button" data-weight="500" aria-pressed="false">Medium</button></div></div>
+    <h2 data-copy="preview">Попробовать шрифт</h2>
+    <div class="controls"><label for="size"><span data-copy="size">Size</span> <input id="size" type="range" min="14" max="72" value="32" /><output id="size-value">32 px</output></label><div class="weights" role="group" aria-label="Начертание"><button type="button" data-weight="400" aria-pressed="true">Regular</button><button type="button" data-weight="500" aria-pressed="false">Medium</button></div></div>
     <div class="editable" contenteditable="true" role="textbox" aria-label="Текст для проверки гарнитуры" spellcheck="false">Лёгкость начинается с формы.</div>
-    <p class="meta">Текст можно изменить. Контуры построены с нуля; готовые шрифтовые файлы не использовались как источник.</p>
+    <p class="meta" data-copy="edit">Текст можно изменить. Контуры построены с нуля; готовые шрифтовые файлы не использовались как источник.</p>
   </section>
   <section>
-    <h2>Кириллица</h2>
+    <h2 data-copy="cyrillic">Кириллица</h2>
     <div class="alphabet">АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ</div>
     <div class="alphabet lower">абвгдеёжзийклмнопрстуфхцчшщъыьэюя</div>
-    <p class="meta">В кириллическом ряду отдельно проработаны формы Д, Л, Ж, Б, Ф и диакритика Ё/Й.</p>
+    <p class="meta" data-copy="glyphs">В кириллическом ряду отдельно проработаны формы Д, Л, Ж, Б, Ф и диакритика Ё/Й.</p>
   </section>
   <section>
-    <h2>Латиница и цифры</h2>
+    <h2 data-copy="latin">Латиница и цифры</h2>
     <div class="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div><div class="alphabet lower">abcdefghijklmnopqrstuvwxyz</div><div class="alphabet lower">0123456789 · 2 977 · 68% · ₽ € $</div>
   </section>
   <section>
-    <h2>В интерфейсе</h2>
-    <div class="samples"><div><p class="size-label">16 px · Regular</p><p class="sample-text">Съешь ещё этих мягких французских булок, да выпей чаю. Открытые формы и спокойный ритм сохраняют читаемость небольшого текста.</p></div><div><p class="size-label">16 px · Medium</p><p class="sample-text" style="font-weight:500">Кнопки · Поля · Меню · Карточки · Графики<br />Ссылка · Недоступна · Сохранить · Отмена</p></div></div>
+    <h2 data-copy="interface">В интерфейсе</h2>
+    <div class="samples"><div><p class="size-label">16 px · Regular</p><p class="sample-text" lang="ru">Съешь ещё этих мягких французских булок, да выпей чаю. Открытые формы и спокойный ритм сохраняют читаемость небольшого текста.</p></div><div><p class="size-label">16 px · Medium</p><p class="sample-text" lang="ru" style="font-weight:500">Кнопки · Поля · Меню · Карточки · Графики<br />Ссылка · Недоступна · Сохранить · Отмена</p></div></div>
   </section>
-  <section><h2>Lamina Mono</h2><p class="meta">Собственный моноширинный вариант на тех же оригинальных контурах.</p><pre class="mono">const surface = {
+  <section><h2>Lamina Mono</h2><p class="meta" data-copy="mono">Собственный моноширинный вариант на тех же оригинальных контурах.</p><pre class="mono" lang="ru">const surface = {
   material: "glass",
   border: 1,
   opacity: 0.21
 };
 // Простой код. Спокойный рисунок.</pre></section>
-  <section><h2>Файлы гарнитуры</h2><div class="downloads"><a class="download" href="/fonts/lamina-ui-regular.ttf" download>Regular · TTF</a><a class="download" href="/fonts/lamina-ui-medium.ttf" download>Medium · TTF</a><a class="download" href="/fonts/lamina-ui-regular.woff2" download>Regular · WOFF2</a><a class="download" href="/fonts/lamina-mono-regular.woff2" download>Mono · WOFF2</a></div></section>
+  <section><h2 data-copy="files">Файлы гарнитуры</h2><div class="downloads"><a class="download" href="/fonts/lamina-ui-regular.ttf" download>Regular · TTF</a><a class="download" href="/fonts/lamina-ui-medium.ttf" download>Medium · TTF</a><a class="download" href="/fonts/lamina-ui-regular.woff2" download>Regular · WOFF2</a><a class="download" href="/fonts/lamina-mono-regular.woff2" download>Mono · WOFF2</a></div></section>
 </main>
 <script>
   const size=document.getElementById("size"),sample=document.querySelector(".editable");
   size.addEventListener("input",()=>{sample.style.setProperty("--preview-size",size.value+"px");document.getElementById("size-value").textContent=size.value+" px";});
   document.querySelectorAll("[data-weight]").forEach(button=>button.addEventListener("click",()=>{sample.style.setProperty("--preview-weight",button.dataset.weight);document.querySelectorAll("[data-weight]").forEach(item=>item.setAttribute("aria-pressed",String(item===button)));}));
-  document.getElementById("theme").addEventListener("click",event=>{const dark=document.documentElement.dataset.theme!=="dark";document.documentElement.dataset.theme=dark?"dark":"light";event.currentTarget.textContent=dark?"Светлая тема":"Тёмная тема";event.currentTarget.setAttribute("aria-label",dark?"Включить светлую тему":"Включить тёмную тему");});
+  const copy={"lead": {"ru": "Оригинальная гарнитура tenvell. Кириллица, латиница и моноширинный вариант.", "en": "The original tenvell typeface. Cyrillic, Latin and a monospace companion."}, "meta": {"ru": "Рабочая версия 0.3 · 246 знаков · Regular 400 / Medium 500 · кириллица и латиница", "en": "Version 0.3 · 246 glyphs · Regular 400 / Medium 500 · Cyrillic and Latin"}, "preview": {"ru": "Попробовать шрифт", "en": "Try the typeface"}, "edit": {"ru": "Текст можно изменить. Контуры построены с нуля; готовые шрифтовые файлы не использовались как источник.", "en": "Edit the text to try it. The outlines were drawn from scratch, without using existing font files as source."}, "cyrillic": {"ru": "Кириллица", "en": "Cyrillic"}, "glyphs": {"ru": "В кириллическом ряду отдельно проработаны формы Д, Л, Ж, Б, Ф и диакритика Ё/Й.", "en": "The Cyrillic set includes individually drawn Д, Л, Ж, Б and Ф, with Ё/Й diacritics."}, "latin": {"ru": "Латиница и цифры", "en": "Latin and numerals"}, "interface": {"ru": "В интерфейсе", "en": "In an interface"}, "mono": {"ru": "Собственный моноширинный вариант на тех же оригинальных контурах.", "en": "An original monospace companion using the same outline language."}, "files": {"ru": "Файлы гарнитуры", "en": "Typeface files"}, "back": {"ru": "← tenvell · каталог", "en": "← tenvell · catalog"}, "size": {"ru": "Размер", "en": "Size"}};
+  let savedLanguage;try{savedLanguage=sessionStorage.getItem('tenvell.language');}catch{}
+  const requested=new URL(location.href).searchParams.get('lang');
+  let language=['en','ru'].includes(requested)?requested:['en','ru'].includes(savedLanguage)?savedLanguage:navigator.language?.startsWith('ru')?'ru':'en';
+  let edited=false;sample.addEventListener('input',()=>{edited=true;});
+  function renderLanguage(){
+    document.documentElement.lang=language;document.title=language==='en'?'Lamina UI — tenvell typeface':'Lamina UI — гарнитура tenvell';
+    document.querySelectorAll('[data-copy]').forEach(el=>{el.textContent=copy[el.dataset.copy][language];});
+    document.getElementById('back').href='/?lang='+language+'#buttons';
+    document.querySelectorAll('[data-language]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.language===language)));
+    document.querySelector('.language').setAttribute('aria-label',language==='en'?'Interface language':'Язык интерфейса');
+    document.querySelector('.weights').setAttribute('aria-label',language==='en'?'Weight':'Начертание');
+    sample.setAttribute('aria-label',language==='en'?'Typeface preview text':'Текст для проверки гарнитуры');
+    if(!edited)sample.textContent=language==='en'?'Lightness begins with form.':'Лёгкость начинается с формы.';
+    const dark=document.documentElement.dataset.theme==='dark',button=document.getElementById('theme');
+    button.textContent=language==='en'?(dark?'Light theme':'Dark theme'):(dark?'Светлая тема':'Тёмная тема');
+    button.setAttribute('aria-label',language==='en'?(dark?'Switch to light theme':'Switch to dark theme'):(dark?'Включить светлую тему':'Включить тёмную тему'));
+  }
+  document.querySelectorAll('[data-language]').forEach(button=>button.addEventListener('click',()=>{language=button.dataset.language;const url=new URL(location.href);url.searchParams.set('lang',language);history.replaceState(history.state,'',url);try{sessionStorage.setItem('tenvell.language',language);}catch{}renderLanguage();}));
+  document.getElementById('theme').addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark';renderLanguage();});
+  renderLanguage();
 </script>
 </body>
 </html>

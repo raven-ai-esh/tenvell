@@ -8,6 +8,12 @@ Thin glass. Clear interfaces.
 
 An independent UI kit for React19: thin glass surfaces, readable controls, original Lamina typefaces and a restrained tactile response. The website contains83 live component examples plus a16-tile showcase, messenger, dashboard and draggable task-board demonstrations.
 
+## Website languages
+
+The live catalog, installation guide and product examples support English and Russian. Use the EN/RU control in the shared toolbar, or share a direct URL with `?lang=en` or `?lang=ru`. The explicit URL wins over the language saved in the browser tab; new visitors otherwise follow their browser language, with English as the fallback.
+
+Switching language keeps the current route, form values, messages, selected options and task order. User-authored content stays verbatim. The language choice is saved in sessionStorage alongside the existing preview settings; product content stays in memory. The portable core continues to render caller-provided content; the website translation layer is not bundled into the core package.
+
 ## Start the website
 
     npm ci
@@ -26,11 +32,11 @@ The release build generates the core npm archive, source-first shadcn registry, 
 
 Official Site and repository URLs are declared in release/project.json. Set TENVELL_SITE_URL when rebuilding for a different public origin. The source export removes the original Sites project_id so a fork does not share the hosted Site identity. No npm publication is implied; the core is installed from the Site archive or registry.
 
-The release/output folder is generated. Public endpoints are /r/registry.json, /r/tenvell.json and /releases/0.1.1/manifest.json. The npm tarball contains its own exports, types, editable sources, scoped CSS and licences. /releases/0.1.1/tenvell-starter-0.1.1.zip contains a runnable locked starter with the tarball included. See release/docs/PACKAGE-README.md for the core API and initial export scope.
+The release/output folder is generated. Public endpoints are /r/registry.json, /r/tenvell.json and /releases/0.2.0/manifest.json. The npm tarball contains its own exports, types, editable sources, scoped CSS and licences. /releases/0.2.0/tenvell-starter-0.2.0.zip contains a runnable locked starter with the tarball included. See release/docs/PACKAGE-README.md for the core API and initial export scope.
 
 ## Existing examples
 
-The website examples use fictional local data. Message/task changes remain in the current view; the six preview settings alone can persist within the browser tab session. The source website includes calendar/table/toast and full-screen demonstrations beyond the first portable core API. Lamina UI/Mono are the original typeface family names.
+The website examples use fictional local data. Message/task changes remain in the current view; presentation settings and interface language can persist within the browser tab session. The source website includes calendar/table/toast and full-screen demonstrations beyond the first portable core API. Lamina UI/Mono are the original typeface family names.
 
 ## Licence
 

@@ -10,7 +10,7 @@ A React19 UI kit with four glass finishes, independent themes, readable controls
 
 The prepared0.1 release is distributed as a tarball. From the folder containing it:
 
-    npm install ./tenvell-0.1.1.tgz
+    npm install ./tenvell-0.2.0.tgz
 
 This does not assume that the name is already published on npm. The downloadable starter includes the same tarball and a lockfile; unzip it, run npm ci, then npm run dev.
 
@@ -39,7 +39,7 @@ Import the stylesheet once. Wrap the area that should use tenvell. The provider 
 
 Multiple independent providers are supported. Inline CSS custom properties passed through the provider style prop also reach its overlays; layout styles stay local. The --tenvell-overlay-z token controls the overlay layer (default1000). Overlays inherit the originating provider's settings through a dedicated body portal. Dialogs use a theme-backed readable plate with a material tint, so their text does not depend on whether the host content underneath is light or dark. Fields retain one quiet edge. Motion and CSS stay inside the provider and its portal; unrelated page controls keep their own styling and input handling. Put your layout/background on an outer element; the kit does not replace the page background.
 
-## Included in0.1
+## Core API
 
 Button/loading/disabled variants, Input/Textarea, Checkbox, Switch, Card family, GlassSurface/Picker, Select, DropdownMenu family, Dialog family, Sheet, Popover, Tooltip, Combobox, Tabs, Accordion, Badge, Avatar/Group, RadioGroup, Slider, Progress, Input/Button groups, Breadcrumb, Pagination, ToggleGroup, Skeleton and EmptyState.
 

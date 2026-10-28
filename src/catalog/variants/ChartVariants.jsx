@@ -1,3 +1,4 @@
+import {t} from "../../i18n/translate.js";
 import {VariantGallery} from './VariantGallery.jsx';
 import {variantDefinitions} from './definitions.js';
 import {VariantChart} from './ChartVariantPlot.jsx';

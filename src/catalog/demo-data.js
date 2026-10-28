@@ -15,5 +15,5 @@ export const collectionRows=[
  {id:"D-014",title:"Тихая композиция",type:"Макет",status:"ready",size:384},
 ];
 export const rowStatuses={ready:{label:"Готово",tone:"success"},draft:{label:"Черновик",tone:"neutral"},review:{label:"На проверке",tone:"warning"}};
-export function filterSortRows(rows,query,sort={key:"title",direction:"asc"}){const q=query.trim().toLocaleLowerCase("ru");return rows.filter(row=>(row.title+" "+row.type+" "+row.id).toLocaleLowerCase("ru").includes(q)).toSorted((a,b)=>{const delta=sort.key==="size"?a.size-b.size:a.title.localeCompare(b.title,"ru");return (delta||a.id.localeCompare(b.id))*(sort.direction==="desc"?-1:1);});}
+export function filterSortRows(rows,query,sort={key:"title",direction:"asc"},translate=value=>value){const q=query.trim().toLocaleLowerCase("ru");return rows.filter(row=>(row.title+" "+translate(row.title)+" "+row.type+" "+translate(row.type)+" "+row.id).toLocaleLowerCase("ru").includes(q)).toSorted((a,b)=>{const delta=sort.key==="size"?a.size-b.size:translate(a.title).localeCompare(translate(b.title),"ru");return (delta||a.id.localeCompare(b.id))*(sort.direction==="desc"?-1:1);});}
 export const activityData=[{month:"Май",value:42},{month:"Июн",value:68},{month:"Июл",value:51},{month:"Авг",value:76},{month:"Сен",value:58},{month:"Окт",value:84}];

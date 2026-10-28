@@ -51,5 +51,5 @@ export async function buildStyles(){
   let fonts=await readFile(path.join(root,'public/fonts/lamina.css'),'utf8');
   for(const match of [...fonts.matchAll(/url\(['"]?([^)'"\s]+)['"]?\)/g)]){const data=await readFile(path.join(root,'public/fonts',match[1].split('?')[0]));fonts=fonts.replace(match[0],'url("data:font/woff2;base64,'+data.toString('base64')+'")');}
   const base=(await readFile(path.join(root,'src/kit/kit.css'),'utf8')).replace(/\.tenvell(?![\w-])/g,':scope');
-  return '/* tenvell0.1.1 — code MIT; embedded Lamina fonts SIL OFL1.1 (FONT-LICENSE.txt). */\n'+fonts+'\n@scope (.tenvell) to (:scope .tenvell) {\n'+result.toString()+'\n'+base+'\n}\n';
+  return '/* tenvell0.2.0 — code MIT; embedded Lamina fonts SIL OFL1.1 (FONT-LICENSE.txt). */\n'+fonts+'\n@scope (.tenvell) to (:scope .tenvell) {\n'+result.toString()+'\n'+base+'\n}\n';
 }

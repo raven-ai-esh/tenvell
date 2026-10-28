@@ -21,9 +21,9 @@ export const files = [
   {id:'F-05',title:'Тексты состояний',kind:'Документ',size:42,updated:2},
   {id:'F-06',title:'Следующие шаги',kind:'Заметка',size:12,updated:1},
 ];
-export function filterFiles(rows,query='',sort='recent') {
+export function filterFiles(rows,query='',sort='recent',translate=value=>value) {
   const term=query.trim().toLocaleLowerCase('ru');
-  return rows.filter(row=>(row.title+' '+row.kind+' '+row.id).toLocaleLowerCase('ru').includes(term)).sort(sort==='name'?(a,b)=>a.title.localeCompare(b.title,'ru'):(a,b)=>b.updated-a.updated);
+  return rows.filter(row=>(row.title+' '+translate(row.title)+' '+row.kind+' '+translate(row.kind)+' '+row.id).toLocaleLowerCase('ru').includes(term)).sort(sort==='name'?(a,b)=>translate(a.title).localeCompare(translate(b.title),'ru'):(a,b)=>b.updated-a.updated);
 }
 export const plans=[
   {id:'basic',name:'Базовый',monthly:0,yearlyMonthly:0,description:'Для небольшого личного набора.',features:['3 коллекции','Основные компоненты','Один участник']},

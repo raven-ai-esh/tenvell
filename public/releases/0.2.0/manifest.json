@@ -1,0 +1,78 @@
+{
+  "name": "tenvell",
+  "version": "0.2.0",
+  "site": "https://tenvell.esher1.chatgpt.site",
+  "react": "19",
+  "artifacts": [
+    {
+      "file": "tenvell-0.2.0.tgz",
+      "bytes": 188646,
+      "sha256": "42d13972da0b98f16b16323f0327e9c38b048f15949f68827b7992728354f61c",
+      "url": "/releases/0.2.0/tenvell-0.2.0.tgz"
+    },
+    {
+      "file": "tenvell-starter-0.2.0.zip",
+      "bytes": 220116,
+      "sha256": "391a57475360a2ef5a2d2361da024cf84e06b3de7121e0fdc6aff8b08733e3a9",
+      "url": "/releases/0.2.0/tenvell-starter-0.2.0.zip"
+    },
+    {
+      "file": "tenvell-source-0.2.0.zip",
+      "bytes": 2980209,
+      "sha256": "765be24c55bdeab4a3d130f37f255a5c4d3c229320e80ab36969fb3590b270c4",
+      "url": "/releases/0.2.0/tenvell-source-0.2.0.zip"
+    }
+  ],
+  "registry": "/r/tenvell.json",
+  "registryItems": [
+    "tenvell",
+    "provider",
+    "button",
+    "checkbox",
+    "switch",
+    "card",
+    "glass",
+    "select",
+    "menu",
+    "dialog",
+    "primitives",
+    "disclosure",
+    "charts"
+  ],
+  "sourceHashes": {
+    "src/kit/index.jsx": "a8e38fd4fd0760a1f068ce684dee9f785ce52c16dfed0ce60ac8c9c25c15312e",
+    "src/kit/provider.jsx": "364082632d2e7a220e3823aa5cf93ff36f65c717bad3633ce553c7139094bcb0",
+    "src/components/ui/controls.jsx": "65de560aa0c9ce1692aaf46afa024f428d990a491b93a6c13dc5c3ad8aa20f54",
+    "src/components/ui/checkbox.jsx": "8800ca8df0c2b799a6996142199b93eb40c406f10c9697a81fc3f23694410370",
+    "src/components/ui/switch.jsx": "f0496d3a3e3e7b8f06198a524c2a5d3bb6c7314d5a0bc126f58b9e7fefb3d650",
+    "src/components/ui/card.jsx": "5c2aa21fee5a27f8215cc36ba81019143d128dd27175c3fa4dd40bee7a48ebc2",
+    "src/components/ui/glass.jsx": "c3043085b33a94cbe5c4d7bfea50c0d93ffe5011574bd5f3dc5ad98d6fd4f8f2",
+    "src/components/ui/select.jsx": "650e708624ebe2341582584098d99052707d1bf0da628c433bfdbd6710f7c3d9",
+    "src/components/ui/menu.jsx": "679d32546c864f0efc563fbe474e5815f99717c17277c5bb42aa8af85eaa3866",
+    "src/components/ui/dialog.jsx": "d928ec46973cb580fdb46ded940c88fef34b89e9e9b8331ade151b80495a6bc1",
+    "src/components/ui/primitives.jsx": "7d8a7ce0be5536eacbf797f371b3146d7f0147a0c0ccfa754d488057b872dba4",
+    "src/components/ui/advanced.jsx": "fd218e03b0146c45972fb285d8175f02feb367d271391ec568c1abccc8d04908",
+    "src/components/ui/scope.jsx": "c8e3942fa1b547f834e2d982fb114b9d455f890df777e90f868929b8da0575db",
+    "src/interactions/glass-response.js": "ad89f20e0f53bb85a5b64f67dc247c49c54c66acb27eac833304a97dc93b33ad",
+    "src/interactions/glass-motion.js": "25b93f86b041f5e498a461da0c09c378df57aeb859302a0609c420cced77fb07",
+    "src/interactions/glass-input-state.js": "07be7dbfe59bab45a4259fab5b1d7ba300583c8a5ea378aa9fc088da63178ba5",
+    "src/components/ui/glass-chart-shapes.jsx": "4ea69deda0e548ad732a918dfc18671d742cd759e39ca24f2691dfe87e5dce92",
+    "src/tokens.css": "11cfeaa539e1e2d48ececb18c5b7a8bd00a98990689b64b5337c7b5d4e51f68f",
+    "src/styles.css": "5b0ab712960b69486d7f6ab6ec154e58994ab18c79a602960e84b6068a7ba9b8",
+    "src/components/ui/glass.css": "961c4c1cb9ef991a149b5b04aaf1c263dcb0ed678d3b54c78cc666381e7598e6",
+    "src/catalog/catalog.css": "78fac4ee6112fec283f3bcfb608c93d4ea7b36163a0ba77485a4a3d5171b8d2e",
+    "src/components/ui/primitives.css": "c9be8f24bfa967b056bd0a59df28f9ccf52e6922fe25d2289f166294611a6a93",
+    "src/components/ui/button.css": "f80f62bdbfd1762bcde355edbab4e61c69844b6da8382ffa57b146ce76d71292",
+    "src/components/ui/checkbox.css": "b4b9526c99ebc081e7ff30fdbdf6bd6af8a511fce946da5ac9668761060ac524",
+    "src/preview/preview.css": "a54153fcd5fc61b62134f8d6500b96c356edfde16413b2cc29a7a66b3ed45199",
+    "src/preview/style-tokens.css": "6af727dd157fb44b9bd624e822b700cb602b3c8ec9c713da592c5134ffe63561",
+    "src/interactions/motion-tokens.css": "50c59129985162208607601fa7c4dd9a71ed931f21d5a843007f39dcaa57d2f4",
+    "src/interactions/glass-response.css": "ecfa71e0a112f8d25fd535a0a2024b73b31854ad84fb966bc2953632bfb1bea1",
+    "src/kit/kit.css": "609be0a741ceba959cff10fc640d09158418e220ebd8242edd2d009527f2be14",
+    "src/kit/index.d.ts": "c9165f87d7c0deac562887380582b8850a29dce50f0ed67f7c351d0667f56fb9",
+    "src/kit/charts.d.ts": "27217953bdda470d2b1bc8912eb9992bc0f74be153860a195e60dafd5826a155",
+    "release/build.mjs": "3c035ea4e18378930eb449028459b6442d0785b20b74605f6cd4f1223cd0b039",
+    "release/build-utils.mjs": "9cf729789b2ff82756ee8a5e8c0b33e29042c1aaf4bf9e797aa0690f3060b52c",
+    "release/project.json": "74778de1047a43130c81f8e4a125cd94b2944ec06cf883744164c54989aa57fa"
+  }
+}
