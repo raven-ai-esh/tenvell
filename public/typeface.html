@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lamina UI — гарнитура tenvell</title>
+  <link rel="stylesheet" href="/fonts/lamina.css" />
+  <style>
+    :root{color-scheme:light;--bg:#f5f5f2;--ink:#2b3740;--muted:#52616c;--edge:rgb(255 255 255 / 78%);--surface:rgb(255 255 255 / 21%);--focus:#486678}
+    :root[data-theme=dark]{color-scheme:dark;--bg:#121820;--ink:#e4ebf1;--muted:#b6c1cc;--edge:rgb(220 235 248 / 18%);--surface:rgb(24 33 44 / 46%);--focus:#9ebdce}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Lamina UI",sans-serif;font-synthesis:none;font-weight:400;line-height:1.6}
+    body:before{content:"";position:fixed;inset:0;z-index:-1;background:url("/assets/air-backdrop.png") center/cover;opacity:.42}:root[data-theme=dark] body:before{opacity:.035}
+    main{max-width:1120px;margin:auto;padding:32px 36px 80px}a{color:inherit;text-decoration:none}nav{display:flex;align-items:center;gap:22px;justify-content:space-between;font-size:14px}
+    button{font:inherit;color:inherit;cursor:pointer;border:1px solid var(--edge);background:var(--surface);border-radius:9px;padding:8px 13px}button:hover,a.download:hover{background:rgb(110 130 145 / 12%)}button:focus-visible,a:focus-visible,input:focus-visible,[contenteditable]:focus-visible{outline:2px solid var(--focus);outline-offset:4px}
+    h1{font-size:clamp(60px,10vw,112px);font-weight:400;letter-spacing:-.025em;line-height:1.1;margin:82px 0 22px}h2{font-size:25px;font-weight:400;margin:0 0 20px}p{margin:0 0 20px}.lead{font-size:22px;max-width:650px;color:var(--muted)}.meta{font-size:13px;color:var(--muted)}
+    section{padding:42px 0;border-top:1px solid rgb(125 145 160 / 18%);margin-top:36px}.alphabet{font-size:clamp(21px,3.6vw,38px);line-height:1.8;letter-spacing:.025em;overflow-wrap:anywhere}.lower{margin-top:18px}
+    .controls{display:flex;align-items:center;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:14px}.controls label{display:flex;align-items:center;gap:12px}.controls input{width:160px;accent-color:#71858b}.weights{display:flex;gap:7px}.weights button[aria-pressed=true]{border-color:var(--focus)}
+    .editable{font-size:var(--preview-size,32px);font-weight:var(--preview-weight,400);padding:32px 0;min-height:130px;overflow-wrap:anywhere;border-radius:5px}.samples{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:38px}.size-label{font-size:12px;color:var(--muted);margin:0 0 8px}.sample-text{font-size:16px;line-height:1.7}
+    .mono{font-family:"Lamina Mono",monospace;font-size:15px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}.downloads{display:flex;flex-wrap:wrap;gap:10px}.download{border:1px solid var(--edge);background:var(--surface);border-radius:9px;padding:10px 16px;font-size:14px}
+    @media(max-width:600px){main{padding:24px 23px 55px}nav{font-size:12px;gap:15px}h1{margin-top:60px}.lead{font-size:18px}.samples{grid-template-columns:1fr;gap:24px}.alphabet{font-size:23px;line-height:1.9}.controls{gap:14px}.controls input{width:130px}section{padding-top:30px}}
+  </style>
+</head>
+<body>
+<main>
+  <nav><a href="/#buttons">← tenvell · каталог</a><button id="theme" type="button" aria-label="Включить тёмную тему">Тёмная тема</button></nav>
+  <h1>Lamina UI</h1>
+  <p class="lead">Оригинальная гарнитура tenvell. Кириллица, латиница и моноширинный вариант.</p>
+  <p class="meta">Рабочая версия 0.3 · 246 знаков · Regular 400 / Medium 500 · кириллица и латиница</p>
+  <section>
+    <h2>Попробовать шрифт</h2>
+    <div class="controls"><label for="size">Размер <input id="size" type="range" min="14" max="72" value="32" /><output id="size-value">32 px</output></label><div class="weights" role="group" aria-label="Начертание"><button type="button" data-weight="400" aria-pressed="true">Regular</button><button type="button" data-weight="500" aria-pressed="false">Medium</button></div></div>
+    <div class="editable" contenteditable="true" role="textbox" aria-label="Текст для проверки гарнитуры" spellcheck="false">Лёгкость начинается с формы.</div>
+    <p class="meta">Текст можно изменить. Контуры построены с нуля; готовые шрифтовые файлы не использовались как источник.</p>
+  </section>
+  <section>
+    <h2>Кириллица</h2>
+    <div class="alphabet">АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ</div>
+    <div class="alphabet lower">абвгдеёжзийклмнопрстуфхцчшщъыьэюя</div>
+    <p class="meta">В кириллическом ряду отдельно проработаны формы Д, Л, Ж, Б, Ф и диакритика Ё/Й.</p>
+  </section>
+  <section>
+    <h2>Латиница и цифры</h2>
+    <div class="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div><div class="alphabet lower">abcdefghijklmnopqrstuvwxyz</div><div class="alphabet lower">0123456789 · 2 977 · 68% · ₽ € $</div>
+  </section>
+  <section>
+    <h2>В интерфейсе</h2>
+    <div class="samples"><div><p class="size-label">16 px · Regular</p><p class="sample-text">Съешь ещё этих мягких французских булок, да выпей чаю. Открытые формы и спокойный ритм сохраняют читаемость небольшого текста.</p></div><div><p class="size-label">16 px · Medium</p><p class="sample-text" style="font-weight:500">Кнопки · Поля · Меню · Карточки · Графики<br />Ссылка · Недоступна · Сохранить · Отмена</p></div></div>
+  </section>
+  <section><h2>Lamina Mono</h2><p class="meta">Собственный моноширинный вариант на тех же оригинальных контурах.</p><pre class="mono">const surface = {
+  material: "glass",
+  border: 1,
+  opacity: 0.21
+};
+// Простой код. Спокойный рисунок.</pre></section>
+  <section><h2>Файлы гарнитуры</h2><div class="downloads"><a class="download" href="/fonts/lamina-ui-regular.ttf" download>Regular · TTF</a><a class="download" href="/fonts/lamina-ui-medium.ttf" download>Medium · TTF</a><a class="download" href="/fonts/lamina-ui-regular.woff2" download>Regular · WOFF2</a><a class="download" href="/fonts/lamina-mono-regular.woff2" download>Mono · WOFF2</a></div></section>
+</main>
+<script>
+  const size=document.getElementById("size"),sample=document.querySelector(".editable");
+  size.addEventListener("input",()=>{sample.style.setProperty("--preview-size",size.value+"px");document.getElementById("size-value").textContent=size.value+" px";});
+  document.querySelectorAll("[data-weight]").forEach(button=>button.addEventListener("click",()=>{sample.style.setProperty("--preview-weight",button.dataset.weight);document.querySelectorAll("[data-weight]").forEach(item=>item.setAttribute("aria-pressed",String(item===button)));}));
+  document.getElementById("theme").addEventListener("click",event=>{const dark=document.documentElement.dataset.theme!=="dark";document.documentElement.dataset.theme=dark?"dark":"light";event.currentTarget.textContent=dark?"Светлая тема":"Тёмная тема";event.currentTarget.setAttribute("aria-label",dark?"Включить светлую тему":"Включить тёмную тему");});
+</script>
+</body>
+</html>

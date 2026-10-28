@@ -1,0 +1,9 @@
+/* Square controls have their own readable plate and contour, independent of glass rims. */
+.checkbox{display:inline-flex;align-items:center;justify-content:center;width:21px;height:21px;border:1px solid var(--control-edge);border-radius:6px;background:var(--control-fill);color:var(--selection-mark);padding:0;flex-shrink:0}
+.checkbox:not([data-disabled]):hover{border-color:var(--control-edge-hover)}
+.checkbox[data-checked],.checkbox[data-indeterminate]{background:var(--selection-fill);border-color:var(--selection-edge);color:var(--selection-mark)}
+.checkbox>span{display:flex}
+.checkbox .checkbox-mixedmark{display:none}
+.checkbox[data-indeterminate] .checkbox-checkmark{display:none}
+.checkbox[data-indeterminate] .checkbox-mixedmark{display:block}
+.checkbox[data-disabled]{background:var(--disabled-surface);border-color:var(--disabled-edge);color:var(--disabled-foreground);cursor:not-allowed}

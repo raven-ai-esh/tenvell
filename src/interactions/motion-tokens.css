@@ -1,0 +1,10 @@
+:root {
+  --motion-press-duration:80ms;
+  --motion-feedback-duration:140ms;
+  --motion-follow-duration:100ms;
+  --motion-release-duration:220ms;
+  --motion-panel-duration:240ms;
+  --motion-exit-duration:160ms;
+  --motion-ease-standard:cubic-bezier(.2,0,.2,1);
+  --motion-ease-settle:cubic-bezier(.16,1,.3,1);
+}

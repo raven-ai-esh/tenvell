@@ -1,0 +1,35 @@
+import {variantDefinitions} from "./variants/definitions.js";
+import { MousePointer2, LayoutGrid, CalendarDays, Table2, CircleHelp, Bell, PanelRight, Users, CircleDot, GalleryHorizontalEnd, TextCursorInput, PanelsTopLeft, ChartNoAxesCombined, AppWindow, ListFilter } from "lucide-react";
+
+const originalPages = [
+  { id: "buttons", title: "Кнопки", english: "Button", icon: MousePointer2, description: "От заметного действия до тихой ссылки. Чёткая иерархия, точные состояния и ничего лишнего.", keywords: "button кнопка действие загрузка размер", examples: [{ id: "variants", title: "Варианты" }, { id: "sizes", title: "Размеры и иконки" }, { id: "states", title: "Состояния" }] },
+  { id: "fields", title: "Поля", english: "Input & controls", icon: TextCursorInput, description: "Ввод, который не отвлекает. Подписи, подсказки и состояния помогают заполнить форму с первого раза.", keywords: "input textarea select checkbox switch форма поле ввод", examples: [{ id: "form", title: "Форма" }, { id: "field-states", title: "Состояния полей" }, { id: "selection", title: "Выбор и переключение" }] },
+  { id: "menus", title: "Меню", english: "Dropdown Menu", icon: ListFilter, description: "Действия появляются там, где нужны. Лёгкая поверхность, понятные группы и управление с клавиатуры.", keywords: "menu dropdown popover действия меню список", examples: [{ id: "actions", title: "Меню действий" }, { id: "preferences", title: "Меню с выбором" }, { id: "command", title: "Командная палитра" }] },
+  { id: "cards", title: "Карточки", english: "Card", icon: PanelsTopLeft, description: "Контент на первом плане. Тонкая поверхность объединяет заголовок, детали и действие, сохраняя воздух.", keywords: "card карточка контент поверхность стекло glass воздух иней призма дымка", examples: [{ id: "project", title: "Карточка с действием" }, { id: "metrics", title: "Поверхности стекла" }, { id: "select-card", title: "Выбор карточки" }] },
+  { id: "charts", title: "Графики", english: "Chart", icon: ChartNoAxesCombined, description: "Данные без визуального шума. Спокойная палитра, точные подписи и детали по наведению или с клавиатуры.", keywords: "chart график диаграмма статистика аналитика", examples: [{ id: "area", title: "Динамика" }, { id: "bars", title: "Сравнение" }, { id: "donut", title: "Распределение" }, {id:"line",title:"Линия"}, {id:"radar",title:"Радар"}, {id:"radial",title:"Радиальная шкала"}] },
+  { id: "dialogs", title: "Модальные окна", english: "Dialog", icon: AppWindow, description: "Отдельный фокус для важного действия. Тонкое стекло сохраняет контекст, а ясные кнопки помогают двигаться дальше.", keywords: "dialog modal модальное окно подтверждение alert", examples: [{ id: "settings", title: "Настройки" }, { id: "confirmation", title: "Подтверждение" }, { id: "scroll", title: "Длинное содержимое" }] },
+];
+
+
+const additions=[
+ {id:"overview",title:"Витрина",english:"Overview",icon:LayoutGrid,description:"Компоненты в реальных композициях.",group:"Начало",keywords:"обзор витрина overview showcase примеры",examples:[]},
+ {id:"choice",title:"Группы и выбор",english:"Input Group & Selection",icon:CircleDot,description:"Составной ввод, точное значение и поиск внутри выбора.",group:"Элементы",keywords:"radio slider combobox input group toggle выбор слайдер поиск",examples:[{id:"radio-slider",title:"Радио и слайдер"},{id:"combobox",title:"Комбобокс"},{id:"input-group",title:"Группы ввода"}]},
+ {id:"identity",title:"Метки и аватары",english:"Badge & Avatar",icon:Users,description:"Люди, состояния и составные строки с ясной иерархией.",group:"Элементы",keywords:"badge avatar item метка аватар состояние список",examples:[{id:"badges",title:"Метки"},{id:"avatars",title:"Аватары"},{id:"items",title:"Строки"}]},
+ {id:"navigation",title:"Навигация",english:"Tabs & Breadcrumb",icon:GalleryHorizontalEnd,description:"Горизонтальные и вертикальные вкладки, путь и страницы.",group:"Структура",keywords:"tabs breadcrumb pagination вкладки путь страницы навигация",examples:[{id:"tabs",title:"Вкладки"},{id:"vertical",title:"Вертикально"},{id:"line-tabs",title:"Линейные вкладки"},{id:"path",title:"Путь и страницы"}]},
+ {id:"details",title:"Раскрытие",english:"Accordion & Collapsible",icon:CircleHelp,description:"Дополнительная информация появляется тогда, когда нужна.",group:"Структура",keywords:"accordion collapsible details аккордеон раскрытие вопросы",examples:[{id:"accordion",title:"Аккордеон"},{id:"multiple",title:"Несколько пунктов"},{id:"collapsible",title:"Детали"}]},
+ {id:"data",title:"Таблицы",english:"Data Table",icon:Table2,description:"Поиск, сортировка, выбор и просмотр записей.",group:"Данные",keywords:"table data таблица данные сортировка поиск",examples:[{id:"data-table",title:"Таблица данных"},{id:"simple-table",title:"Сводка"}]},
+ {id:"calendar",title:"Даты",english:"Calendar & Date Picker",icon:CalendarDays,description:"Выбор дня, диапазона и даты в компактном поле.",group:"Данные",keywords:"calendar date picker range календарь дата диапазон",examples:[{id:"calendar",title:"Календарь"},{id:"range",title:"Диапазон"},{id:"date-picker",title:"Поле даты"}]},
+ {id:"overlays",title:"Всплывающие слои",english:"Popover, Tooltip & Sheet",icon:PanelRight,description:"Подсказка, небольшая форма и боковая панель для деталей.",group:"Слои",keywords:"popover tooltip sheet hover подсказка панель слой",examples:[{id:"popover",title:"Всплывающая панель"},{id:"tooltip",title:"Подсказки"},{id:"sheet",title:"Боковая панель"}]},
+ {id:"feedback",title:"Обратная связь",english:"Alert, Toast & States",icon:Bell,description:"Уведомления, прогресс, загрузка и пустое состояние.",group:"Слои",keywords:"alert toast progress skeleton empty spinner сообщение уведомление прогресс загрузка пусто",examples:[{id:"alerts",title:"Сообщения"},{id:"progress",title:"Прогресс"},{id:"empty",title:"Пустое состояние"}]},
+ {id:"blocks",title:"Композиции",english:"Blocks",icon:LayoutGrid,description:"Несколько компонентов складываются в цельный сценарий.",group:"Сценарии",keywords:"blocks композиции готовые экраны пример вход дашборд",examples:[{id:"dashboard",title:"Обзор с данными"},{id:"login",title:"Вход"},{id:"profile-settings",title:"Профиль"}]},
+];
+const originalGroups={buttons:"Элементы",fields:"Элементы",cards:"Структура",charts:"Данные",menus:"Слои",dialogs:"Слои"};
+const allPages=[...originalPages.map(page=>({...page,group:originalGroups[page.id]})),...additions];
+const order=["overview","buttons","fields","choice","identity","navigation","details","cards","data","calendar","charts","menus","overlays","feedback","dialogs","blocks"];
+export const catalogPages=order.map(id=>{const page=allPages.find(item=>item.id===id);return {...page,examples:[...(variantDefinitions[id]||[]),...page.examples]};});
+export const catalogGroups=["Начало","Элементы","Структура","Данные","Слои","Сценарии"];
+
+export function readCatalogLocation() {
+  const [id, anchor = ""] = window.location.hash.slice(1).split("/");
+  return { id: catalogPages.some((page) => page.id === id) ? id : "overview", anchor };
+}

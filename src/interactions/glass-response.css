@@ -1,0 +1,73 @@
+:root {
+  --convex-light:rgb(255 255 255 / 68%);
+  --convex-shade:rgb(45 73 93 / 17%);
+  --convex-sheen:rgb(255 255 255 / 22%);
+  --convex-depth:0 5px 12px -7px rgb(36 63 83 / 30%);
+}
+:root[data-theme="dark"] {
+  --convex-light:rgb(217 239 255 / 26%);
+  --convex-shade:rgb(0 0 0 / 28%);
+  --convex-sheen:rgb(211 234 255 / 5%);
+  --convex-depth:0 6px 14px -7px rgb(0 0 0 / 65%);
+}
+[data-glass-position] {position:relative}
+[data-glass-paint] {isolation:isolate}
+/* A separate, non-interactive paint layer leaves the hit target and text fixed. */
+[data-glass-paint]::before {
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;
+  background:radial-gradient(ellipse at var(--gr-light-x,50%) var(--gr-light-y,28%),var(--convex-sheen),transparent 72%);
+  box-shadow:inset 0 .7px .4px var(--convex-light),inset 0 -.7px 1px var(--convex-shade),var(--convex-depth);
+  opacity:0;translate:0 0;rotate:0deg;scale:1;
+  transition:opacity var(--motion-feedback-duration) var(--motion-ease-standard),translate var(--motion-release-duration) var(--motion-ease-settle),scale var(--motion-release-duration) var(--motion-ease-settle),rotate var(--motion-follow-duration) var(--motion-ease-standard),box-shadow var(--motion-release-duration) var(--motion-ease-settle);
+}
+/* Solid semantic fills keep their foreground/background contrast under the light. */
+.button[data-variant="primary"][data-glass-paint]::before,
+.checkbox[data-glass-paint]:is([data-checked],[data-indeterminate])::before,
+.rdp-selected>[data-glass-paint]::before {background:none}
+[data-glass-paint][data-glass-hover]::before {
+  opacity:1;translate:var(--gr-x,0px) var(--gr-y,-.7px);rotate:var(--gr-tilt,0deg);scale:1.012 1.025;
+}
+[data-glass-response="surface"][data-glass-hover]::before {scale:1.007 1.008}
+[data-glass-response="row"][data-glass-hover]::before {scale:1.004 1.012}
+[data-glass-paint]:is(:focus-visible,[aria-selected="true"],[aria-pressed="true"],[aria-current],[aria-checked="true"],[aria-checked="mixed"],[data-checked],[data-highlighted],[data-selected],[data-moved])::before,
+[data-glass-paint]:has(>input:checked)::before,
+[data-glass-paint]:has(>input:focus-visible)::before,
+.rdp-selected>[data-glass-paint]::before {opacity:.8}
+[data-glass-paint][data-glass-pressed]::before {
+  opacity:.85;translate:0 .25px;rotate:0deg;scale:1.004 .99;
+  box-shadow:inset 0 .5px .4px var(--convex-light),inset 0 -.35px .7px var(--convex-shade),0 1px 3px -2px var(--convex-shade);
+  transition:opacity var(--motion-press-duration) var(--motion-ease-standard),translate var(--motion-press-duration) var(--motion-ease-standard),scale var(--motion-press-duration) var(--motion-ease-standard),rotate var(--motion-press-duration) var(--motion-ease-standard),box-shadow var(--motion-press-duration) var(--motion-ease-standard);
+}
+/* A field is a single quiet frame. No convex rim is added around text/caret. */
+:is(.input,.select-trigger,.ui-input-group,.ui-combobox-control)[data-glass-response="field"],
+:is(.input,.select-trigger,.ui-input-group,.ui-combobox-control)[data-glass-response="field"]:is([data-glass-hover],:focus-visible,:focus-within,[aria-expanded="true"]) {
+  outline:none;box-shadow:none;
+  transition:border-color var(--motion-feedback-duration) var(--motion-ease-standard),background-color var(--motion-feedback-duration) var(--motion-ease-standard);
+}
+:is(.input,.select-trigger,.ui-input-group,.ui-combobox-control)[data-glass-response="field"]:is([data-glass-hover],:focus-visible,:focus-within,[aria-expanded="true"]) {border-color:var(--control-edge-hover)}
+:is(.input,.select-trigger,.ui-input-group,.ui-combobox-control)[data-glass-response="field"]:is(:focus-visible,:focus-within) {border-color:var(--focus)}
+/* Keyboard emphasis extends the same edge inward, without another outline/gap. */
+:root[data-glass-input="keyboard"] :is(.input,.select-trigger,.ui-input-group,.ui-combobox-control)[data-glass-response="field"]:is(:focus-visible,:focus-within) {box-shadow:inset 0 0 0 1px var(--focus)}
+.input[data-glass-response="field"][aria-invalid="true"] {border-color:var(--destructive)}
+.ui-combobox-trigger:focus-visible {outline:none}
+.ui-table tr[data-glass-response]:is([data-glass-hover],[aria-selected="true"]) {
+  box-shadow:inset 0 1px var(--convex-light),inset 0 -1px var(--convex-shade),var(--convex-depth);
+}
+[data-glass-response]:is(:disabled,[aria-disabled="true"],[data-disabled],[aria-busy="true"])::before,
+fieldset:disabled [data-glass-paint]::before,
+.task-board[data-dragging] [data-glass-paint]::before {opacity:0!important;translate:none!important;scale:1!important;rotate:none!important;transition:none!important}
+.ui-radio-option[data-glass-paint] {border-radius:calc(var(--radius-control)*.55)}
+.ui-slider:enabled:is(:hover,:focus-visible)::-webkit-slider-thumb {box-shadow:inset 0 .8px 1px var(--convex-light),0 3px 7px -2px var(--convex-shade);scale:1.1;transition:scale var(--motion-feedback-duration) var(--motion-ease-standard)}
+.ui-slider:enabled:is(:hover,:focus-visible)::-moz-range-thumb {box-shadow:inset 0 .8px 1px var(--convex-light),0 3px 7px -2px var(--convex-shade)}
+.glass-chart-shape {--gr-x:0px;--gr-y:0px}
+.glass-chart-shape[data-active="true"] {--gr-y:-.7px}
+.glass-chart-visual {pointer-events:none;transform-box:fill-box;transform-origin:center;translate:0 0;transition:translate var(--motion-follow-duration) var(--motion-ease-standard)}
+.glass-chart-shape[data-active="true"]>.glass-chart-visual {translate:var(--gr-x,0px) var(--gr-y,-.7px)}
+.glass-chart-depth {filter:drop-shadow(0 2px 2px var(--convex-shade))}
+.recharts-tooltip-wrapper {z-index:5}
+@media(prefers-reduced-motion:reduce),(hover:none),(pointer:coarse) {
+  [data-glass-paint]::before {translate:none!important;rotate:none!important;scale:1!important;transition:none!important}
+  .glass-chart-visual {translate:none!important;transition:none!important}
+  .ui-slider::-webkit-slider-thumb {scale:1!important;transition:none!important}
+}
+@media(prefers-reduced-transparency:reduce) {[data-glass-paint]::before {background:none}}

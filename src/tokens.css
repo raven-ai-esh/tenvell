@@ -1,0 +1,92 @@
+:root {
+  --font-ui: "Lamina UI";
+  --font-code: "Lamina Mono";
+  --background: #f5f5f2;
+  --foreground: #2b3740;
+  --muted-foreground: #455664;
+  --primary: #57616a;
+  --primary-hover: #626e78;
+  --primary-foreground: #fff;
+  --primary-edge: rgb(255 255 255 / 24%);
+  --primary-edge-hover: rgb(255 255 255 / 40%);
+  --soft-action-edge: rgb(90 108 122 / 22%);
+  --soft-action-edge-hover: rgb(90 108 122 / 34%);
+  --secondary-hover: rgb(112 131 146 / 20%);
+  --quiet-hover: rgb(74 94 108 / 7%);
+  --danger-hover: #f0dce2;
+  --danger-edge: rgb(166 69 85 / 25%);
+  --disabled-surface: #e0e6eb;
+  --disabled-foreground: #4d6070;
+  --disabled-edge: #71889a;
+  --glass-fill: rgb(255 255 255 / 21%);
+  --glass-edge: rgb(255 255 255 / 78%);
+  --glass-edge-width: 1px;
+  --glass-blur: 10px;
+  --glass-shadow: 0 24px 56px -32px rgb(82 99 120 / 12%), inset 0 0 0 .25px rgb(255 255 255 / 20%);
+  --control-fill: rgb(248 251 253 / 94%);
+  --control-hover: rgb(242 248 252 / 98%);
+  --control-edge: #304b61;
+  --control-edge-hover: #233e54;
+  --separator: rgb(127 144 164 / 13%);
+  --switch-on: #414549;
+  --switch-off: #71879a;
+  --switch-edge: var(--control-edge);
+  --switch-thumb-off: #fff;
+  --switch-thumb-on: #fff;
+  --focus: #27485f;
+  --destructive: #601c2c;
+  --menu-fill: rgb(248 250 252 / 92%);
+  --menu-highlight: rgb(96 121 151 / 10%);
+  --opaque-surface: #f6f8fa;
+  --backdrop-opacity: .8;
+}
+
+:root[data-theme="dark"] {
+  --background: #121820;
+  --foreground: #e4ebf1;
+  --muted-foreground: #cddbe7;
+  --primary: #4b5e6c;
+  --primary-hover: #586d7d;
+  --primary-foreground: #f4f8fa;
+  --primary-edge: rgb(220 235 247 / 18%);
+  --primary-edge-hover: rgb(220 235 247 / 28%);
+  --soft-action-edge: rgb(205 221 235 / 23%);
+  --soft-action-edge-hover: rgb(205 221 235 / 36%);
+  --secondary-hover: rgb(205 221 235 / 16%);
+  --quiet-hover: rgb(205 221 235 / 9%);
+  --danger-hover: #54323f;
+  --danger-edge: rgb(226 123 139 / 28%);
+  --disabled-surface: #2b3540;
+  --disabled-foreground: #b8c8d6;
+  --disabled-edge: #738da3;
+  --glass-fill: rgb(24 33 44 / 46%);
+  --glass-edge: rgb(222 235 248 / 18%);
+  --glass-shadow: 0 24px 56px -32px rgb(0 0 0 / 30%), inset 0 0 0 .25px rgb(255 255 255 / 5%);
+  --control-fill: rgb(19 32 46 / 94%);
+  --control-hover: rgb(24 40 55 / 98%);
+  --control-edge: #b9cedf;
+  --control-edge-hover: #d9e7f1;
+  --separator: rgb(212 227 244 / 11%);
+  --switch-on: #dce5ee;
+  --switch-off: #3b5267;
+  --switch-edge: var(--control-edge);
+  --switch-thumb-off: #e2edf5;
+  --switch-thumb-on: #263442;
+  --focus: #c7deed;
+  --destructive: #ffd0d6;
+  --menu-fill: rgb(31 42 55 / 96%);
+  --menu-highlight: rgb(199 223 248 / 11%);
+  --opaque-surface: #1a2532;
+  --backdrop-opacity: .045;
+}
+
+
+/* Semantic control paint is independent of decorative glass finishes. */
+:root {
+  --selection-fill:var(--primary);--selection-mark:#fff;--selection-dot:var(--primary);--selection-edge:var(--control-edge);
+  --selection-quiet:#e4edf4;--secondary-fill:#e3ebf1;--secondary-hover:#d7e3ed;
+}
+:root[data-theme="dark"] {
+  --selection-fill:var(--focus);--selection-mark:#132434;--selection-dot:var(--focus);--selection-edge:var(--control-edge);
+  --selection-quiet:#273e51;--secondary-fill:#2b4154;--secondary-hover:#354e64;
+}

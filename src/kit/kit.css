@@ -1,0 +1,32 @@
+.tenvell{--scale:.72;--tenvell-overlay-z:1000;min-width:0;box-sizing:border-box;font-family:var(--font-ui),sans-serif;font-size:14px;font-weight:400;line-height:1.6;color:var(--foreground);color-scheme:light;font-synthesis:none;-webkit-font-smoothing:antialiased}
+.tenvell[data-theme=dark]{color-scheme:dark}
+.tenvell.tenvell-portal{display:contents}
+.tenvell .tenvell-layer{z-index:var(--tenvell-overlay-z)}
+:where(.tenvell) *, :where(.tenvell) *::before, :where(.tenvell) *::after{box-sizing:border-box}
+:where(.tenvell) button,:where(.tenvell) input,:where(.tenvell) textarea,:where(.tenvell) select{font-family:inherit}
+:where(.tenvell) button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+:where(.tenvell) button:disabled{cursor:not-allowed}
+:where(.tenvell) input::placeholder,:where(.tenvell) textarea::placeholder{color:var(--muted-foreground);opacity:1}
+:where(.tenvell) input:disabled::placeholder,:where(.tenvell) textarea:disabled::placeholder{color:var(--disabled-foreground)}
+:where(.tenvell) :is(button,input,[tabindex]):focus-visible{outline:2px solid var(--focus);outline-offset:4px}
+:where(.tenvell) button svg{flex-shrink:0}
+:where(.tenvell) .glass-panel{--scale:.72;background:var(--menu-fill);isolation:isolate}
+:where(.tenvell) .glass-panel::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;background:var(--surface-fill)}
+.tenvell .button{min-height:calc(40px * var(--density-factor));padding-inline:calc(16px * var(--density-factor))}
+.tenvell .button[data-size=sm]{min-height:calc(32px * var(--density-factor));padding-inline:calc(11px * var(--density-factor))}
+.tenvell .button[data-size=lg]{min-height:calc(46px * var(--density-factor));padding-inline:calc(18px * var(--density-factor))}
+.tenvell .button[data-size=icon]{width:calc(40px * var(--density-factor));height:calc(40px * var(--density-factor));min-height:calc(40px * var(--density-factor));padding:0}
+.tenvell .input,.tenvell .select-trigger{height:calc(46px * var(--density-factor));padding-inline:calc(14px * var(--density-factor))}
+.tenvell .textarea{height:auto;min-height:calc(100px * var(--density-factor))}
+.tenvell .ui-input-group{min-height:calc(46px * var(--density-factor))}
+.tenvell .ui-input-group>.input{height:calc(46px * var(--density-factor) - 2px);min-height:0}
+.tenvell .ui-combobox-control{height:calc(42px * var(--density-factor))}
+.tenvell .switch{width:calc(52px * var(--density-factor));height:calc(30px * var(--density-factor));min-height:0;padding:calc(3px * var(--density-factor))}
+.tenvell .switch-thumb{width:calc(24px * var(--density-factor) - 2px);height:calc(24px * var(--density-factor) - 2px)}
+.tenvell .switch[data-checked] .switch-thumb{transform:translateX(calc(22px * var(--density-factor)))}
+.tenvell :is(.input,.select-trigger):is(:disabled,[aria-disabled=true],[data-disabled]),.tenvell .ui-combobox-control:has(input:disabled),.tenvell .ui-input-group:has(>.input:disabled){background:var(--disabled-surface)!important;border-color:var(--disabled-edge)!important;color:var(--disabled-foreground)!important;cursor:not-allowed}
+.tenvell[data-motion=reduced]{--motion-feedback-duration:0ms;--motion-follow-duration:0ms;--motion-press-duration:0ms;--motion-release-duration:0ms}
+:where(.tenvell)[data-motion=reduced] [data-glass-paint]::before{translate:none!important;rotate:none!important;scale:1!important;transition:none!important}
+:where(.tenvell)[data-motion=reduced] .glass-chart-visual{translate:none!important;transition:none!important}
+:where(.tenvell)[data-motion=reduced] .ui-slider::-webkit-slider-thumb{scale:1!important;transition:none!important}
+:where(.tenvell)[data-motion=reduced] .button-spinner,:where(.tenvell)[data-motion=reduced] .ui-skeleton{animation:none!important}

@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {collectionRows,filterSortRows} from '../src/catalog/demo-data.js';
+test('search matches title/type/id without modifying the source population',()=>{const before=JSON.stringify(collectionRows);assert.equal(filterSortRows(collectionRows,'d-010').length,1);assert.equal(filterSortRows(collectionRows,'  ПРОВЕРКА  ')[0].id,'D-011');assert.equal(filterSortRows(collectionRows,'невозможный запрос').length,0);assert.equal(JSON.stringify(collectionRows),before);});
+test('numeric sort is correct in both directions and retains every stable id',()=>{const asc=filterSortRows(collectionRows,'',{key:'size',direction:'asc'}),desc=filterSortRows(collectionRows,'',{key:'size',direction:'desc'});assert.equal(asc[0].size,16);assert.equal(desc[0].size,640);assert.deepEqual(desc.map(r=>r.id),asc.map(r=>r.id).reverse());assert.equal(new Set(asc.map(r=>r.id)).size,collectionRows.length);});

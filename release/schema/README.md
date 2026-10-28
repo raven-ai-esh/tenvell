@@ -1,0 +1,1 @@
+Official shadcn registry schemas retrieved28 October2026 from https://ui.shadcn.com/schema/registry-item.json and https://ui.shadcn.com/schema/registry.json. The release installer is pinned to shadcn4.23.0. Schemas are vendored for offline validation; generated items are also built and installed by the real CLI.

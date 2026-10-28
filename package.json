@@ -1,0 +1,39 @@
+{
+  "name": "tenvell",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/prepare-sites-build.mjs",
+    "preview": "vite preview",
+    "test:sites": "node --test tests/sites-worker.test.mjs",
+    "release:build": "node release/build.mjs",
+    "release:check": "node --test tests/release.test.mjs",
+    "release:verify-install": "node release/verify-install.mjs"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.8.0",
+    "@dnd-kit/core": "6.3.1",
+    "@dnd-kit/sortable": "10.0.0",
+    "@dnd-kit/utilities": "3.2.2",
+    "@vitejs/plugin-react": "5.0.4",
+    "lucide-react": "^1.59.0",
+    "react": "19.2.0",
+    "react-day-picker": "10.0.2",
+    "react-dom": "19.2.0",
+    "recharts": "^3.10.1",
+    "vite": "6.4.5"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "ajv": "8.20.0",
+    "postcss-selector-parser": "7.1.7",
+    "shadcn": "4.23.0",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=22.12"
+  }
+}

@@ -1,0 +1,20 @@
+import {useState} from "react";
+import {ArrowUpRight,Check,FileText,Folder,LayoutDashboard,PanelLeftClose,PanelLeftOpen,Settings2} from "lucide-react";
+import {Avatar,Badge,Breadcrumb,Button,Card,DataTable,Switch} from "../components/ui";
+import {collectionRows} from "../catalog/demo-data.js";
+import {DemoChart} from "../catalog/ShowcaseCards.jsx";
+import "../catalog/showcase.css";
+import "./dashboard.css";
+
+export function DashboardContent({compact=false}){
+ const[collapsed,setCollapsed]=useState(compact),[section,setSection]=useState("overview"),[summary,setSummary]=useState(true),[saved,setSaved]=useState(null);
+ const ready=collectionRows.filter(row=>row.status==="ready").length,review=collectionRows.filter(row=>row.status==="review").length;
+ return <div className={"dashboard-layout"+(compact?" embedded":"")} data-collapsed={collapsed||undefined}>
+  <aside className="dashboard-sidebar" aria-label="Навигация обзора"><div className="dashboard-sidebar-heading"><span className="dashboard-symbol"><Folder size={19} strokeWidth={1.4} aria-hidden="true"/></span><span className="dashboard-sidebar-label">Коллекция</span><Button variant="icon" size="icon" className="dashboard-collapse" aria-label={collapsed?"Развернуть боковую панель":"Свернуть боковую панель"} aria-expanded={!collapsed} onClick={()=>setCollapsed(!collapsed)}>{collapsed?<PanelLeftOpen size={16} aria-hidden="true"/>:<PanelLeftClose size={16} aria-hidden="true"/>}</Button></div><nav>{[{id:"overview",title:"Обзор",icon:LayoutDashboard},{id:"collection",title:"Все записи",icon:FileText},{id:"settings",title:"Настройки",icon:Settings2}].map(({id,title,icon:Icon})=><button type="button" key={id} aria-current={section===id?"page":undefined} aria-label={title} onClick={()=>setSection(id)} title={collapsed?title:undefined}><Icon size={17} strokeWidth={1.5} aria-hidden="true"/><span className="dashboard-sidebar-label">{title}</span></button>)}</nav><div className="dashboard-sidebar-user"><Avatar fallback="АК" alt="Анна К." size="sm"/><span className="dashboard-sidebar-label"><strong>Анна К.</strong><small>Демонстрация</small></span></div></aside>
+  <section className="dashboard-content" aria-label="Содержание обзора"><header className="dashboard-content-header"><Breadcrumb items={[{label:"Пример"},{label:section==="overview"?"Обзор":section==="collection"?"Коллекция":"Настройки"}]}/><Badge>Локальные данные</Badge></header>
+   {section==="overview"?<><div className="dashboard-title"><h2>Обзор коллекции</h2><p>Короткая сводка, динамика и подробности.</p></div><div className="dashboard-stats">{[{label:"Всего записей",value:collectionRows.length,hint:"В демонстрационной коллекции"},{label:"Готово",value:ready,hint:Math.round(ready/collectionRows.length*100)+"% от общего числа"},{label:"На проверке",value:review,hint:"Ожидают внимания"},{label:"В черновиках",value:collectionRows.length-ready-review,hint:"Можно вернуться позже"}].map(item=><Card key={item.label}><span>{item.label}</span><strong>{item.value}</strong><small>{item.hint}</small></Card>)}</div><Card className="dashboard-chart-card"><DemoChart large/></Card><section className="dashboard-table-section"><div><h3>Последние записи</h3><Button variant="ghost" size="sm" onClick={()=>setSection("collection")}>Вся коллекция<ArrowUpRight size={13} aria-hidden="true"/></Button></div><DataTable pageSize={4}/></section></>
+   :section==="collection"?<><div className="dashboard-title"><h2>Все записи</h2><p>Поиск, выбор и сортировка коллекции.</p></div><DataTable/></>
+   :<><div className="dashboard-title"><h2>Предпочтения примера</h2><p>Небольшое действие с понятным результатом.</p></div><Card className="dashboard-settings"><label><span><strong>Короткая сводка</strong><small>Показывать важные изменения.</small></span><Switch aria-label="Короткая сводка в обзоре" checked={summary} onCheckedChange={setSummary}/></label><Button size="sm" onClick={()=>setSaved(summary)}>Сохранить настройки</Button><p role="status">{saved===null?"Настройка действует в текущем примере.":saved?"Сводка включена.":"Сводка выключена."}</p></Card></>}
+  </section>
+ </div>;
+}

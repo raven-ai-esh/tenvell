@@ -1,0 +1,41 @@
+{
+  "version": "0.3",
+  "unitsPerEm": 1000,
+  "capHeight": 700,
+  "xHeight": 520,
+  "origin": "All outlines and spacing are original and defined in typeface/master.py. No existing font is opened or imported.",
+  "styles": [
+    {
+      "family": "Lamina UI",
+      "weight": 400,
+      "glyphs": 246,
+      "file": "lamina-ui-regular.ttf",
+      "woff2": "lamina-ui-regular.woff2",
+      "characters": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ «°·»ÀÁÂÃÄÇÈÉÊËÌÍÏÑÒÓÔÕÖ×ØÙÚÛÜÝàáâãäçèéêëìíïñòóôõöøùúûüýÿČčŠšŸŽžЁЄІЇАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёєії –—‘’“”… €₽←→−⌘"
+    },
+    {
+      "family": "Lamina UI",
+      "weight": 500,
+      "glyphs": 246,
+      "file": "lamina-ui-medium.ttf",
+      "woff2": "lamina-ui-medium.woff2",
+      "characters": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ «°·»ÀÁÂÃÄÇÈÉÊËÌÍÏÑÒÓÔÕÖ×ØÙÚÛÜÝàáâãäçèéêëìíïñòóôõöøùúûüýÿČčŠšŸŽžЁЄІЇАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёєії –—‘’“”… €₽←→−⌘"
+    },
+    {
+      "family": "Lamina Mono",
+      "weight": 400,
+      "glyphs": 246,
+      "file": "lamina-mono-regular.ttf",
+      "woff2": "lamina-mono-regular.woff2",
+      "characters": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ «°·»ÀÁÂÃÄÇÈÉÊËÌÍÏÑÒÓÔÕÖ×ØÙÚÛÜÝàáâãäçèéêëìíïñòóôõöøùúûüýÿČčŠšŸŽžЁЄІЇАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёєії –—‘’“”… €₽←→−⌘"
+    },
+    {
+      "family": "Lamina Mono",
+      "weight": 500,
+      "glyphs": 246,
+      "file": "lamina-mono-medium.ttf",
+      "woff2": "lamina-mono-medium.woff2",
+      "characters": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ «°·»ÀÁÂÃÄÇÈÉÊËÌÍÏÑÒÓÔÕÖ×ØÙÚÛÜÝàáâãäçèéêëìíïñòóôõöøùúûüýÿČčŠšŸŽžЁЄІЇАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёєії –—‘’“”… €₽←→−⌘"
+    }
+  ]
+}
