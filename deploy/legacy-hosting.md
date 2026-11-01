@@ -5,13 +5,17 @@ and forks do not emit redirect metadata.
 
 The original hosted Site additionally runs
 `node scripts/prepare-legacy-redirects.mjs` after its ordinary build and before
-packaging. It emits a deployment-only `dist/client/_redirects` file for the root
-and typeface documents. Those existing HTML assets can be served before the
-Worker, so the Worker alone cannot redirect them. App deep links are handled by
-the Worker; registry items and versioned archives remain direct assets.
+packaging. Only in that deployment's build output, it removes the root and
+typeface HTML documents from the static asset bucket. Their requests then reach
+the redirect Worker instead of being served before it. App deep links are also
+handled by the Worker; registry items and versioned archives remain direct assets.
 
 Use this explicit profile only when retiring a former origin in favor of the
 canonical HTTPS origin declared in `release/project.json`. Do not run it as part
-of normal self-hosting or new Site creation. The generated file belongs in that
-legacy deployment archive, not in the VPS's static public directory. Previously
-published release archives remain immutable historical snapshots.
+of normal self-hosting or new Site creation. The source HTML documents, the VPS's
+normal build and previously published release archives are not changed. Rebuild
+normally after the legacy archive has been saved to restore normal build output.
+
+The native upload path does not apply Cloudflare `_redirects` metadata. This
+profile uses the existing Worker entrypoint and actual static/Worker routing;
+it does not depend on unsupported provider settings or client-side redirects.
