@@ -22,7 +22,7 @@ async function typedBarrel(graph,apiFile,directory,name,partial=false){
 }
 
 const project=JSON.parse(await readFile(path.join(root,'release/project.json'),'utf8'));
-const version='0.2.0',site=new URL(process.env.TENVELL_SITE_URL||project.siteUrl||'http://localhost:4187').origin;
+const version='0.2.1',site=new URL(process.env.TENVELL_SITE_URL||project.siteUrl||'http://localhost:4187').origin;
 if(!/^https?:/.test(site))throw new Error('TENVELL_SITE_URL must be an HTTP(S) origin');
 const packageDir=path.join(output,'package'),registryDir=path.join(output,'registry'),starterDir=path.join(output,'starter'),repoDir=path.join(output,'repository');
 const downloads=path.join(root,'public/releases',version),registryPublic=path.join(root,'public/r');
@@ -75,7 +75,7 @@ const starterZip='tenvell-starter-'+version+'.zip';
 await rm(path.join(downloads,starterZip),{force:true});
 execFileSync('zip',['-qr',path.join(downloads,starterZip),'.'],{cwd:starterDir});
 
-for(const name of ['src','public','scripts','worker','.openai','tests','vite.config.mjs','index.html','package.json','package-lock.json'])await cp(path.join(root,name),path.join(repoDir,name),{recursive:true,filter:file=>!/(?:^|\/)(?:releases|node_modules|\.DS_Store)(?:\/|$)/.test(file)});
+for(const name of ['src','public','scripts','worker','deploy','.openai','tests','vite.config.mjs','index.html','package.json','package-lock.json'])await cp(path.join(root,name),path.join(repoDir,name),{recursive:true,filter:file=>!/(?:^|\/)(?:releases|node_modules|\.DS_Store)(?:\/|$)/.test(file)});
 for(const name of ['build.mjs','build-utils.mjs','verify-install.mjs','project.json','licenses','docs','starter','schema','fixtures'])await cp(path.join(root,'release',name),path.join(repoDir,'release',name),{recursive:true});
 const sourceHosting=JSON.parse(await readFile(path.join(repoDir,'.openai/hosting.json'),'utf8'));
 delete sourceHosting.project_id;

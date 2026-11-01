@@ -2,15 +2,15 @@
 
 Thin glass. Clear interfaces.
 
-[Documentation](https://tenvell.esher1.chatgpt.site/install) · [Source](https://github.com/raven-ai-esh/tenvell)
+[Documentation](https://tenvell.space/install) · [Source](https://github.com/raven-ai-esh/tenvell)
 
 A React19 UI kit with four glass finishes, independent themes, readable controls and a shallow hover → press → release response. Original Lamina UI/Mono fonts are included locally; no font service or account is needed.
 
 ## Install the release archive
 
-The prepared0.1 release is distributed as a tarball. From the folder containing it:
+The release is distributed as a tarball. From the folder containing it:
 
-    npm install ./tenvell-0.2.0.tgz
+    npm install ./tenvell-0.2.1.tgz
 
 This does not assume that the name is already published on npm. The downloadable starter includes the same tarball and a lockfile; unzip it, run npm ci, then npm run dev.
 

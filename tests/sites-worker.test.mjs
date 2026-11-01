@@ -3,6 +3,32 @@ import { access } from "node:fs/promises";
 import test from "node:test";
 import worker from "../worker/index.js";
 
+test("legacy page links move to tenvell.space with their path and query", async () => {
+  for (const pathname of ["/", "/install", "/sample", "/examples/messenger", "/examples/tasks", "/examples/dashboard", "/typeface.html", "/typeface"]) {
+    for (const method of ["GET", "HEAD"]) {
+      let assetCalls = 0;
+      const response = await worker.fetch(new Request("https://tenvell.esher1.chatgpt.site" + pathname + "?lang=ru&source=share", {method}), {
+        ASSETS: {fetch: async () => {assetCalls++; return new Response("old page");}},
+      });
+      assert.equal(response.status, 308, pathname + " must redirect");
+      assert.equal(response.headers.get("location"), "https://tenvell.space" + pathname + "?lang=ru&source=share");
+      assert.equal(assetCalls, 0);
+    }
+  }
+});
+
+test("legacy registry and versioned downloads remain direct and missing assets stay 404", async () => {
+  for (const pathname of ["/r/registry.json", "/r/button.json", "/releases/0.2.0/tenvell-0.2.0.tgz", "/assets/app.js", "/fonts/lamina-ui-regular.woff2", "/api/missing"]) {
+    for (const status of [200, 404]) {
+      const response = await worker.fetch(new Request("https://tenvell.esher1.chatgpt.site" + pathname, {headers: {accept: "text/html"}}), {
+        ASSETS: {fetch: async (request) => new Response("asset response", {status: new URL(request.url).pathname === "/" ? 200 : status})},
+      });
+      assert.equal(response.status, status, pathname);
+      assert.equal(response.headers.get("location"), null);
+    }
+  }
+});
+
 test("serves existing static assets without a fallback", async () => {
   const calls = [];
   const response = await worker.fetch(new Request("https://example.test/assets/app.js"), {

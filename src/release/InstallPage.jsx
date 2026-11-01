@@ -8,7 +8,7 @@ import {PreviewControls} from '../preview/PreviewControls.jsx';
 import './install.css';
 import {repositoryUrl} from './project.js';
 
-const version='0.2.0';
+const version='0.2.1';
 const artifactNames=['tenvell-'+version+'.tgz','tenvell-starter-'+version+'.zip','tenvell-source-'+version+'.zip'];
 function Command({children,label}){
   const [state,setState]=useState('');

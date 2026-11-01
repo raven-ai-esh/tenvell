@@ -2,7 +2,7 @@
 
 Thin glass. Clear interfaces.
 
-[Live demo](https://tenvell.esher1.chatgpt.site/) · [Install](https://tenvell.esher1.chatgpt.site/install) · [GitHub](https://github.com/raven-ai-esh/tenvell)
+[Live demo](https://tenvell.space/) · [Install](https://tenvell.space/install) · [GitHub](https://github.com/raven-ai-esh/tenvell)
 
 ![tenvell starter](public/assets/tenvell-preview.png)
 
@@ -32,7 +32,7 @@ The release build generates the core npm archive, source-first shadcn registry, 
 
 Official Site and repository URLs are declared in release/project.json. Set TENVELL_SITE_URL when rebuilding for a different public origin. The source export removes the original Sites project_id so a fork does not share the hosted Site identity. No npm publication is implied; the core is installed from the Site archive or registry.
 
-The release/output folder is generated. Public endpoints are /r/registry.json, /r/tenvell.json and /releases/0.2.0/manifest.json. The npm tarball contains its own exports, types, editable sources, scoped CSS and licences. /releases/0.2.0/tenvell-starter-0.2.0.zip contains a runnable locked starter with the tarball included. See release/docs/PACKAGE-README.md for the core API and initial export scope.
+The release/output folder is generated. Public endpoints are /r/registry.json, /r/tenvell.json and /releases/0.2.1/manifest.json. The npm tarball contains its own exports, types, editable sources, scoped CSS and licences. /releases/0.2.1/tenvell-starter-0.2.1.zip contains a runnable locked starter with the tarball included. See release/docs/PACKAGE-README.md for the core API and initial export scope.
 
 ## Existing examples
 
@@ -41,3 +41,9 @@ The website examples use fictional local data. Message/task changes remain in th
 ## Licence
 
 Own code: MIT (LICENSE). Original Lamina font software: SIL OFL1.1 (FONT-LICENSE.txt). Third-party libraries retain their own licences; see THIRD-PARTY-NOTICES.md and installed packages. This source release contains no service credentials, private evidence folders or unrelated project files.
+
+## Custom domain and hosting
+
+The public website and registry are hosted at https://tenvell.space.
+See deploy/README.md for the static hosting setup. The former Site origin
+keeps registry and download compatibility; page links redirect to the main domain.

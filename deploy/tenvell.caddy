@@ -1,0 +1,46 @@
+tenvell.space {
+    root * /srv/tenvell/current
+    encode zstd gzip
+
+    header X-Content-Type-Options "nosniff"
+
+    @writes not method GET HEAD
+    respond @writes 404
+
+    @immutable path /assets/* /releases/*
+    header @immutable Cache-Control "public, max-age=31536000, immutable"
+
+    @registry path /r /r/*
+    header @registry {
+        Access-Control-Allow-Origin "*"
+        Cache-Control "no-cache"
+    }
+
+    @files path /r /r/* /releases /releases/* /assets /assets/* /fonts /fonts/* /api /api/*
+    handle @files {
+        file_server
+    }
+
+    @pages path / /install /sample /examples/tasks /examples/messenger /examples/dashboard /typeface /typeface.html
+    handle @pages {
+        try_files {path} {path}.html /index.html
+        header Cache-Control "no-cache"
+        file_server
+    }
+
+    @html header Accept *text/html*
+    handle @html {
+        try_files {path} {path}.html /index.html
+        header Cache-Control "no-cache"
+        file_server
+    }
+
+    handle {
+        try_files {path} {path}.html =404
+        file_server
+    }
+}
+
+www.tenvell.space {
+    redir https://tenvell.space{uri} permanent
+}
