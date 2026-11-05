@@ -2,6 +2,40 @@ tenvell.space {
     root * /srv/tenvell/current
     encode zstd gzip
 
+    # Server-side measurement only. Never log IPs, cookies, auth or arbitrary
+    # request headers/query parameters. This log belongs to this host alone.
+    log tenvell {
+        output file /var/log/caddy/tenvell-access.json {
+            mode 0640
+            roll_size 5MiB
+            roll_keep 31
+            roll_keep_for 744h
+        }
+        format filter {
+            wrap json
+            fields {
+                request>remote_ip delete
+                request>client_ip delete
+                request>remote_port delete
+                request>headers delete
+                request>tls delete
+                request>uri regexp `\?.*$` ""
+                resp_headers delete
+                user_id delete
+                # Only a DNS hostname: discard userinfo, ports, paths, queries,
+                # literal IPs and malformed/non-HTTP referrers before writing.
+                referrer_host regexp `^(?:https?://(?:[^/?#]*@)?([A-Za-z0-9.-]*[A-Za-z][A-Za-z0-9.-]*)(?::[0-9]+)?(?:[/?#].*)?|.*)$` "$1"
+            }
+        }
+    }
+    log_append <path {http.request.uri.path}
+    log_append user_agent {http.request.header.User-Agent}
+    log_append referrer_host {http.request.header.Referer}
+    log_append utm_source {http.request.uri.query.utm_source}
+    log_append utm_medium {http.request.uri.query.utm_medium}
+    log_append utm_campaign {http.request.uri.query.utm_campaign}
+    log_append utm_content {http.request.uri.query.utm_content}
+
     header X-Content-Type-Options "nosniff"
 
     @writes not method GET HEAD
