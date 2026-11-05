@@ -3,3 +3,6 @@ dist/
 release/output/
 evidence/
 .DS_Store
+
+__pycache__/
+*.pyc
