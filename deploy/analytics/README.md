@@ -10,8 +10,9 @@ status, sent bytes, user agent, referrer **host only**, and four marketing UTM
 labels (`source`, `medium`, `campaign`, `content`). Referrer credentials, ports,
 paths and queries are discarded; literal IP and malformed referrers are blank.
 No cookies or visitor IDs.
-Files are readable by Caddy/root, rotated at 5 MiB, with up to 31 backups and
-744-hour age retention. Logs and reports must never be served from the public
+Files are readable by Caddy/root. The active file rolls at 5 MiB; rotated
+backups have a limit of 31 files and a 744-hour age retention. The current file
+is kept until it rolls. Logs and reports must never be served from the public
 website directory or committed to source control.
 
 ## Read a report
