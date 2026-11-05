@@ -20,7 +20,7 @@ Install `report.py` at `/srv/tenvell/analytics/report.py`. An authorized operato
 can run it as Caddy over the existing SSH connection:
 
 ```sh
-ssh site-faith-symbol 'sudo -n -u caddy python3 /srv/tenvell/analytics/report.py /var/log/caddy/tenvell-access.json --since 2026-11-05 --until 2026-11-06'
+ssh your-web-host 'sudo -n -u caddy python3 /srv/tenvell/analytics/report.py /var/log/caddy/tenvell-access.json --since 2026-11-05 --until 2026-11-06'
 ```
 
 Pass rotated log paths as additional arguments, including `.gz` files, to cover
