@@ -1249,5 +1249,10 @@ export default {
   "Вид примера: {title}": "Example view: {title}",
   "Установка": "Installation",
   "Установка 0.2": "Install 0.2",
-  "Что входит в ядро": "What's in the core"
+  "Что входит в ядро": "What's in the core",
+  "Начните с одной кнопки": "Start with one button",
+  "В React-проекте с настроенным shadcn установите готовый пример. Он подключит кнопку, провайдер темы и стили — исходный код останется у вас.": "In a React project configured for shadcn, install this working example. It includes the button, theme provider and styles. The source is yours to edit.",
+  "первый пример": "first example",
+  "подключение примера": "rendering the example",
+  "Проверьте нажатие, сброс и смену темы. Для приложения без настроенного shadcn используйте стартовый проект ниже.": "Try clicking, resetting and switching themes. For a project without shadcn configured, use the starter below."
 };

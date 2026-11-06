@@ -8,7 +8,8 @@
     "build": "vite build && node scripts/prepare-sites-build.mjs",
     "preview": "vite preview",
     "test:sites": "node --test tests/sites-worker.test.mjs",
-    "release:build": "node release/build.mjs",
+    "release:build": "node release/build.mjs && node scripts/build-registry-examples.mjs",
+    "registry:examples": "node scripts/build-registry-examples.mjs",
     "release:check": "node --test tests/release.test.mjs",
     "release:verify-install": "node release/verify-install.mjs"
   },

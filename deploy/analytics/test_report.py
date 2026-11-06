@@ -11,6 +11,30 @@ def entry(path='/', *, status=200, method='GET', agent='Mozilla/5.0', host='tenv
             'status':status, 'size':100, 'user_agent':agent, **fields}
 
 class ReportTests(unittest.TestCase):
+    def test_preview_health_sync_and_registry_index_are_not_component_downloads(self):
+        r=aggregate([
+            entry('/r/button.json',agent='Shadbox (registry preview)'),
+            entry('/r/button-demo.json',agent='Shadbox (registry preview)',status=404),
+            entry('/r/registry.json',agent='shadcn-registry-health/1.0'),
+            entry('/r/button.json',agent='shadcn-marketplace registry sync',status=304),
+            entry('/r/registry.json',agent='node'),
+            entry('/r/button.json',agent='node'),
+        ])
+        self.assertEqual(r['counts']['registry_item_requests'],1)
+        self.assertEqual(r['counts']['registry_index_requests'],1)
+        self.assertEqual(r['counts']['preview_requests'],2)
+        self.assertEqual(r['counts']['registry_health_requests'],1)
+        self.assertEqual(r['counts']['registry_sync_requests'],1)
+        self.assertEqual(r['client_activity']['preview']['failed_gets'],1)
+        self.assertEqual(r['registry_items'],{'/r/button.json':1})
+
+    def test_known_scanners_are_separate_without_excluding_real_cli_downloads(self):
+        r=aggregate([entry(agent='CoinCreatorScanner/1.0'),entry(agent='Mozilla/5.0 (compatible; RadixAbuseResearch/1.0)'),entry('/r/button.json',agent='undici'),entry('/releases/0.2.1/tenvell-0.2.1.tgz',agent='python-requests/2.0')])
+        self.assertEqual(r['counts']['page_requests'],0)
+        self.assertEqual(r['counts']['known_bot_requests'],2)
+        self.assertEqual(r['counts']['registry_item_requests'],1)
+        self.assertEqual(r['counts']['archive_responses_200'],1)
+
     def test_real_cli_registry_and_archives_are_counted_but_cli_page_hits_are_separate(self):
         r=aggregate([entry('/r/button.json',agent='node'),entry('/releases/0.2.1/tenvell-0.2.1.tgz',agent='curl/8'),entry('/',agent='curl/8')])
         self.assertEqual(r['counts']['registry_item_requests'],1)

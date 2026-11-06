@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-demo",
+  "type": "registry:component",
+  "title": "tenvell · First button",
+  "description": "A runnable button example with its provider, scoped styles, click feedback and light/dark toggle.",
+  "registryDependencies": [
+    "https://tenvell.space/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "examples/button-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/tenvell/examples/button-demo.tsx",
+      "content": "\"use client\";\n\nimport {useState} from 'react';\nimport {TenvellProvider,Button} from '../button';\nimport '../styles.css';\n\n// The same source is shown on /install and published as @tenvell/button-demo.\nexport default function ButtonDemo({language='en'}:{language?:'en'|'ru'}={}) {\n  const [count,setCount]=useState(0);\n  const [dark,setDark]=useState(false);\n  const ru=language==='ru';\n  return <TenvellProvider theme={dark?'dark':'light'} surface=\"air\" style={{borderRadius:18,padding:'clamp(18px,4vw,28px)',background:dark?'linear-gradient(130deg,#16242e,#272432)':'linear-gradient(130deg,#e8f4fa,#faf1eb)',minHeight:176}}>\n    <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:16,flexWrap:'wrap',marginBottom:24}}>\n      <span style={{fontSize:13,color:'var(--muted-foreground)'}}>tenvell · Button</span>\n      <Button size=\"sm\" variant=\"ghost\" aria-pressed={dark} onClick={()=>setDark(value=>!value)}>{ru?(dark?'Светлая тема':'Тёмная тема'):(dark?'Light theme':'Dark theme')}</Button>\n    </div>\n    <div style={{display:'flex',alignItems:'center',gap:12,flexWrap:'wrap'}}>\n      <Button onClick={()=>setCount(value=>value+1)}>{ru?'Попробовать кнопку':'Try the button'}</Button>\n      <Button variant=\"outline\" disabled={!count} onClick={()=>setCount(0)}>{ru?'Сбросить':'Reset'}</Button>\n      <span role=\"status\" style={{fontSize:13,color:'var(--foreground)'}}>{ru?'Нажатий: ':'Clicks: '}{count}</span>\n    </div>\n  </TenvellProvider>;\n}\n"
+    }
+  ],
+  "docs": "Import ButtonDemo from your components/tenvell/examples/button-demo module and render <ButtonDemo />. The dependency installs the actual Button, TenvellProvider, scoped CSS and licenses.",
+  "meta": {
+    "exampleFor": "button",
+    "previewUrl": "https://tenvell.space/install?lang=en#first-component"
+  }
+}

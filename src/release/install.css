@@ -3,3 +3,5 @@
 .release-intro>.overview-kicker{text-transform:none}
 
 .release-repository-link{display:inline-flex;align-items:center;gap:8px;text-decoration:underline!important;text-underline-offset:4px}
+
+.release-first{margin-block:44px;scroll-margin-top:110px}.release-first>.tenvell{margin:20px 0}.release-first h2{margin-bottom:12px}

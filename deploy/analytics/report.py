@@ -18,9 +18,15 @@ PAGES = {'/', '/install', '/sample', '/examples/tasks', '/examples/messenger',
          '/examples/dashboard', '/typeface', '/typeface.html'}
 ARCHIVE = re.compile(r'^/releases/[^/]+/[^/]+\.(?:zip|tgz)$')
 REGISTRY = re.compile(r'^/r/[^/]+\.json$')
-BOT = re.compile(r'bot|crawler|spider|facebookexternalhit|twitterbot|slackbot|discordbot|whatsapp|telegrambot', re.I)
+REGISTRY_INDEX = {'/r/registry.json', '/r/index.json'}
+BOT = re.compile(r'bot|crawler|spider|scanner|radixabuseresearch|facebookexternalhit|twitterbot|slackbot|discordbot|whatsapp|telegrambot', re.I)
 TECHNICAL = re.compile(r'tenvell-acceptance|tenvell-audit|healthcheck|uptime', re.I)
 CLI = re.compile(r'curl/|wget/|python|node(?:/|$)|undici', re.I)
+CLIENT_ACTIVITY = {
+    'preview': re.compile(r'^Shadbox \(registry preview\)', re.I),
+    'registry_health': re.compile(r'^shadcn-registry-health/', re.I),
+    'registry_sync': re.compile(r'^shadcn-marketplace registry sync(?:$|[ /])', re.I),
+}
 
 def classify(entry):
     request = entry.get('request', {})
@@ -29,6 +35,9 @@ def classify(entry):
     agent = entry.get('user_agent', '')
     if entry.get('utm_source') == 'codex_verification' or TECHNICAL.search(agent):
         return 'technical'
+    for population, pattern in CLIENT_ACTIVITY.items():
+        if pattern.search(agent):
+            return population
     if BOT.search(agent):
         return 'known_bot'
     if CLI.search(agent):
@@ -37,6 +46,7 @@ def classify(entry):
 
 def aggregate(entries, since=None, until=None, timezone='Europe/Moscow'):
     counts = Counter()
+    activity = {name: {'requests':0, 'successful_gets':0, 'failed_gets':0, 'paths':Counter()} for name in CLIENT_ACTIVITY}
     days, pages, cli_pages, downloads, registry, sources, referrers, content = (Counter() for _ in range(8))
     seen_min = seen_max = None
     zone = ZoneInfo(timezone)
@@ -50,6 +60,14 @@ def aggregate(entries, since=None, until=None, timezone='Europe/Moscow'):
             continue
         seen_min = timestamp if seen_min is None else min(seen_min, timestamp)
         seen_max = timestamp if seen_max is None else max(seen_max, timestamp)
+        if population in activity:
+            client=activity[population]
+            client['requests']+=1
+            path=entry.get('path') or urlsplit(entry.get('request',{}).get('uri','')).path
+            client['paths'][path]+=1
+            if entry.get('request',{}).get('method')=='GET':
+                if entry.get('status') in (200,206,304):client['successful_gets']+=1
+                elif isinstance(entry.get('status'),int) and entry['status']>=400:client['failed_gets']+=1
         if population not in ('unclassified', 'cli'):
             continue
         req = entry.get('request', {})
@@ -72,8 +90,8 @@ def aggregate(entries, since=None, until=None, timezone='Europe/Moscow'):
         elif ARCHIVE.fullmatch(path) and status == 206:
             kind = 'archive_range_responses_206'
         elif REGISTRY.fullmatch(path) and status in (200, 304):
-            kind = 'registry_item_requests'
-            registry[path] += 1
+            kind = 'registry_index_requests' if path in REGISTRY_INDEX else 'registry_item_requests'
+            if kind=='registry_item_requests':registry[path] += 1
         if kind:
             counts[kind] += 1
             days[timestamp.astimezone(zone).date().isoformat() + ' ' + kind] += 1
@@ -83,18 +101,20 @@ def aggregate(entries, since=None, until=None, timezone='Europe/Moscow'):
                 referrers[kind + ': ' + entry['referrer_host']] += 1
             if entry.get('utm_content'):
                 content[kind + ': ' + entry['utm_content']] += 1
-    for name in ('page_requests', 'cli_page_requests', 'archive_responses_200', 'archive_range_responses_206', 'registry_item_requests', 'technical_requests', 'known_bot_requests'):
+    for name in ('page_requests', 'cli_page_requests', 'archive_responses_200', 'archive_range_responses_206', 'registry_item_requests', 'registry_index_requests', 'technical_requests', 'known_bot_requests', 'preview_requests', 'registry_health_requests', 'registry_sync_requests'):
         counts.setdefault(name, 0)
-    return {'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(),
+    return {'schema_version':2, 'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(),
             'requested_window_utc':{'since_inclusive':since.isoformat() if since else None, 'until_exclusive':until.isoformat() if until else None},
             'available_events_utc':{'first':seen_min.isoformat() if seen_min else None, 'last':seen_max.isoformat() if seen_max else None},
             'daily_timezone':timezone, 'counts':dict(counts), 'by_day':dict(sorted(days.items())),
             'pages':dict(pages), 'cli_pages':dict(cli_pages), 'archive_responses':dict(downloads), 'registry_items':dict(registry),
+            'client_activity':activity,
             'utm_sources':dict(sources), 'referrer_hosts':dict(referrers), 'utm_content':dict(content),
             'limitations':['HTTP requests are not unique visitors or confirmed installations.',
                 'Unclassified requests may still include unidentified automation and our browser checks.',
                 'HTTP 200 archive responses do not prove that a client retained or used the file; 206 ranges are separate.',
                 'The registry counter measures item requests, not completed shadcn installations.',
+                'Registry indexes and self-declared preview, health and synchronization clients are separate from component requests. User-Agent classification does not authenticate a client.',
                 'No IP, cookie or persistent visitor ID is collected; unique people and sessions cannot be reconstructed.',
                 'SPA hash changes and fully cached navigations may not produce server requests.',
                 'Attribution describes each request; a prior campaign visit is not linked to a later download.',
