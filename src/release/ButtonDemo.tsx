@@ -2,7 +2,7 @@
 
 import {useState} from 'react';
 import {TenvellProvider,Button} from '../kit/index.jsx';
-import '../kit/kit.css';
+import 'virtual:tenvell-demo.css';
 
 // The same source is shown on /install and published as @tenvell/button-demo.
 export default function ButtonDemo({language='en'}:{language?:'en'|'ru'}={}) {

@@ -7,7 +7,7 @@ const root=fileURLToPath(new URL('..',import.meta.url));
 const project=JSON.parse(await readFile(path.join(root,'release/project.json'),'utf8'));
 const site=new URL(process.env.TENVELL_SITE_URL||project.siteUrl).origin;
 const source=await readFile(path.join(root,'src/release/ButtonDemo.tsx'),'utf8');
-const content=source.replace("from '../kit/index.jsx'","from '../button'").replace("import '../kit/kit.css'","import '../styles.css'");
+const content=source.replace("from '../kit/index.jsx'","from '../button'").replace("import 'virtual:tenvell-demo.css'","import '../styles.css'");
 if(content===source||content.includes("../kit/"))throw new Error('Example import rewrite failed');
 const item={
   $schema:'https://ui.shadcn.com/schema/registry-item.json',
