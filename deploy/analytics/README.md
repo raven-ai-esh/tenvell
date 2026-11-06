@@ -37,10 +37,18 @@ first/last available event.
 - `archive_responses_200`: GET responses for a versioned ZIP/TGZ; sent bytes
   are also recorded. This is not proof of a completed client download or use.
 - `archive_range_responses_206`: ranges/resumes, never counted as full archives.
-- `registry_item_requests`: successful item JSON requests. Real Node/shadcn,
+- `registry_item_requests`: successful item JSON requests, excluding indexes
+  (`registry_index_requests`) and the recognized preview/health/sync clients.
+  Real Node/shadcn,
   curl and other CLI downloads are included; these are not completed installs.
 - Known crawler UAs and explicitly marked acceptance traffic are separate.
   Unknown bots and owner browser visits may remain in unclassified requests.
+- Schema 2 reports self-declared `preview`, `registry_health` and `registry_sync`
+  traffic in `client_activity`, including failed GETs and requested paths. A
+  preview that tries an optional `*-demo` URL is not a completed installation.
+  User-Agent labels are hints, not authenticated identities. Known scanner UAs
+  are included with bots. Earlier schema-1 registry counts included index and
+  preview traffic; recompute the same retained interval before comparing.
 - UTM/referrer attribution is per request. A later download is not linked to
   an earlier visit, and no unique-person or session count is claimed.
 

@@ -47,7 +47,18 @@ test('registry files pass the official schema and have a closed local import gra
  const validate=ajv.compile(schema);
  const names=(await readdir(path.join(root,'public/r'))).filter(name=>name.endsWith('.json')&&name!=='registry.json');
  assert.ok(names.includes('tenvell.json')&&names.includes('charts.json'));
- for(const name of names){const item=JSON.parse(await read('public/r/'+name));assert.ok(validate(item),name+' '+JSON.stringify(validate.errors));const targets=new Set(item.files.map(file=>file.target));
+ async function dependencyTargets(item,seen=new Set()){
+  const targets=new Set(item.files.map(file=>file.target));
+  for(const address of item.registryDependencies||[]){
+   const match=address.match(/^https:\/\/tenvell\.space\/r\/([a-z0-9-]+)\.json$/);
+   assert.ok(match,'Dependency must identify an explicit published item: '+address);
+   if(seen.has(address))continue;seen.add(address);
+   const dependency=JSON.parse(await read('public/r/'+match[1]+'.json'));
+   for(const target of await dependencyTargets(dependency,seen))targets.add(target);
+  }
+  return targets;
+ }
+ for(const name of names){const item=JSON.parse(await read('public/r/'+name));assert.ok(validate(item),name+' '+JSON.stringify(validate.errors));const targets=await dependencyTargets(item);
   for(const file of item.files){assert.ok(file.target.startsWith('@components/tenvell/'),file.target);assert.doesNotMatch(file.content,/\/Users\/|Raven\/|new-masterpiece/);if(!/\.[jt]sx?$/.test(file.target))continue;
    for(const match of file.content.matchAll(/(?:\bfrom\s*|\bimport\s*)['"](\.[^'"]+)['"]/g)){const resolved=path.posix.normalize(path.posix.join(path.posix.dirname(file.target),match[1]));assert.ok(['','.ts','.tsx','.js','.jsx'].some(extension=>targets.has(resolved+extension)),name+': missing '+resolved);}
   }

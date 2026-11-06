@@ -2,7 +2,7 @@
 
 Thin glass. Clear interfaces.
 
-[Live demo](https://tenvell.space/) · [Install](https://tenvell.space/install) · [GitHub](https://github.com/raven-ai-esh/tenvell)
+[Live demo](https://tenvell.space/) · [First component](https://tenvell.space/install?lang=en#first-component) · [Install](https://tenvell.space/install) · [GitHub](https://github.com/raven-ai-esh/tenvell)
 
 ![tenvell starter](public/assets/tenvell-preview.png)
 
@@ -47,3 +47,27 @@ Own code: MIT (LICENSE). Original Lamina font software: SIL OFL1.1 (FONT-LICENSE
 The public website and registry are hosted at https://tenvell.space.
 See deploy/README.md for the static hosting setup. The former Site origin
 keeps registry and download compatibility; page links redirect to the main domain.
+
+## Try one component first
+
+In a React project with shadcn configured:
+
+    npx shadcn@4.23.0 add https://tenvell.space/r/button-demo.json
+
+Then render the installed example:
+
+```tsx
+import ButtonDemo from '@/components/tenvell/examples/button-demo';
+
+export default function App() {
+  return <ButtonDemo />;
+}
+```
+
+The example installs the actual button/provider and includes its scoped styles.
+Click, reset and toggle light/dark to check the first useful interaction.
+The full starter remains available on the install page for projects without shadcn.
+
+`npm run registry:examples` regenerates this example and its catalog entry
+without replacing versioned archives. `release:build` runs it after preparing a
+new release. Published 0.2.1 archives retain their original bytes.
