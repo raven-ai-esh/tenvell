@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "disclosure",
   "title": "tenvell · Tabs, accordion, popover, sheet and combobox",
-  "description": "Tabs, accordion, popover, sheet and combobox with scoped thin-glass styling.",
+  "description": "React tabs, accordion, popover, tooltip, side sheet and combobox components for navigation, details and product forms.",
   "dependencies": [
     "@base-ui/react@1.8.0",
     "lucide-react@1.59.0"

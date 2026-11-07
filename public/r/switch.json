@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "switch",
   "title": "tenvell · Switch",
-  "description": "Switch with scoped thin-glass styling.",
+  "description": "A thin-glass React switch for on/off preferences and settings panels.",
   "dependencies": [
     "@base-ui/react@1.8.0",
     "lucide-react@1.59.0"

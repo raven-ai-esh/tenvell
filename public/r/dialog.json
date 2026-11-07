@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dialog",
   "title": "tenvell · Dialog",
-  "description": "Dialog with scoped thin-glass styling.",
+  "description": "React modal dialogs with thin-glass styling, accessible titles and descriptions, and the originating provider’s theme.",
   "dependencies": [
     "@base-ui/react@1.8.0",
     "lucide-react@1.59.0"

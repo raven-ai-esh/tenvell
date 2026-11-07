@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "menu",
   "title": "tenvell · Dropdown menu",
-  "description": "Dropdown menu with scoped thin-glass styling.",
+  "description": "React dropdown menus for product actions and settings, with themed portalled content and selection items.",
   "dependencies": [
     "@base-ui/react@1.8.0",
     "lucide-react@1.59.0"

@@ -6,6 +6,7 @@ import {Badge,Button,Card,ToastViewport,useToast} from "../components/ui";
 import {DemoBalance,DemoCalendar,DemoChart,DemoEmpty,DemoGoalForm,DemoGoals,DemoLogin,DemoMiniChat,DemoNotifications,DemoPrimitiveCard,DemoProfile,DemoThreshold} from "./ShowcaseCards.jsx";
 import "./showcase.css";
 import {VariantIndex} from "./variants/VariantIndex.jsx";
+import {DiscoveryLinks} from '../discovery/DiscoveryLinks.jsx';
 
 export default function OverviewPage(){
  const toast=useToast(),idRef=useRef(3),[goals,setGoals]=useState([{id:1,title:"Новая камера",target:120000,saved:78000},{id:2,title:"Поездка",target:60000,saved:19200}]);
@@ -34,5 +35,5 @@ export default function OverviewPage(){
    <Card className="showcase-tile"><DemoLogin/></Card>
    <Card className="showcase-tile showcase-empty-tile"><DemoEmpty/></Card>
   </div>
- </div><section className="showcase-next" id="scenarios"><div><Badge>{t("Композиции")}</Badge><h2>{t("От элемента — к целому экрану.")}</h2><p>{t("Обзор с таблицей, мессенджер и доска задач используют один материал и одни настройки.")}</p></div><Button variant="outline" onClick={()=>window.location.hash="blocks"}>{t("Смотреть примеры")}<ArrowUpRight size={15} aria-hidden="true"/></Button></section><ToastViewport toasts={toast.toasts} onDismiss={toast.dismiss}/></>;
+ </div><section className="showcase-next" id="scenarios"><div><Badge>{t("Композиции")}</Badge><h2>{t("От элемента — к целому экрану.")}</h2><p>{t("Обзор с таблицей, мессенджер и доска задач используют один материал и одни настройки.")}</p></div><Button variant="outline" onClick={()=>window.location.hash="blocks"}>{t("Смотреть примеры")}<ArrowUpRight size={15} aria-hidden="true"/></Button></section><DiscoveryLinks/><ToastViewport toasts={toast.toasts} onDismiss={toast.dismiss}/></>;
 }

@@ -11,6 +11,8 @@ import "./catalog.css";
 import {repositoryUrl} from "../release/project.js";
 import { searchCatalog } from "./search.js";
 import { PreviewControls } from "../preview/PreviewControls.jsx";
+import {documentMetadata} from '../release/metadata.js';
+import '../discovery/discovery.css';
 
 const VariantLibrary=lazy(()=>import("./variants/VariantLibrary.jsx"));
 const OverviewPage=lazy(()=>import("./OverviewPage.jsx"));
@@ -83,7 +85,7 @@ export function Catalog() {
     });
     return () => cancelAnimationFrame(frame);
   }, [location, page]);
-  useEffect(()=>{document.title=t(page.title)+' — tenvell';},[page.title,language]);
+  useEffect(()=>{const metadata=documentMetadata('/');document.title=page.id==='overview'?(language==='ru'?metadata.titleRu:metadata.title):t(page.title)+' — tenvell';},[page.id,page.title,language]);
   function openSearch() {
     searchReturnRef.current = document.activeElement === document.body ? searchRef.current : document.activeElement;
     setSearchOpen(true);
@@ -105,7 +107,7 @@ export function Catalog() {
     <div className="catalog-layout">
       <aside className="catalog-sidebar"><Sidebar page={page} /></aside>
       <main id="catalog-main" className="catalog-main">
-        {page.id==="overview"?<header className="overview-hero"><span className="overview-kicker">{t("Универсальный дизайн-кит")}</span><h1 ref={titleRef} tabIndex={-1}>{t("Тонкое стекло.")}<br/>{t("Чёткие компоненты.")}</h1><p>{t("Базовые элементы и готовые композиции. Собственный шрифт, тонкие кромки и спокойное движение.")}</p><div className="overview-hero-actions"><Button size="sm" onClick={()=>navigate("buttons")}>{t("Открыть компоненты")}<ArrowRight size={14} aria-hidden="true"/></Button><Button size="sm" variant="outline" onClick={()=>navigate("blocks")}>{t("Смотреть композиции")}</Button><a href={localeHref("/install")} className="header-install">{t("Установить tenvell")}<ArrowDownToLine size={14} aria-hidden="true"/></a></div><span className="overview-hero-footnote">{t("Живые примеры · демонстрационные данные")}</span></header>:<header className="docs-intro"><div className="docs-breadcrumb"><span>{t("Компоненты")}</span><ChevronRight size={13} aria-hidden="true" /><span>{t(page.title)}</span></div><div className="docs-title-row"><h1 ref={titleRef} tabIndex={-1}>{t(page.title)}</h1><span className="component-kind">{t(page.english)}</span></div><p>{t(page.description)}</p></header>}
+        {page.id==="overview"?<header className="overview-hero"><span className="overview-kicker">{t("Дизайн-кит для React")}</span><h1 ref={titleRef} tabIndex={-1}>{t("Тонкое стекло.")}<br/>{t("Чёткие компоненты.")}</h1><p>{t("Открытый UI kit для React 19: стеклянные формы, карточки и элементы дашборда. Редактируемые исходники, собственный шрифт и спокойное движение.")}</p><div className="overview-hero-actions"><Button size="sm" onClick={()=>navigate("buttons")}>{t("Открыть компоненты")}<ArrowRight size={14} aria-hidden="true"/></Button><Button size="sm" variant="outline" onClick={()=>navigate("blocks")}>{t("Смотреть композиции")}</Button><a href={localeHref("/install")} className="header-install">{t("Установить tenvell")}<ArrowDownToLine size={14} aria-hidden="true"/></a></div><span className="overview-hero-footnote">{t("Живые примеры · демонстрационные данные")}</span><a className="discovery-hero-link" href={localeHref('/choosing-a-react-ui-kit')}>{t('Как выбрать дизайн-кит для React')}<ArrowUpRight size={12} aria-hidden="true"/></a></header>:<header className="docs-intro"><div className="docs-breadcrumb"><span>{t("Компоненты")}</span><ChevronRight size={13} aria-hidden="true" /><span>{t(page.title)}</span></div><div className="docs-title-row"><h1 ref={titleRef} tabIndex={-1}>{t(page.title)}</h1><span className="component-kind">{t(page.english)}</span></div><p>{t(page.description)}</p></header>}
 
         <div className="catalog-demo" key={page.id}>
           {["charts","cards","blocks","fields","navigation"].includes(page.id)&&<Suspense fallback={<div className="chart-loading" role="status">{t("Собираем варианты…")}</div>}><VariantLibrary page={page.id}/></Suspense>}

@@ -58,6 +58,11 @@ first/last available event.
   not prove an agent's identity, a skill installation, a completed task or
   causal promotional value. Earlier retained logs can be recomputed, but the
   new files did not exist before publication.
+- Discovery guides have separate English and Russian page URLs. Their nested
+  Markdown counterparts are included in the same schema-3 resource counters.
+  The IndexNow proof matcher skips access logging so its unpredictable filename
+  never enters this dataset. A submission receipt means receipt by IndexNow,
+  not confirmed indexing or a position in search.
 - UTM/referrer attribution is per request. A later download is not linked to
   an earlier visit, and no unique-person or session count is claimed.
 

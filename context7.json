@@ -1,0 +1,15 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "tenvell",
+  "description": "A React 19 UI kit for glassmorphism interfaces, dashboards and settings, with scoped CSS, local Lamina fonts, editable shadcn components and TypeScript API documentation.",
+  "folders": ["public/docs"],
+  "excludeFolders": ["public/docs/discovery/ru"],
+  "excludeFiles": ["AGENTS.md", "THIRD-PARTY-NOTICES.md"],
+  "rules": [
+    "Tenvell targets React and React DOM 19 and modern browser support for CSS @scope and backdrop-filter.",
+    "Use the documented HTTPS package archive or shadcn registry installation; the bare npm name is not the documented distribution channel.",
+    "Import the stylesheet once and wrap the relevant UI in TenvellProvider. The host application owns layout, background, preferences and persistence.",
+    "Individual registry items use their own module paths. Calendar, DataTable, toast and complete product demonstrations are website source examples, not portable core exports.",
+    "Dialog and menu triggers use the Base UI render prop. Optional chart shapes require Recharts 3."
+  ]
+}

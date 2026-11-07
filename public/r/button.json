@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "button",
   "title": "tenvell · Buttons, input and textarea",
-  "description": "Buttons, input and textarea with scoped thin-glass styling.",
+  "description": "React buttons, text inputs and textareas for forms and product actions, with thin-glass styling and loading or disabled states.",
   "dependencies": [
     "@base-ui/react@1.8.0",
     "lucide-react@1.59.0"

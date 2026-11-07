@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "card",
   "title": "tenvell · Card family",
-  "description": "Card family with scoped thin-glass styling.",
+  "description": "Composable thin-glass React cards for dashboard metrics, profile panels and grouped settings, with header, content and footer parts.",
   "dependencies": [
     "@base-ui/react@1.8.0",
     "lucide-react@1.59.0"

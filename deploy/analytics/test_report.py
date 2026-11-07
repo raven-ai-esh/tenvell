@@ -11,6 +11,18 @@ def entry(path='/', *, status=200, method='GET', agent='Mozilla/5.0', host='tenv
             'status':status, 'size':100, 'user_agent':agent, **fields}
 
 class ReportTests(unittest.TestCase):
+    def test_discovery_pages_and_nested_translated_documents_are_observable(self):
+        r=aggregate([
+            entry('/react-glassmorphism-ui-kit'),
+            entry('/ru/choosing-a-react-ui-kit'),
+            entry('/docs/discovery/ru/react-dashboard-ui-kit.md',agent='OAI-SearchBot/1.0'),
+            entry('/docs/discovery/react-dashboard-ui-kit.md',agent='tenvell-acceptance/20261107'),
+            entry('/ru/not-a-guide',status=404),
+        ])
+        self.assertEqual(r['counts']['page_requests'],2)
+        self.assertEqual(r['counts']['agent_resource_requests'],1)
+        self.assertEqual(r['agent_resources_by_client_class']['known_bot'],{'/docs/discovery/ru/react-dashboard-ui-kit.md':1})
+
     def test_agent_resources_keep_client_classes_and_exclude_technical_failures_and_head(self):
         r=aggregate([
             entry('/llms.txt',agent='OAI-SearchBot/1.0'),

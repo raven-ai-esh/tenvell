@@ -29,3 +29,10 @@ Install from the official HTTPS tarball or shadcn registry; do not assume a bare
 - [Agent setup page](https://tenvell.space/agents): human-readable setup and a copyable example prompt; also available as https://tenvell.space/AGENTS.md.
 - [Source repository](https://github.com/raven-ai-esh/tenvell): website, components, original typefaces and MIT/OFL notices.
 - [Release manifest](https://tenvell.space/releases/0.2.1/manifest.json): immutable archive byte lengths and SHA-256 hashes.
+
+## Choose by task
+
+- [Glass interfaces](https://tenvell.space/docs/discovery/react-glassmorphism-ui-kit.md): Build React 19 interfaces with thin-glass cards, forms and dialogs. Four glass surfaces, scoped CSS, local Lamina fonts and MIT-licensed source.
+- [Dashboards and settings](https://tenvell.space/docs/discovery/react-dashboard-ui-kit.md): Compose React 19 dashboards and settings screens with tenvell cards, fields, dialogs and optional Recharts shapes. Explore the live product example and API scope.
+- [shadcn components](https://tenvell.space/docs/discovery/shadcn-glass-components.md): Add editable React glass components with the shadcn CLI. Start with one button or the complete tenvell UI kit, with scoped CSS and original local fonts.
+- [Choose a UI kit](https://tenvell.space/docs/discovery/choosing-a-react-ui-kit.md): Compare the roles of tenvell, shadcn/ui, Material UI and React Aria. Choose a React UI kit by visual style, source ownership, component scope and compatibility.

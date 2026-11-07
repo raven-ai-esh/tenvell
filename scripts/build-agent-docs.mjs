@@ -3,6 +3,8 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { agentResources } from '../src/agents/resources.js';
+import { discoveryDocuments } from '../src/discovery/routes.js';
+import { publicDocuments } from '../src/release/metadata.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = file => readFile(path.join(root, file), 'utf8');
@@ -74,11 +76,12 @@ await emit('docs/components.json', JSON.stringify({
 }, null, 2));
 
 const llms = `# tenvell\n\n> Open-source React 19 UI kit with thin-glass surfaces, scoped CSS, local Lamina fonts and editable shadcn components.\n\nOfficial site: ${site}. Current release: ${version}. Code: MIT; original fonts: SIL OFL 1.1. No account or API key required.\n\nInstall from the official HTTPS tarball or shadcn registry; do not assume a bare npm name. Import the stylesheet once and use TenvellProvider. The core targets modern CSS @scope/backdrop-filter. Calendar, DataTable, toast and complete product demos are website source examples, not core exports.\n\n## Start here\n\n- [Overview and compatibility](${site}/docs/overview.md): product fit, installation choices and limitations.\n- [Installation](${site}/docs/install.md): exact archive and registry commands, first component, starter and checksums.\n- [Integration guide](${site}/AGENTS.md): consumer workflow, import boundaries and verification.\n\n## Reference\n\n- [Published API](${site}/docs/api.md): exact TypeScript declarations and provider settings.\n- [Registry and MCP](${site}/docs/registry.md): item URLs, import modules and official shadcn MCP setup.\n- [Working recipes](${site}/docs/recipes.md): settings form, controlled dialog and Recharts example.\n- [Component inventory](${site}/docs/components.json): project-specific JSON with exports, registry items and release artifacts.\n- [Complete text reference](${site}/llms-full.txt): the full documentation in one request.\n\n## Agent skill\n\n- [tenvell-ui skill](${site}/skills/tenvell-ui/SKILL.md): portable instructions for coding agents integrating tenvell.\n\n## Optional\n\n- [Agent setup page](${site}/agents): human-readable setup and a copyable example prompt; also available as ${site}/AGENTS.md.\n- [Source repository](${project.repositoryUrl}): website, components, original typefaces and MIT/OFL notices.\n- [Release manifest](${site}/releases/${version}/manifest.json): immutable archive byte lengths and SHA-256 hashes.\n`;
-await emit('llms.txt', llms);
+const discoveryMap = '\n## Choose by task\n\n' + discoveryDocuments.filter(document => document.language === 'en').map(document => `- [${document.shortTitle}](${site}${document.markdown}): ${document.description}`).join('\n') + '\n';
+await emit('llms.txt', llms + discoveryMap);
 await emit('llms-full.txt', `# tenvell ${version} — complete agent reference\n\nCanonical source: ${site}/llms.txt. This file describes the published library and its integration, not a hosted action API.\n\n${Object.values(documents).join('\n\n---\n\n')}`);
 await emit('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${site}/sitemap.xml\n`);
-const urls = ['/', '/install', '/agents', '/typeface.html'];
-await emit('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(url => `  <url><loc>${site}${url}</loc></url>`).join('\n')}\n</urlset>`);
+const sitemapDocuments = [...publicDocuments, {path: '/typeface.html'}];
+await emit('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sitemapDocuments.map(document => '  <url><loc>' + site + document.path + '</loc>' + (document.alternates ? Object.entries({...document.alternates, 'x-default': document.alternates.en}).map(([locale, href]) => '<xhtml:link rel="alternate" hreflang="' + locale + '" href="' + site + href + '" />').join('') : '') + '</url>').join('\n')}\n</urlset>`);
 
 for (const resource of agentResources) {
   await readFile(path.join(root, 'public', resource.path));

@@ -139,7 +139,7 @@
     "items": [
       {
         "name": "tenvell",
-        "description": "Complete core with scoped thin-glass styling.",
+        "description": "A complete React 19 UI kit for glassmorphism dashboards, settings and forms. Scoped CSS, original local fonts, cards, fields, menus and dialogs.",
         "url": "https://tenvell.space/r/tenvell.json",
         "importFrom": "@/components/tenvell",
         "exports": [
@@ -221,7 +221,7 @@
       },
       {
         "name": "provider",
-        "description": "Scoped themes and motion with scoped thin-glass styling.",
+        "description": "Independent light and dark themes, four glass surfaces, accents, radius, density and motion settings for a React UI scope and its overlays.",
         "url": "https://tenvell.space/r/provider.json",
         "importFrom": "@/components/tenvell/provider",
         "exports": [
@@ -235,7 +235,7 @@
       },
       {
         "name": "button",
-        "description": "Buttons, input and textarea with scoped thin-glass styling.",
+        "description": "React buttons, text inputs and textareas for forms and product actions, with thin-glass styling and loading or disabled states.",
         "url": "https://tenvell.space/r/button.json",
         "importFrom": "@/components/tenvell/button",
         "exports": [
@@ -252,7 +252,7 @@
       },
       {
         "name": "checkbox",
-        "description": "Checkbox with scoped thin-glass styling.",
+        "description": "A thin-glass React checkbox for settings and forms, including checked, unchecked and indeterminate states.",
         "url": "https://tenvell.space/r/checkbox.json",
         "importFrom": "@/components/tenvell/checkbox",
         "exports": [
@@ -267,7 +267,7 @@
       },
       {
         "name": "switch",
-        "description": "Switch with scoped thin-glass styling.",
+        "description": "A thin-glass React switch for on/off preferences and settings panels.",
         "url": "https://tenvell.space/r/switch.json",
         "importFrom": "@/components/tenvell/switch",
         "exports": [
@@ -282,7 +282,7 @@
       },
       {
         "name": "card",
-        "description": "Card family with scoped thin-glass styling.",
+        "description": "Composable thin-glass React cards for dashboard metrics, profile panels and grouped settings, with header, content and footer parts.",
         "url": "https://tenvell.space/r/card.json",
         "importFrom": "@/components/tenvell/card",
         "exports": [
@@ -302,7 +302,7 @@
       },
       {
         "name": "glass",
-        "description": "Glass surfaces with scoped thin-glass styling.",
+        "description": "Four glassmorphism surface finishes and a material picker for React interfaces, with light and dark themes and scoped styling.",
         "url": "https://tenvell.space/r/glass.json",
         "importFrom": "@/components/tenvell/glass",
         "exports": [
@@ -319,7 +319,7 @@
       },
       {
         "name": "select",
-        "description": "Select with scoped thin-glass styling.",
+        "description": "A themed React select control for form fields and dashboard filters, with a provider-scoped popup.",
         "url": "https://tenvell.space/r/select.json",
         "importFrom": "@/components/tenvell/select",
         "exports": [
@@ -334,7 +334,7 @@
       },
       {
         "name": "menu",
-        "description": "Dropdown menu with scoped thin-glass styling.",
+        "description": "React dropdown menus for product actions and settings, with themed portalled content and selection items.",
         "url": "https://tenvell.space/r/menu.json",
         "importFrom": "@/components/tenvell/menu",
         "exports": [
@@ -358,7 +358,7 @@
       },
       {
         "name": "dialog",
-        "description": "Dialog with scoped thin-glass styling.",
+        "description": "React modal dialogs with thin-glass styling, accessible titles and descriptions, and the originating provider’s theme.",
         "url": "https://tenvell.space/r/dialog.json",
         "importFrom": "@/components/tenvell/dialog",
         "exports": [
@@ -378,7 +378,7 @@
       },
       {
         "name": "primitives",
-        "description": "Selection, identity and feedback primitives with scoped thin-glass styling.",
+        "description": "React identity, selection, navigation and feedback controls, including badges, avatars, progress, radio groups and pagination.",
         "url": "https://tenvell.space/r/primitives.json",
         "importFrom": "@/components/tenvell/primitives",
         "exports": [
@@ -407,7 +407,7 @@
       },
       {
         "name": "disclosure",
-        "description": "Tabs, accordion, popover, sheet and combobox with scoped thin-glass styling.",
+        "description": "React tabs, accordion, popover, tooltip, side sheet and combobox components for navigation, details and product forms.",
         "url": "https://tenvell.space/r/disclosure.json",
         "importFrom": "@/components/tenvell/disclosure",
         "exports": [
@@ -446,7 +446,7 @@
       },
       {
         "name": "charts",
-        "description": "Actual-element Recharts shapes with scoped thin-glass styling.",
+        "description": "Optional Recharts 3 shapes for glass bars, dots and sectors in React dashboards. Item highlighting follows the actual chart element.",
         "url": "https://tenvell.space/r/charts.json",
         "importFrom": "@/components/tenvell/charts",
         "exports": [

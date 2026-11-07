@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {resolveLanguage,withLanguage} from '../src/i18n/language.js';
+import {resolveLanguage,withLanguage,setLanguage,getLanguage} from '../src/i18n/language.js';
 import {translate} from '../src/i18n/translate.js';
 import {searchCatalog} from '../src/catalog/search.js';
 import {filterFiles} from '../src/catalog/variants/fixtures.js';
@@ -17,7 +17,26 @@ test('language links preserve routes, query parameters and anchors, while releas
  assert.equal(withLanguage('/install?campaign=launch#start','en'),'/install?campaign=launch&lang=en#start');
  assert.equal(withLanguage('/?lang=ru#cards/card-note','en'),'/?lang=en#cards/card-note');
  assert.equal(withLanguage('/agents?campaign=agent#reference','ru'),'/agents?campaign=agent&lang=ru#reference');
+ assert.equal(withLanguage('/react-dashboard-ui-kit?campaign=launch#charts','ru'),'/ru/react-dashboard-ui-kit?campaign=launch#charts');
+ assert.equal(withLanguage('/ru/react-dashboard-ui-kit?lang=ru#charts','en'),'/react-dashboard-ui-kit#charts');
  for(const href of ['#charts','https://github.com/raven-ai-esh/tenvell','//example.test/path','/r/tenvell.json','/releases/0.1.1/tenvell-0.1.1.tgz'])assert.equal(withLanguage(href,'ru'),href);
+});
+
+test('localized guide URLs select their language independently of stored preferences and switch without losing the route or other query state',()=>{
+ assert.equal(resolveLanguage({url:'https://tenvell.test/ru/react-dashboard-ui-kit',stored:'en',languages:['en-US']}),'ru');
+ assert.equal(resolveLanguage({url:'https://tenvell.test/react-dashboard-ui-kit',stored:'ru',languages:['ru-RU']}),'en');
+ const previousLanguage=getLanguage(),previousWindow=globalThis.window,previousStorage=globalThis.sessionStorage;
+ let href='https://tenvell.test/react-dashboard-ui-kit?campaign=launch#charts';
+ globalThis.window={get location(){return {href};},history:{state:null,replaceState(_state,_title,next){href=String(next);}}};
+ globalThis.sessionStorage={setItem(){}};
+ try{
+  setLanguage('ru');assert.equal(href,'https://tenvell.test/ru/react-dashboard-ui-kit?campaign=launch#charts');
+  setLanguage('en');assert.equal(href,'https://tenvell.test/react-dashboard-ui-kit?campaign=launch#charts');
+ }finally{
+  if(previousWindow===undefined)delete globalThis.window;else globalThis.window=previousWindow;
+  if(previousStorage===undefined)delete globalThis.sessionStorage;else globalThis.sessionStorage=previousStorage;
+  setLanguage(previousLanguage);
+ }
 });
 
 test('owned interface messages translate around user text without translating the user text itself',()=>{

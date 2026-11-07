@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "select",
   "title": "tenvell · Select",
-  "description": "Select with scoped thin-glass styling.",
+  "description": "A themed React select control for form fields and dashboard filters, with a provider-scoped popup.",
   "dependencies": [
     "@base-ui/react@1.8.0",
     "lucide-react@1.59.0"

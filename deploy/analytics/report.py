@@ -16,7 +16,9 @@ from zoneinfo import ZoneInfo
 
 PAGES = {'/', '/install', '/sample', '/examples/tasks', '/examples/messenger',
          '/examples/dashboard', '/typeface', '/typeface.html', '/agents', '/agents.html'}
-AGENT_RESOURCE = re.compile(r'^/(?:llms(?:-full)?\.txt|AGENTS\.md|(?:index|install|agents)\.md|docs/[a-z0-9-]+\.(?:md|json)|skills/tenvell-ui/SKILL\.md)$')
+GUIDES = {'react-glassmorphism-ui-kit', 'react-dashboard-ui-kit', 'shadcn-glass-components', 'choosing-a-react-ui-kit'}
+PAGES |= {prefix + slug for prefix in ('/', '/ru/') for slug in GUIDES}
+AGENT_RESOURCE = re.compile(r'^/(?:llms(?:-full)?\.txt|AGENTS\.md|(?:index|install|agents)\.md|docs/(?:[a-z0-9-]+/)*[a-z0-9-]+\.(?:md|json)|skills/tenvell-ui/SKILL\.md)$')
 ARCHIVE = re.compile(r'^/releases/[^/]+/[^/]+\.(?:zip|tgz)$')
 REGISTRY = re.compile(r'^/r/[^/]+\.json$')
 REGISTRY_INDEX = {'/r/registry.json', '/r/index.json'}

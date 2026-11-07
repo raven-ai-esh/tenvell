@@ -6,13 +6,19 @@ Thin glass. Clear interfaces.
 
 ![tenvell starter](public/assets/tenvell-preview.png)
 
-An independent UI kit for React19: thin glass surfaces, readable controls, original Lamina typefaces and a restrained tactile response. The website contains83 live component examples plus a16-tile showcase, messenger, dashboard and draggable task-board demonstrations.
+An open-source React 19 UI kit for glassmorphism interfaces, settings and dashboards: thin glass surfaces, readable controls, original local Lamina typefaces and a restrained tactile response. Install editable components through the shadcn registry or use the scoped ESM package. Own code is MIT licensed; original fonts use SIL OFL 1.1.
+
+[Choosing a React UI kit](https://tenvell.space/choosing-a-react-ui-kit) · [Glass interfaces](https://tenvell.space/react-glassmorphism-ui-kit) · [Dashboards](https://tenvell.space/react-dashboard-ui-kit) · [shadcn glass components](https://tenvell.space/shadcn-glass-components)
+
+The website contains 83 live component examples plus a 16-tile showcase, messenger, dashboard and draggable task-board demonstrations. The published API distinguishes portable exports from complete website examples.
 
 ## Website languages
 
 The live catalog, installation guide and product examples support English and Russian. Use the EN/RU control in the shared toolbar, or share a direct URL with `?lang=en` or `?lang=ru`. The explicit URL wins over the language saved in the browser tab; new visitors otherwise follow their browser language, with English as the fallback.
 
 Switching language keeps the current route, form values, messages, selected options and task order. User-authored content stays verbatim. The language choice is saved in sessionStorage alongside the existing preview settings; product content stays in memory. The portable core continues to render caller-provided content; the website translation layer is not bundled into the core package.
+
+The discovery guides also have separate English and `/ru/` URLs. Their URL language selects the initial guide content when no explicit `?lang` is present. Switching language keeps the same guide and its live example state while updating the language path and metadata.
 
 ## Start the website
 

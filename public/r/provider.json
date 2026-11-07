@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "provider",
   "title": "tenvell · Scoped themes and motion",
-  "description": "Scoped themes and motion with scoped thin-glass styling.",
+  "description": "Independent light and dark themes, four glass surfaces, accents, radius, density and motion settings for a React UI scope and its overlays.",
   "dependencies": [
     "@base-ui/react@1.8.0",
     "lucide-react@1.59.0"

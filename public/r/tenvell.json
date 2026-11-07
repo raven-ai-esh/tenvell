@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tenvell",
   "title": "tenvell · Complete core",
-  "description": "Complete core with scoped thin-glass styling.",
+  "description": "A complete React 19 UI kit for glassmorphism dashboards, settings and forms. Scoped CSS, original local fonts, cards, fields, menus and dialogs.",
   "dependencies": [
     "@base-ui/react@1.8.0",
     "lucide-react@1.59.0"

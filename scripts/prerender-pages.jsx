@@ -5,10 +5,16 @@ import { LanguageProvider } from '../src/i18n/LanguageProvider.jsx';
 import { Catalog } from '../src/catalog/Catalog.jsx';
 import { InstallPage } from '../src/release/InstallPage.jsx';
 import { AgentPage } from '../src/agents/AgentPage.jsx';
+import { GuidePage } from '../src/discovery/GuidePage.jsx';
+import { discoveryRoute } from '../src/discovery/routes.js';
+import { getLanguage, setLanguage } from '../src/i18n/language.js';
 
-export function renderPage(pathname, manifest) {
-  const content = pathname === '/agents' ? <AgentPage /> : pathname === '/install' ? <InstallPage initialManifest={manifest} /> : <Catalog />;
-  return new Promise((resolve, reject) => {
+export async function renderPage(pathname, manifest) {
+  const guide = discoveryRoute(pathname);
+  const previousLanguage = getLanguage();
+  setLanguage(guide?.locale || 'en');
+  const content = guide ? <GuidePage pathname={pathname} /> : pathname === '/agents' ? <AgentPage /> : pathname === '/install' ? <InstallPage initialManifest={manifest} /> : <Catalog />;
+  try { return await new Promise((resolve, reject) => {
     let renderError;
     const output = new PassThrough();
     const chunks = [];
@@ -21,5 +27,5 @@ export function renderPage(pathname, manifest) {
       onError(error) { renderError = error; },
     });
     const timeout = setTimeout(() => { stream.abort(); reject(new Error('Static rendering timed out for ' + pathname)); }, 20000);
-  });
+  }); } finally { setLanguage(previousLanguage); }
 }

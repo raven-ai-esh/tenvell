@@ -13,6 +13,8 @@ node --test tests/*.test.mjs
 
 `npm run agents:build` generates the public Markdown documentation, llms files, component inventory and skill copy. Edit the source templates in `docs/agents/`, the skill in `skills/tenvell-ui/`, or the generator in `scripts/build-agent-docs.mjs`; regenerate before publishing. `npm run build` also renders the main documents to HTML so the important text and links work without JavaScript.
 
+Discovery copy and bilingual route metadata live in `src/discovery/`. The build also prepares their Markdown and semantic registry descriptions. New guide routes must agree across route metadata, rendering, sitemap, language switching and Caddy. IndexNow submission is a separate post-deployment command; keep its ownership key outside the repository and preserve the difference between URL receipt and indexing.
+
 The release tests read the actual published archives; a website update does not require rebuilding a release. The API examples can be checked with `npm run agents:verify`.
 
 ## Release and scope

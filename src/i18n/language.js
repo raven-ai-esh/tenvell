@@ -1,11 +1,15 @@
 import {useSyncExternalStore} from 'react';
+import {discoveryHref,discoveryRoute} from '../discovery/routes.js';
 
 export const supportedLanguages=['en','ru'];
 const storageKey='tenvell.language';
 
 export function resolveLanguage({url='',stored,languages=[]}={}) {
-  const explicit=new URL(url||'https://tenvell.test').searchParams.get('lang');
+  const address=new URL(url||'https://tenvell.test');
+  const explicit=address.searchParams.get('lang');
   if(supportedLanguages.includes(explicit))return explicit;
+  const guide=discoveryRoute(address.pathname);
+  if(guide)return guide.locale;
   if(supportedLanguages.includes(stored))return stored;
   return languages[0]?.toLowerCase().startsWith('ru')?'ru':'en';
 }
@@ -21,13 +25,15 @@ const listeners=new Set();
 export const getLanguage=()=>language;
 export const getIntlLocale=()=>language==='ru'?'ru-RU':'en-US';
 const subscribe=listener=>{listeners.add(listener);return()=>listeners.delete(listener);};
-export const useLanguage=()=>useSyncExternalStore(subscribe,getLanguage,()=> 'en');
+export const useLanguage=()=>useSyncExternalStore(subscribe,getLanguage,getLanguage);
 
 export function setLanguage(next){
   if(!supportedLanguages.includes(next))return;
   if(typeof window!=='undefined'){
     const url=new URL(window.location.href);
-    url.searchParams.set('lang',next);
+    const guide=discoveryRoute(url.pathname);
+    if(guide){url.pathname=discoveryHref(guide.page,next);url.searchParams.delete('lang');}
+    else url.searchParams.set('lang',next);
     window.history.replaceState(window.history.state,'',url);
     try{sessionStorage.setItem(storageKey,next);}catch{}
   }
@@ -45,6 +51,8 @@ const appRoutes=new Set(['/','/install','/install.html','/agents','/agents.html'
 export function withLanguage(href,locale){
   if(!supportedLanguages.includes(locale)||typeof href!=='string'||!href.startsWith('/')||href.startsWith('//'))return href;
   const url=new URL(href,'https://tenvell.test');
+  const guide=discoveryRoute(url.pathname);
+  if(guide){url.pathname=discoveryHref(guide.page,locale);url.searchParams.delete('lang');return url.pathname+url.search+url.hash;}
   if(!appRoutes.has(url.pathname))return href;
   url.searchParams.set('lang',locale);
   return url.pathname+url.search+url.hash;

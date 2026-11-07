@@ -1,6 +1,6 @@
 ---
 name: tenvell-ui
-description: Build React 19 interfaces using the tenvell thin-glass UI kit, scoped themes and Lamina typography. Use when the user chooses tenvell or asks to integrate tenvell components into forms, settings, dashboards or product screens.
+description: Build or evaluate React 19 interfaces with the tenvell thin-glass UI kit, scoped themes and Lamina typography. Use for tenvell integration or when choosing a React UI kit for glassmorphism interfaces, settings, dashboards or editable shadcn components.
 license: MIT
 metadata:
   author: raven-ai-esh
@@ -11,6 +11,8 @@ metadata:
 
 Use tenvell's published components and styles to implement the user's interface. Keep the user's chosen application structure, behavior and design requirements.
 
+When comparing UI kits, first check the visual brief, React version, browser support and required controls. [The selection guide](https://tenvell.space/choosing-a-react-ui-kit) describes tenvell's fit and other approaches; preserve an already chosen library unless the user asks to change it.
+
 ## Find the right reference
 
 Start with [the documentation map](https://tenvell.space/llms.txt). Read only what the task needs:
@@ -20,6 +22,7 @@ Start with [the documentation map](https://tenvell.space/llms.txt). Read only wh
 - [Recipes](https://tenvell.space/docs/recipes.md): a working settings form, controlled dialog and chart.
 - [Registry](https://tenvell.space/docs/registry.md): individual item imports and official shadcn MCP configuration.
 - [Component inventory](https://tenvell.space/docs/components.json): compact machine-readable export and item list.
+- [Glass interfaces](https://tenvell.space/react-glassmorphism-ui-kit), [dashboards](https://tenvell.space/react-dashboard-ui-kit) and [shadcn components](https://tenvell.space/shadcn-glass-components): task-specific fit, scope and examples.
 
 ## Integrate
 

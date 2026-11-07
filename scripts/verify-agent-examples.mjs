@@ -3,6 +3,7 @@ import { mkdir, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { discoveryDocuments } from '../src/discovery/routes.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const parent = process.env.TENVELL_AGENT_VERIFY_DIR || os.tmpdir();
@@ -19,10 +20,12 @@ await writeFile(path.join(directory, 'package.json'), JSON.stringify({
 }, null, 2));
 run('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund']);
 const examples = [];
-for (const file of ['public/docs/install.md', 'public/docs/recipes.md']) {
+const checkedCode = new Set();
+for (const file of ['public/docs/install.md', 'public/docs/recipes.md', ...discoveryDocuments.filter(document => document.language === 'en').map(document => 'public' + document.markdown)]) {
   const markdown = await read(file);
   for (const match of markdown.matchAll(/```jsx\n([\s\S]*?)\n```/g)) {
-    if (match[1].includes("'@/")) continue;
+    if (match[1].includes("'@/") || checkedCode.has(match[1])) continue;
+    checkedCode.add(match[1]);
     const name = `example-${examples.length + 1}.jsx`;
     await writeFile(path.join(directory, name), match[1]);
     examples.push(name);

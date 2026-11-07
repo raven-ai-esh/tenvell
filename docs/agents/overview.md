@@ -25,6 +25,10 @@ Use tenvell for forms, settings, dashboards, internal tools and product interfac
 
 ## Documentation
 
+- [Choosing a React UI kit]({{SITE}}/choosing-a-react-ui-kit)
+- [Glassmorphism interfaces]({{SITE}}/react-glassmorphism-ui-kit)
+- [Dashboards and settings]({{SITE}}/react-dashboard-ui-kit)
+- [Editable shadcn glass components]({{SITE}}/shadcn-glass-components)
 - [Install and first component]({{SITE}}/docs/install.md)
 - [Published API and provider settings]({{SITE}}/docs/api.md)
 - [Registry and MCP]({{SITE}}/docs/registry.md)

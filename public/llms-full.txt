@@ -29,6 +29,10 @@ Use tenvell for forms, settings, dashboards, internal tools and product interfac
 
 ## Documentation
 
+- [Choosing a React UI kit](https://tenvell.space/choosing-a-react-ui-kit)
+- [Glassmorphism interfaces](https://tenvell.space/react-glassmorphism-ui-kit)
+- [Dashboards and settings](https://tenvell.space/react-dashboard-ui-kit)
+- [Editable shadcn glass components](https://tenvell.space/shadcn-glass-components)
 - [Install and first component](https://tenvell.space/docs/install.md)
 - [Published API and provider settings](https://tenvell.space/docs/api.md)
 - [Registry and MCP](https://tenvell.space/docs/registry.md)
@@ -341,19 +345,19 @@ The following table is generated from the current published registry. `@/compone
 
 | Item | Purpose | Import from |
 | --- | --- | --- |
-| [tenvell](https://tenvell.space/r/tenvell.json) | Complete core with scoped thin-glass styling. | `@/components/tenvell` |
-| [provider](https://tenvell.space/r/provider.json) | Scoped themes and motion with scoped thin-glass styling. | `@/components/tenvell/provider` |
-| [button](https://tenvell.space/r/button.json) | Buttons, input and textarea with scoped thin-glass styling. | `@/components/tenvell/button` |
-| [checkbox](https://tenvell.space/r/checkbox.json) | Checkbox with scoped thin-glass styling. | `@/components/tenvell/checkbox` |
-| [switch](https://tenvell.space/r/switch.json) | Switch with scoped thin-glass styling. | `@/components/tenvell/switch` |
-| [card](https://tenvell.space/r/card.json) | Card family with scoped thin-glass styling. | `@/components/tenvell/card` |
-| [glass](https://tenvell.space/r/glass.json) | Glass surfaces with scoped thin-glass styling. | `@/components/tenvell/glass` |
-| [select](https://tenvell.space/r/select.json) | Select with scoped thin-glass styling. | `@/components/tenvell/select` |
-| [menu](https://tenvell.space/r/menu.json) | Dropdown menu with scoped thin-glass styling. | `@/components/tenvell/menu` |
-| [dialog](https://tenvell.space/r/dialog.json) | Dialog with scoped thin-glass styling. | `@/components/tenvell/dialog` |
-| [primitives](https://tenvell.space/r/primitives.json) | Selection, identity and feedback primitives with scoped thin-glass styling. | `@/components/tenvell/primitives` |
-| [disclosure](https://tenvell.space/r/disclosure.json) | Tabs, accordion, popover, sheet and combobox with scoped thin-glass styling. | `@/components/tenvell/disclosure` |
-| [charts](https://tenvell.space/r/charts.json) | Actual-element Recharts shapes with scoped thin-glass styling. | `@/components/tenvell/charts` |
+| [tenvell](https://tenvell.space/r/tenvell.json) | A complete React 19 UI kit for glassmorphism dashboards, settings and forms. Scoped CSS, original local fonts, cards, fields, menus and dialogs. | `@/components/tenvell` |
+| [provider](https://tenvell.space/r/provider.json) | Independent light and dark themes, four glass surfaces, accents, radius, density and motion settings for a React UI scope and its overlays. | `@/components/tenvell/provider` |
+| [button](https://tenvell.space/r/button.json) | React buttons, text inputs and textareas for forms and product actions, with thin-glass styling and loading or disabled states. | `@/components/tenvell/button` |
+| [checkbox](https://tenvell.space/r/checkbox.json) | A thin-glass React checkbox for settings and forms, including checked, unchecked and indeterminate states. | `@/components/tenvell/checkbox` |
+| [switch](https://tenvell.space/r/switch.json) | A thin-glass React switch for on/off preferences and settings panels. | `@/components/tenvell/switch` |
+| [card](https://tenvell.space/r/card.json) | Composable thin-glass React cards for dashboard metrics, profile panels and grouped settings, with header, content and footer parts. | `@/components/tenvell/card` |
+| [glass](https://tenvell.space/r/glass.json) | Four glassmorphism surface finishes and a material picker for React interfaces, with light and dark themes and scoped styling. | `@/components/tenvell/glass` |
+| [select](https://tenvell.space/r/select.json) | A themed React select control for form fields and dashboard filters, with a provider-scoped popup. | `@/components/tenvell/select` |
+| [menu](https://tenvell.space/r/menu.json) | React dropdown menus for product actions and settings, with themed portalled content and selection items. | `@/components/tenvell/menu` |
+| [dialog](https://tenvell.space/r/dialog.json) | React modal dialogs with thin-glass styling, accessible titles and descriptions, and the originating provider’s theme. | `@/components/tenvell/dialog` |
+| [primitives](https://tenvell.space/r/primitives.json) | React identity, selection, navigation and feedback controls, including badges, avatars, progress, radio groups and pagination. | `@/components/tenvell/primitives` |
+| [disclosure](https://tenvell.space/r/disclosure.json) | React tabs, accordion, popover, tooltip, side sheet and combobox components for navigation, details and product forms. | `@/components/tenvell/disclosure` |
+| [charts](https://tenvell.space/r/charts.json) | Optional Recharts 3 shapes for glass bars, dots and sectors in React dashboards. Item highlighting follows the actual chart element. | `@/components/tenvell/charts` |
 | [button-demo](https://tenvell.space/r/button-demo.json) | A runnable button example with its provider, scoped styles, click feedback and light/dark toggle. | `@/components/tenvell/examples/button-demo` |
 
 A source item includes its provider dependency and scoped CSS. Installing several overlapping items may prompt the CLI about existing files; review changes in the target project. The complete core is usually the simplest option when several component families are needed.

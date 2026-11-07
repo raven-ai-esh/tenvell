@@ -19,6 +19,37 @@ documentation, and keep real 404s under `/docs` and `/skills` even when a client
 asks for HTML. The Caddy profile sets these rules and a `describedby` link to
 `llms.txt`. The HTML documents also advertise their own Markdown alternates.
 
+## Discovery pages and search submission
+
+Four guides cover choosing a React UI kit, glassmorphism, dashboards and editable
+shadcn components. They have separate `/ru/` versions with reciprocal `hreflang`,
+canonical URLs and Markdown alternates. Source copy lives in `src/discovery/`;
+the normal build generates their Markdown and renders all eleven entry/guide
+documents. The sitemap includes these documents and the typeface page.
+
+After publishing changed documents, an authorized operator can notify IndexNow:
+
+```sh
+npm run search:submit -- --dry-run
+npm run search:submit -- --key-file /private/path/indexnow-key --receipt /private/path/submission.json
+```
+
+Use `--urls-file` with a JSON array of changed canonical URLs when submitting a
+smaller update or a deletion. The default list is the rendered entry/guide
+documents; it excludes unchanged release archives and the older typeface page.
+The script verifies the live ownership file before submitting. HTTP 200 means
+receipt of the URLs; 202 means receipt with key validation pending. Neither is
+confirmation of crawling, indexing, ranking or recommendation by an agent.
+
+Generate one 32-character lowercase hexadecimal ownership key outside the
+repository. Keep its private copy in a file readable only by the operator.
+Serve an identical UTF-8 copy as `/srv/tenvell/search-verification/<key>.txt`, with the
+directory and file readable by Caddy. This persistent directory is separate
+from website releases. The Caddy profile exposes only matching root proof
+filenames and skips their access logs. Do not commit the key, expose directory
+listings, print its proof URL or put private operational files in `dist/client`.
+Proof setup and search submission require no Node process in the live website.
+
 `tenvell.caddy` serves the public directory through `/srv/tenvell/current`, with
 the `www` host redirecting to the main domain. Put each verified build in a
 separate release directory and switch the symlink atomically. Keep the previous

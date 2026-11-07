@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "charts",
   "title": "tenvell · Actual-element Recharts shapes",
-  "description": "Actual-element Recharts shapes with scoped thin-glass styling.",
+  "description": "Optional Recharts 3 shapes for glass bars, dots and sectors in React dashboards. Item highlighting follows the actual chart element.",
   "dependencies": [
     "@base-ui/react@1.8.0",
     "lucide-react@1.59.0",
