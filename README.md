@@ -17,18 +17,30 @@ Switching language keeps the current route, form values, messages, selected opti
 ## Start the website
 
     npm ci
-    npm run release:build
     npm run dev -- --port 4187
 
 Open http://localhost:4187/. Installation instructions and downloadable artifacts live at /install.
 
-## Rebuild the release
+## Use with a coding agent
 
-    npm run release:build
+[Agent setup](https://tenvell.space/agents) · [llms.txt](https://tenvell.space/llms.txt) · [Published API](https://tenvell.space/docs/api.md) · [Recipes](https://tenvell.space/docs/recipes.md)
+
+Give your agent `https://tenvell.space/llms.txt`, or install the portable integration skill:
+
+```sh
+npx skills add raven-ai-esh/tenvell --skill tenvell-ui
+```
+
+The existing registry works with the [official shadcn MCP server](https://ui.shadcn.com/docs/mcp). Map `@tenvell` to `https://tenvell.space/r/{name}.json` in your project's `components.json`; the [registry guide](https://tenvell.space/docs/registry.md) gives exact setup and import paths.
+
+`npm run agents:build` generates the public Markdown reference and compact component inventory from `docs/agents/`, the published package declarations and current registry. `npm run build` also renders the catalog entry, installation and agent pages to HTML, including their text, links and route-specific metadata. `npm run agents:verify` compiles the documented package examples in a clean consumer. These resources improve access and integration; they do not guarantee search indexing or recommendations.
+
+## Validate the website
+
     npm run build
     node --test tests/*.test.mjs
 
-The release build generates the core npm archive, source-first shadcn registry, starter and public manifest. It reads the current components, tokens and motion source; generated outputs are not a separate design implementation. Root package.json stays private so the website cannot be accidentally published as the core package.
+When intentionally preparing a new version, update the release version references and run `npm run release:build` in the release workspace. This generates the core npm archive, source-first shadcn registry, starter and public manifest from the components, tokens and motion source. Never replace an already published archive or manifest during a website update. Root package.json stays private so the website cannot be accidentally published as the core package.
 
 Official Site and repository URLs are declared in release/project.json. Set TENVELL_SITE_URL when rebuilding for a different public origin. The source export removes the original Sites project_id so a fork does not share the hosted Site identity. No npm publication is implied; the core is installed from the Site archive or registry.
 

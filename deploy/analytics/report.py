@@ -15,7 +15,8 @@ from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
 
 PAGES = {'/', '/install', '/sample', '/examples/tasks', '/examples/messenger',
-         '/examples/dashboard', '/typeface', '/typeface.html'}
+         '/examples/dashboard', '/typeface', '/typeface.html', '/agents', '/agents.html'}
+AGENT_RESOURCE = re.compile(r'^/(?:llms(?:-full)?\.txt|AGENTS\.md|(?:index|install|agents)\.md|docs/[a-z0-9-]+\.(?:md|json)|skills/tenvell-ui/SKILL\.md)$')
 ARCHIVE = re.compile(r'^/releases/[^/]+/[^/]+\.(?:zip|tgz)$')
 REGISTRY = re.compile(r'^/r/[^/]+\.json$')
 REGISTRY_INDEX = {'/r/registry.json', '/r/index.json'}
@@ -48,6 +49,7 @@ def aggregate(entries, since=None, until=None, timezone='Europe/Moscow'):
     counts = Counter()
     activity = {name: {'requests':0, 'successful_gets':0, 'failed_gets':0, 'paths':Counter()} for name in CLIENT_ACTIVITY}
     days, pages, cli_pages, downloads, registry, sources, referrers, content = (Counter() for _ in range(8))
+    agent_resources = {name: Counter() for name in ('known_bot', 'cli', 'unclassified', *CLIENT_ACTIVITY)}
     seen_min = seen_max = None
     zone = ZoneInfo(timezone)
     for entry in entries:
@@ -68,6 +70,12 @@ def aggregate(entries, since=None, until=None, timezone='Europe/Moscow'):
             if entry.get('request',{}).get('method')=='GET':
                 if entry.get('status') in (200,206,304):client['successful_gets']+=1
                 elif isinstance(entry.get('status'),int) and entry['status']>=400:client['failed_gets']+=1
+        resource_path = entry.get('path') or urlsplit(entry.get('request', {}).get('uri', '')).path
+        if (population in agent_resources and entry.get('request', {}).get('method') == 'GET'
+                and entry.get('status') in (200, 304) and AGENT_RESOURCE.fullmatch(resource_path)):
+            agent_resources[population][resource_path] += 1
+            counts['agent_resource_requests'] += 1
+            days[timestamp.astimezone(zone).date().isoformat() + ' agent_resource_requests'] += 1
         if population not in ('unclassified', 'cli'):
             continue
         req = entry.get('request', {})
@@ -101,20 +109,22 @@ def aggregate(entries, since=None, until=None, timezone='Europe/Moscow'):
                 referrers[kind + ': ' + entry['referrer_host']] += 1
             if entry.get('utm_content'):
                 content[kind + ': ' + entry['utm_content']] += 1
-    for name in ('page_requests', 'cli_page_requests', 'archive_responses_200', 'archive_range_responses_206', 'registry_item_requests', 'registry_index_requests', 'technical_requests', 'known_bot_requests', 'preview_requests', 'registry_health_requests', 'registry_sync_requests'):
+    for name in ('page_requests', 'cli_page_requests', 'archive_responses_200', 'archive_range_responses_206', 'registry_item_requests', 'registry_index_requests', 'technical_requests', 'known_bot_requests', 'preview_requests', 'registry_health_requests', 'registry_sync_requests', 'agent_resource_requests'):
         counts.setdefault(name, 0)
-    return {'schema_version':2, 'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(),
+    return {'schema_version':3, 'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(),
             'requested_window_utc':{'since_inclusive':since.isoformat() if since else None, 'until_exclusive':until.isoformat() if until else None},
             'available_events_utc':{'first':seen_min.isoformat() if seen_min else None, 'last':seen_max.isoformat() if seen_max else None},
             'daily_timezone':timezone, 'counts':dict(counts), 'by_day':dict(sorted(days.items())),
             'pages':dict(pages), 'cli_pages':dict(cli_pages), 'archive_responses':dict(downloads), 'registry_items':dict(registry),
             'client_activity':activity,
+            'agent_resources_by_client_class':agent_resources,
             'utm_sources':dict(sources), 'referrer_hosts':dict(referrers), 'utm_content':dict(content),
             'limitations':['HTTP requests are not unique visitors or confirmed installations.',
                 'Unclassified requests may still include unidentified automation and our browser checks.',
                 'HTTP 200 archive responses do not prove that a client retained or used the file; 206 ranges are separate.',
                 'The registry counter measures item requests, not completed shadcn installations.',
                 'Registry indexes and self-declared preview, health and synchronization clients are separate from component requests. User-Agent classification does not authenticate a client.',
+                'Agent resources count successful GETs of the public documentation and skill, split by existing UA hints. They do not establish agent identity, installation, a completed task or causal promotion impact; technical acceptance requests are excluded.',
                 'No IP, cookie or persistent visitor ID is collected; unique people and sessions cannot be reconstructed.',
                 'SPA hash changes and fully cached navigations may not produce server requests.',
                 'Attribution describes each request; a prior campaign visit is not linked to a later download.',

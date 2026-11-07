@@ -7,6 +7,18 @@ and run `npm run release:build` first. Never replace already published archives.
 Only that public directory belongs on a web server. No Node process or database
 is needed to serve the catalog and local demonstrations.
 
+The build generates `llms.txt`, the Markdown reference, the public integration
+`AGENTS.md`, the component inventory and the skill copy. It also renders `/`,
+`/install` and `/agents` into HTML with the same React components used by the
+interactive website. Keep the route CSS from the Vite manifest so the documents
+also work without JavaScript. The root repository `AGENTS.md` is contributor
+guidance; it is not copied as the public integration guide.
+
+Serve `.md` files as `text/markdown`, allow cross-origin reads of the public
+documentation, and keep real 404s under `/docs` and `/skills` even when a client
+asks for HTML. The Caddy profile sets these rules and a `describedby` link to
+`llms.txt`. The HTML documents also advertise their own Markdown alternates.
+
 `tenvell.caddy` serves the public directory through `/srv/tenvell/current`, with
 the `www` host redirecting to the main domain. Put each verified build in a
 separate release directory and switch the symlink atomically. Keep the previous

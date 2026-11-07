@@ -7,10 +7,12 @@ import {useLanguage} from './i18n/language.js';
 
 const DashboardExample=lazy(()=>import("./examples/DashboardExample.jsx"));
 const InstallPage=lazy(()=>import("./release/InstallPage.jsx").then(module=>({default:module.InstallPage})));
+const AgentPage=lazy(()=>import("./agents/AgentPage.jsx").then(module=>({default:module.AgentPage})));
 
 export function App() {
   useLanguage();
-  if(window.location.pathname==="/install")return <Suspense fallback={<div className="chart-loading" role="status">{t("Загружаем установку…")}</div>}><InstallPage/></Suspense>;
+  if(["/agents","/agents.html"].includes(window.location.pathname))return <Suspense fallback={<div className="chart-loading" role="status">{t("Загружаем документацию…")}</div>}><AgentPage/></Suspense>;
+  if(["/install","/install.html"].includes(window.location.pathname))return <Suspense fallback={<div className="chart-loading" role="status">{t("Загружаем установку…")}</div>}><InstallPage/></Suspense>;
   if(window.location.pathname==="/examples/dashboard")return <Suspense fallback={<div className="chart-loading" role="status">{t("Загружаем пример…")}</div>}><DashboardExample/></Suspense>;
   if(window.location.pathname==="/examples/messenger")return <MessengerExample/>;
   if(window.location.pathname==="/examples/tasks")return <TaskTrackerExample/>;

@@ -41,7 +41,7 @@ if(typeof window!=='undefined')window.addEventListener('popstate',()=>{
   if(next!==language){language=next;listeners.forEach(listener=>listener());}
 });
 
-const appRoutes=new Set(['/','/install','/sample','/examples/messenger','/examples/tasks','/examples/dashboard','/typeface.html']);
+const appRoutes=new Set(['/','/install','/install.html','/agents','/agents.html','/sample','/examples/messenger','/examples/tasks','/examples/dashboard','/typeface.html']);
 export function withLanguage(href,locale){
   if(!supportedLanguages.includes(locale)||typeof href!=='string'||!href.startsWith('/')||href.startsWith('//'))return href;
   const url=new URL(href,'https://tenvell.test');

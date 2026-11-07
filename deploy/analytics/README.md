@@ -49,6 +49,15 @@ first/last available event.
   User-Agent labels are hints, not authenticated identities. Known scanner UAs
   are included with bots. Earlier schema-1 registry counts included index and
   preview traffic; recompute the same retained interval before comparing.
+- Schema 3 adds `agent_resource_requests` and
+  `agent_resources_by_client_class` for successful GETs (200/304) of the public
+  llms files, Markdown, component inventory and `tenvell-ui/SKILL.md`. Existing
+  known-bot, CLI, unclassified and registry-client classes stay separate;
+  acceptance traffic, failures, HEAD, robots.txt and sitemap.xml are excluded.
+  `/agents` is a setup page in the page counter. A documentation request does
+  not prove an agent's identity, a skill installation, a completed task or
+  causal promotional value. Earlier retained logs can be recomputed, but the
+  new files did not exist before publication.
 - UTM/referrer attribution is per request. A later download is not linked to
   an earlier visit, and no unique-person or session count is claimed.
 

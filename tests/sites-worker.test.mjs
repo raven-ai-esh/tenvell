@@ -17,8 +17,8 @@ test("legacy page links move to tenvell.space with their path and query", async 
   }
 });
 
-test("legacy registry and versioned downloads remain direct and missing assets stay 404", async () => {
-  for (const pathname of ["/r/registry.json", "/r/button.json", "/releases/0.2.0/tenvell-0.2.0.tgz", "/assets/app.js", "/fonts/lamina-ui-regular.woff2", "/api/missing"]) {
+test("legacy registry, agent docs and versioned downloads remain direct and missing assets stay 404", async () => {
+  for (const pathname of ["/r/registry.json", "/r/button.json", "/releases/0.2.0/tenvell-0.2.0.tgz", "/assets/app.js", "/fonts/lamina-ui-regular.woff2", "/api/missing", "/llms.txt", "/llms-full.txt", "/AGENTS.md", "/docs/missing.md", "/skills/missing/SKILL.md", "/robots.txt", "/sitemap.xml"]) {
     for (const status of [200, 404]) {
       const response = await worker.fetch(new Request("https://tenvell.esher1.chatgpt.site" + pathname, {headers: {accept: "text/html"}}), {
         ASSETS: {fetch: async (request) => new Response("asset response", {status: new URL(request.url).pathname === "/" ? 200 : status})},

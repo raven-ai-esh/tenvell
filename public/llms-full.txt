@@ -1,0 +1,517 @@
+# tenvell 0.2.1 — complete agent reference
+
+Canonical source: https://tenvell.space/llms.txt. This file describes the published library and its integration, not a hosted action API.
+
+# tenvell 0.2.1
+
+> An open-source React 19 UI kit for thin-glass interfaces, readable controls and original local typography.
+
+Canonical website: https://tenvell.space. Source: https://github.com/raven-ai-esh/tenvell.
+
+Use tenvell for forms, settings, dashboards, internal tools and product interfaces when a thin-glass visual language fits the user's brief. It provides ordinary React components and CSS, four surfaces (`air`, `frost`, `prism`, `smoke`), light and dark themes, scoped styles and Lamina UI/Mono fonts. No account, API key, remote font service or backend is required.
+
+## Choose an installation
+
+- **An existing React 19 project:** install the [release archive](https://tenvell.space/docs/install.md#package-archive). The package name is `tenvell`; the documented distribution is the HTTPS tarball, so do not assume `npm install tenvell` resolves to this project.
+- **Editable source in a configured shadcn project:** use the [registry](https://tenvell.space/docs/registry.md). It also works through the official shadcn MCP server.
+- **A new runnable project:** download the [locked starter](https://tenvell.space/releases/0.2.1/tenvell-starter-0.2.1.zip).
+- **A coding agent:** read the [integration guide](https://tenvell.space/AGENTS.md) or install the [tenvell-ui skill](https://tenvell.space/skills/tenvell-ui/SKILL.md).
+
+## Compatibility and scope
+
+- React and React DOM 19. The supplied tooling targets Node 22.12+.
+- ESM JavaScript with TypeScript declarations; ordinary CSS, without Tailwind utilities.
+- Modern browsers with `backdrop-filter` and CSS `@scope`; legacy browser support is not promised.
+- Optional chart shapes use Recharts 3. The core works without Recharts.
+- Import the stylesheet once and wrap the relevant UI in `TenvellProvider`. The host application owns layout, background, persistence and business behavior.
+- Calendar, DataTable, toast, messenger, task board and complete dashboard demonstrations belong to the website source. They are not portable core exports. See the [component inventory](https://tenvell.space/docs/components.json) for the actual export set.
+- Own code: MIT. Original Lamina fonts: SIL OFL 1.1. Preserve the bundled notices when distributing copied source or fonts.
+
+## Documentation
+
+- [Install and first component](https://tenvell.space/docs/install.md)
+- [Published API and provider settings](https://tenvell.space/docs/api.md)
+- [Registry and MCP](https://tenvell.space/docs/registry.md)
+- [Working interface recipes](https://tenvell.space/docs/recipes.md)
+- [Full reference in one request](https://tenvell.space/llms-full.txt)
+- [Interactive catalog](https://tenvell.space/)
+
+The demonstrations use fictional local data. Their UI actions do not send messages, create accounts, connect a CRM or supply a production backend.
+
+
+---
+
+# Install tenvell 0.2.1
+
+Requires React/React DOM 19 and a modern browser with CSS `@scope` and `backdrop-filter`. Use Node 22.12+ for the supplied tooling.
+
+## Package archive
+
+In an existing React 19 application:
+
+```sh
+npm install https://tenvell.space/releases/0.2.1/tenvell-0.2.1.tgz
+```
+
+This installs the package from the official website. A plain `npm install tenvell` is not the documented distribution channel.
+
+Import the stylesheet once at your application's entrypoint. In frameworks that restrict global CSS imports, place it in the permitted root layout or entry file. Components use client-side interactions; in a React Server Components project, put the component using hooks or event handlers behind a `"use client"` boundary.
+
+```jsx
+import { TenvellProvider, Button, Card, Input } from 'tenvell';
+import 'tenvell/styles.css';
+
+export default function App() {
+  return (
+    <TenvellProvider theme="light" surface="air">
+      <Card>
+        <label htmlFor="name">Name</label>
+        <Input id="name" name="name" placeholder="Your name" />
+        <Button type="button">Continue</Button>
+      </Card>
+    </TenvellProvider>
+  );
+}
+```
+
+The button is an interface element; connect its action to your application's behavior.
+
+## Editable source through shadcn
+
+In a React 19 project with a working `components.json` and aliases:
+
+```sh
+npx shadcn@4.23.0 add https://tenvell.space/r/tenvell.json
+```
+
+With the conventional `@/*` alias pointing to your source directory:
+
+```jsx
+import { TenvellProvider, Button, Card } from '@/components/tenvell';
+import '@/components/tenvell/styles.css';
+```
+
+The CLI copies editable components, CSS and licences. Keep your existing shadcn configuration and adjust the imports if its `components` alias differs. The copied tenvell components use ordinary CSS; do not replace their styles with Tailwind utilities.
+
+To start with a small runnable example instead of the full core:
+
+```sh
+npx shadcn@4.23.0 add https://tenvell.space/r/button-demo.json
+```
+
+```jsx
+import ButtonDemo from '@/components/tenvell/examples/button-demo';
+
+export default function App() {
+  return <ButtonDemo />;
+}
+```
+
+For individual items, use their documented module imports. For example `button.json` exports `Button`, `Input`, `Textarea` and `TenvellProvider` from `@/components/tenvell/button`; it does not install the full core barrel. See the [registry reference](https://tenvell.space/docs/registry.md).
+
+## Locked starter
+
+Download [tenvell-starter-0.2.1.zip](https://tenvell.space/releases/0.2.1/tenvell-starter-0.2.1.zip), extract it into a new folder and run:
+
+```sh
+npm ci
+npm run dev
+```
+
+To check TypeScript and build the starter:
+
+```sh
+npm run build
+```
+
+The starter includes the package tarball, a lockfile and a local example. It has no production backend.
+
+## Optional charts
+
+For the package installation:
+
+```sh
+npm install recharts@3.10.1
+```
+
+```jsx
+import { GlassBar, GlassDot, GlassSector } from 'tenvell/charts';
+```
+
+For copied source, install `https://tenvell.space/r/charts.json` and import from `@/components/tenvell/charts`. Use the shapes inside Recharts components. See [recipes](https://tenvell.space/docs/recipes.md).
+
+## Verify the release
+
+The [release manifest](https://tenvell.space/releases/0.2.1/manifest.json) contains filenames, byte lengths and SHA-256 checksums. The package, starter and source archives are immutable published artifacts. Documentation updates do not replace their bytes.
+
+If a UI appears unstyled, check the stylesheet import and provider before adding CSS. If an import is missing, check the [published API](https://tenvell.space/docs/api.md) and whether you installed an individual registry item or the complete core.
+
+
+---
+
+# tenvell 0.2.1 API
+
+The declarations below are extracted from the published package archive. They describe the installed release, including exact export names and component props.
+
+## Provider
+
+`TenvellProvider` renders a scoped wrapper. Import `tenvell/styles.css` once; the provider does not set the host page's layout or background and does not persist application preferences.
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `theme` | `light`, `dark` | `light` |
+| `surface` | `air`, `frost`, `prism`, `smoke` | `air` |
+| `accent` | `slate`, `blue`, `violet`, `jade` | `slate` |
+| `radius` | `strict`, `soft`, `round` | `soft` |
+| `density` | `comfortable`, `compact` | `comfortable` |
+| `motion` | boolean | `true` |
+
+Multiple independent providers are supported. Dialogs and menus inherit their originating provider's theme through a body portal. CSS custom properties passed in the provider's `style` also reach its overlays; layout styles stay on the wrapper. `--tenvell-overlay-z` sets the overlay layer (default `1000`). Reduced-motion preferences take precedence.
+
+Pass product labels and accessible names explicitly. The portable core renders caller-provided content; the website's EN/RU translation layer is not part of the package.
+
+## Export boundaries
+
+- `tenvell`: the core exports shown below.
+- `tenvell/styles.css`: scoped styles and locally embedded Lamina fonts.
+- `tenvell/charts`: optional Recharts shapes, with Recharts 3 installed separately.
+- Website-only examples include Calendar, DataTable, toast, the messenger, task board and complete product screens. Do not import these names from the core package.
+
+After a source-first installation, substitute the corresponding `@/components/tenvell` module paths. The compact [component inventory](https://tenvell.space/docs/components.json) records the exports of each registry item.
+
+## Core TypeScript declarations
+
+```ts
+import type * as React from 'react';
+import {Dialog as D} from '@base-ui/react/dialog';
+import {Menu as M} from '@base-ui/react/menu';
+import {Tabs as T} from '@base-ui/react/tabs';
+import {Accordion as A} from '@base-ui/react/accordion';
+import {Popover as P} from '@base-ui/react/popover';
+import {Checkbox as C} from '@base-ui/react/checkbox';
+import {Switch as S} from '@base-ui/react/switch';
+import {Select as SelectBase} from '@base-ui/react/select';
+
+type Styled<T>=Omit<T,'className'>&{className?:string};
+export type Theme='light'|'dark';
+export type Surface='air'|'frost'|'prism'|'smoke';
+export type Accent='slate'|'blue'|'violet'|'jade';
+export type Radius='strict'|'soft'|'round';
+export type Density='comfortable'|'compact';
+export interface TenvellProviderProps extends Omit<React.ComponentProps<'div'>,'style'>{theme?:Theme;surface?:Surface;accent?:Accent;radius?:Radius;density?:Density;motion?:boolean;style?:React.CSSProperties&Record<`--${string}`,string|number|undefined>}
+export function TenvellProvider(props:TenvellProviderProps):React.JSX.Element;
+export interface ButtonProps extends React.ComponentProps<'button'>{variant?:'primary'|'secondary'|'outline'|'ghost'|'icon'|'link'|'destructive';size?:'default'|'sm'|'lg'|'icon';loading?:boolean}
+export function Button(props:ButtonProps):React.JSX.Element;
+export function Input(props:React.ComponentProps<'input'>):React.JSX.Element;
+export function Textarea(props:React.ComponentProps<'textarea'>):React.JSX.Element;
+export function Checkbox(props:Styled<React.ComponentProps<typeof C.Root>>):React.JSX.Element;
+export function Switch(props:Styled<React.ComponentProps<typeof S.Root>>):React.JSX.Element;
+export function Card(props:React.ComponentProps<'article'>&{surface?:Surface}):React.JSX.Element;
+export function CardHeader(props:React.ComponentProps<'header'>):React.JSX.Element;
+export function CardTitle(props:React.ComponentProps<'h3'>):React.JSX.Element;
+export function CardDescription(props:React.ComponentProps<'p'>):React.JSX.Element;
+export function CardContent(props:React.ComponentProps<'div'>):React.JSX.Element;
+export function CardFooter(props:React.ComponentProps<'footer'>):React.JSX.Element;
+export const glassMaterials:{id:Surface;name:string;description:string}[];
+export type GlassSurfaceProps<Element extends React.ElementType='div'>={as?:Element;surface?:Surface;className?:string}&Omit<React.ComponentPropsWithRef<Element>,'as'|'surface'|'className'>;
+export function GlassSurface<Element extends React.ElementType='div'>(props:GlassSurfaceProps<Element>):React.JSX.Element;
+export function GlassPicker(props:{value:Surface;onChange:(value:Surface)=>void;label?:string}):React.JSX.Element;
+export interface SelectProps extends Omit<Styled<React.ComponentProps<typeof SelectBase.Trigger>>,'value'|'onChange'|'name'>{items:{value:string;label:React.ReactNode}[];name?:string;value?:string|null;onValueChange?:(value:string|null)=>void}
+export function Select(props:SelectProps):React.JSX.Element;
+export const Dialog:typeof D.Root;
+export const DialogTrigger:typeof D.Trigger;
+export const DialogClose:typeof D.Close;
+export function DialogTitle(props:Styled<React.ComponentProps<typeof D.Title>>):React.JSX.Element;
+export function DialogDescription(props:Styled<React.ComponentProps<typeof D.Description>>):React.JSX.Element;
+export function DialogContent(props:Styled<React.ComponentProps<typeof D.Popup>>):React.JSX.Element|null;
+export const DropdownMenu:typeof M.Root;
+export const DropdownMenuTrigger:typeof M.Trigger;
+export const DropdownMenuGroup:typeof M.Group;
+export const DropdownMenuRadioGroup:typeof M.RadioGroup;
+export function DropdownMenuContent(props:Styled<React.ComponentProps<typeof M.Popup>>&{align?:Styled<React.ComponentProps<typeof M.Positioner>>['align']}):React.JSX.Element;
+export function DropdownMenuItem(props:Styled<React.ComponentProps<typeof M.Item>>):React.JSX.Element;
+export function DropdownMenuLabel(props:Styled<React.ComponentProps<typeof M.GroupLabel>>):React.JSX.Element;
+export function DropdownMenuSeparator(props:Styled<React.ComponentProps<typeof M.Separator>>):React.JSX.Element;
+export function DropdownMenuCheckboxItem(props:Styled<React.ComponentProps<typeof M.CheckboxItem>>):React.JSX.Element;
+export function DropdownMenuRadioItem(props:Styled<React.ComponentProps<typeof M.RadioItem>>):React.JSX.Element;
+export function Tabs(props:Styled<React.ComponentProps<typeof T.Root>>):React.JSX.Element;
+export function TabsList(props:Styled<React.ComponentProps<typeof T.List>>&{variant?:'segmented'|'line'|'vertical'}):React.JSX.Element;
+export function TabsTrigger(props:Styled<React.ComponentProps<typeof T.Tab>>):React.JSX.Element;
+export function TabsContent(props:Styled<React.ComponentProps<typeof T.Panel>>):React.JSX.Element;
+export function Accordion(props:Styled<React.ComponentProps<typeof A.Root>>):React.JSX.Element;
+export const AccordionItem:typeof A.Item;
+export function AccordionTrigger(props:Styled<React.ComponentProps<typeof A.Trigger>>):React.JSX.Element;
+export function AccordionContent(props:Styled<React.ComponentProps<typeof A.Panel>>):React.JSX.Element;
+export const Popover:typeof P.Root;
+export const PopoverTrigger:typeof P.Trigger;
+export const PopoverClose:typeof P.Close;
+export const PopoverTitle:typeof P.Title;
+export const PopoverDescription:typeof P.Description;
+export function PopoverContent(props:Styled<React.ComponentProps<typeof P.Popup>>&{align?:Styled<React.ComponentProps<typeof P.Positioner>>['align']}):React.JSX.Element;
+export function Tooltip(props:{children:React.ReactElement<{'aria-describedby'?:string}>;content:React.ReactNode;side?:'top'|'right'|'bottom'|'left'}):React.JSX.Element;
+export const Sheet:typeof D.Root;
+export const SheetTrigger:typeof D.Trigger;
+export const SheetClose:typeof D.Close;
+export const SheetTitle:typeof D.Title;
+export const SheetDescription:typeof D.Description;
+export function SheetContent(props:Styled<React.ComponentProps<typeof D.Popup>>):React.JSX.Element;
+export function Combobox(props:{items:string[];value?:string|null;onValueChange:(value:string|null)=>void;label?:string;placeholder?:string;disabled?:boolean}):React.JSX.Element;
+export function Badge(props:React.ComponentProps<'span'>&{tone?:'neutral'|'success'|'warning'|'info'|'error'}):React.JSX.Element;
+export function Avatar(props:{fallback?:React.ReactNode;alt?:string;src?:string;size?:'default'|'sm'|'lg';className?:string}):React.JSX.Element;
+export function AvatarGroup(props:{children?:React.ReactNode;label?:string}):React.JSX.Element;
+export function Separator(props:React.ComponentProps<'div'>&{orientation?:'horizontal'|'vertical'}):React.JSX.Element;
+export function Skeleton(props:React.ComponentProps<'div'>):React.JSX.Element;
+export function Progress(props:Omit<React.ComponentProps<'progress'>,'value'>&{value?:number|null;max?:number;label?:string}):React.JSX.Element;
+export function EmptyState(props:React.ComponentProps<'div'>&{title?:string;description?:React.ReactNode;icon?:React.ElementType}):React.JSX.Element;
+export function InputGroup(props:React.ComponentProps<'div'>):React.JSX.Element;
+export function InputAddon(props:{children?:React.ReactNode;align?:'start'|'end';className?:string}):React.JSX.Element;
+export function ButtonGroup(props:{children?:React.ReactNode;label?:string;className?:string}):React.JSX.Element;
+export function RadioGroup(props:{items:{value:string;label:React.ReactNode;description?:React.ReactNode;disabled?:boolean}[];value:string;onValueChange:(value:string)=>void;label?:string;name?:string;disabled?:boolean;className?:string}):React.JSX.Element;
+export function Slider(props:Omit<React.ComponentProps<'input'>,'value'|'onChange'|'min'|'max'|'step'>&{value?:number;onValueChange:(value:number)=>void;min?:number;max?:number;step?:number;label?:string;unit?:string}):React.JSX.Element;
+export function Breadcrumb(props:{items:{label:React.ReactNode;href?:string}[];label?:string}):React.JSX.Element;
+export function Pagination(props:{page:number;pages:number;onPageChange:(page:number)=>void;label?:string}):React.JSX.Element;
+export function ToggleGroup(props:{items:{value:string;label:string;icon?:React.ElementType}[];value:string;onValueChange:(value:string)=>void;label?:string}):React.JSX.Element;
+```
+
+## Optional chart declarations
+
+```ts
+import type * as React from 'react';
+import type {SectorProps} from 'recharts';
+export interface GlassBarProps{x?:number;y?:number;width?:number;height?:number;radius?:number|[number,number,number,number];fill?:string;index?:number;value?:number|[number,number];active?:boolean;isActive?:boolean}
+export function GlassBar(props:GlassBarProps):React.JSX.Element|null;
+export function GlassDot(props:{cx?:number;cy?:number;fill?:string;stroke?:string}):React.JSX.Element|null;
+export function GlassSector(props:SectorProps&{active?:boolean;isActive?:boolean;value?:number;name?:string;payload?:{name?:string}}):React.JSX.Element;
+```
+
+
+---
+
+# tenvell registry and MCP
+
+The [public registry index](https://tenvell.space/r/registry.json) lists installable source items. Item URLs return the shadcn registry format, including editable source and dependencies; no authentication is required.
+
+## Namespace
+
+Merge this field into the existing `components.json` in a configured React 19/shadcn project. Preserve the project's other settings and aliases.
+
+```json
+{
+  "registries": {
+    "@tenvell": "https://tenvell.space/r/{name}.json"
+  }
+}
+```
+
+Then install the complete core or a smaller working example:
+
+```sh
+npx shadcn@4.23.0 add @tenvell/tenvell
+npx shadcn@4.23.0 add @tenvell/button-demo
+```
+
+Either command is an alternative starting point; running both is unnecessary. Without a namespace mapping, use the full item URL from the table below.
+
+## Official shadcn MCP server
+
+The [official shadcn MCP server](https://ui.shadcn.com/docs/mcp) reads your project's registry configuration and supports listing, searching, viewing and installing compatible registry items. In clients using the common `mcpServers` configuration shape, the server entry is:
+
+```json
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@4.23.0", "mcp"]
+    }
+  }
+}
+```
+
+Client configuration locations differ; use the official guide for your client. Run the server in the context of the target project so it can read `components.json`. Installing this configuration is a user choice; reading this website does not modify the client's settings.
+
+With `@tenvell` configured, an example request is:
+
+> Find the button, card and dialog components in the @tenvell registry, inspect their APIs, and build a React 19 settings form with a light air surface. Keep the existing application routing and connect the save action to local form state.
+
+Tenvell provides the static registry. The MCP process is the official shadcn CLI running in the consumer's environment; the website does not advertise a separate hosted MCP endpoint.
+
+## Items and imports
+
+The following table is generated from the current published registry. `@/components` assumes the conventional project alias; use your configured components alias when it differs. Import `@/components/tenvell/styles.css` once after installing source items.
+
+| Item | Purpose | Import from |
+| --- | --- | --- |
+| [tenvell](https://tenvell.space/r/tenvell.json) | Complete core with scoped thin-glass styling. | `@/components/tenvell` |
+| [provider](https://tenvell.space/r/provider.json) | Scoped themes and motion with scoped thin-glass styling. | `@/components/tenvell/provider` |
+| [button](https://tenvell.space/r/button.json) | Buttons, input and textarea with scoped thin-glass styling. | `@/components/tenvell/button` |
+| [checkbox](https://tenvell.space/r/checkbox.json) | Checkbox with scoped thin-glass styling. | `@/components/tenvell/checkbox` |
+| [switch](https://tenvell.space/r/switch.json) | Switch with scoped thin-glass styling. | `@/components/tenvell/switch` |
+| [card](https://tenvell.space/r/card.json) | Card family with scoped thin-glass styling. | `@/components/tenvell/card` |
+| [glass](https://tenvell.space/r/glass.json) | Glass surfaces with scoped thin-glass styling. | `@/components/tenvell/glass` |
+| [select](https://tenvell.space/r/select.json) | Select with scoped thin-glass styling. | `@/components/tenvell/select` |
+| [menu](https://tenvell.space/r/menu.json) | Dropdown menu with scoped thin-glass styling. | `@/components/tenvell/menu` |
+| [dialog](https://tenvell.space/r/dialog.json) | Dialog with scoped thin-glass styling. | `@/components/tenvell/dialog` |
+| [primitives](https://tenvell.space/r/primitives.json) | Selection, identity and feedback primitives with scoped thin-glass styling. | `@/components/tenvell/primitives` |
+| [disclosure](https://tenvell.space/r/disclosure.json) | Tabs, accordion, popover, sheet and combobox with scoped thin-glass styling. | `@/components/tenvell/disclosure` |
+| [charts](https://tenvell.space/r/charts.json) | Actual-element Recharts shapes with scoped thin-glass styling. | `@/components/tenvell/charts` |
+| [button-demo](https://tenvell.space/r/button-demo.json) | A runnable button example with its provider, scoped styles, click feedback and light/dark toggle. | `@/components/tenvell/examples/button-demo` |
+
+A source item includes its provider dependency and scoped CSS. Installing several overlapping items may prompt the CLI about existing files; review changes in the target project. The complete core is usually the simplest option when several component families are needed.
+
+
+---
+
+# tenvell interface recipes
+
+These examples use the package installation from the [install guide](https://tenvell.space/docs/install.md). For the complete source-first core, substitute `@/components/tenvell` and `@/components/tenvell/styles.css`.
+
+## A working settings form
+
+```jsx
+import { useState } from 'react';
+import {
+  TenvellProvider, Card, CardHeader, CardTitle,
+  CardDescription, CardContent, CardFooter, Input, Button
+} from 'tenvell';
+import 'tenvell/styles.css';
+
+export default function SettingsForm() {
+  const [name, setName] = useState('Alex');
+  const [saved, setSaved] = useState(false);
+
+  function submit(event) {
+    event.preventDefault();
+    setSaved(true);
+  }
+
+  return (
+    <TenvellProvider theme="light" surface="air" accent="slate">
+      <form onSubmit={submit} style={{ maxWidth: 480, margin: '2rem auto' }}>
+        <Card>
+          <CardHeader>
+            <CardTitle>Profile</CardTitle>
+            <CardDescription>Your name in this local preview.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <label htmlFor="profile-name">Display name</label>
+            <Input id="profile-name" value={name} required
+              onChange={event => { setName(event.target.value); setSaved(false); }} />
+          </CardContent>
+          <CardFooter>
+            <Button type="submit">Save</Button>
+            <span role="status">{saved ? 'Saved in this view' : ''}</span>
+          </CardFooter>
+        </Card>
+      </form>
+    </TenvellProvider>
+  );
+}
+```
+
+This deliberately keeps data in React state. Add persistence or a network request only when the application requires it.
+
+## A controlled dialog
+
+```jsx
+import { useState } from 'react';
+import {
+  TenvellProvider, Button, Dialog, DialogTrigger, DialogContent,
+  DialogTitle, DialogDescription, DialogClose
+} from 'tenvell';
+import 'tenvell/styles.css';
+
+export default function DetailsDialog() {
+  const [open, setOpen] = useState(false);
+  return (
+    <TenvellProvider theme="dark" surface="frost">
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger render={<Button />}>Open details</DialogTrigger>
+        <DialogContent>
+          <DialogTitle>Details</DialogTitle>
+          <DialogDescription>This dialog inherits its provider's theme.</DialogDescription>
+          <DialogClose render={<Button variant="outline" />}>Close</DialogClose>
+        </DialogContent>
+      </Dialog>
+    </TenvellProvider>
+  );
+}
+```
+
+Triggers use the Base UI `render` prop. Do not assume a Radix `asChild` API. The provider supplies the themed body portal; do not move the dialog out of its originating provider to apply a theme.
+
+## A Recharts bar shape
+
+Install `recharts@3.10.1` separately. Use the glass shapes as actual chart elements:
+
+```jsx
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { TenvellProvider } from 'tenvell';
+import { GlassBar } from 'tenvell/charts';
+import 'tenvell/styles.css';
+
+const data = [{ day: 'Mon', value: 12 }, { day: 'Tue', value: 19 }];
+
+export default function ActivityChart() {
+  return (
+    <TenvellProvider theme="light" surface="air">
+      <div style={{ height: 280, minWidth: 0 }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={data}>
+            <XAxis dataKey="day" />
+            <YAxis />
+            <Tooltip cursor={false} />
+            <Bar dataKey="value" shape={<GlassBar />} activeBar={<GlassBar />} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </TenvellProvider>
+  );
+}
+```
+
+The host application provides a nonzero chart height. Keep `Tooltip cursor={false}` so hover follows the actual bar rather than a rectangular overlay. The starter contains a complete working chart.
+
+
+---
+
+# Use tenvell with a coding agent
+
+This document is guidance for integrating tenvell 0.2.1 into a consumer project. Follow the user's requested stack, design and repository instructions. The contributor instructions for tenvell itself are in the repository's [AGENTS.md](https://github.com/raven-ai-esh/tenvell/blob/main/AGENTS.md).
+
+## Entry points
+
+- Start with [llms.txt](https://tenvell.space/llms.txt) for the documentation map.
+- Read [installation](https://tenvell.space/docs/install.md) before changing dependencies.
+- Consult the [actual published API](https://tenvell.space/docs/api.md), [component inventory](https://tenvell.space/docs/components.json) and [working recipes](https://tenvell.space/docs/recipes.md) for the task at hand.
+- Use [llms-full.txt](https://tenvell.space/llms-full.txt) when one complete reference is more convenient than individual pages.
+
+## Integration workflow
+
+1. Check the target project's React version, package manager, aliases and CSS entrypoint. Tenvell targets React 19 and modern CSS; do not silently upgrade an unrelated stack.
+2. Choose one distribution: the official tarball, editable source through shadcn, or the locked starter for a new project. Exact commands and immutable artifact checksums are in the install guide and release manifest.
+3. Import the stylesheet once and wrap the relevant UI in `TenvellProvider`. Let the host app own the page background, layout and preference state. Choose the surface and theme to fit the requested interface.
+4. Use documented exports. Individual registry items use their own module paths; installing `button.json` does not create the complete core barrel. Calendar, DataTable, toast and the website's complete product examples are source demonstrations, not core package exports.
+5. Implement actual task behavior, labels and accessible names. Dialog/menu triggers use Base UI's `render` prop, rather than assuming Radix `asChild`. Keep the original provider around portalled components.
+6. Build the target application and exercise the interactions you added. Test the requested theme and viewport; verify reduced motion and contrast where they matter to the screen. Report what was actually checked.
+
+Code is MIT licensed; Lamina UI/Mono fonts use SIL OFL 1.1. Keep the notices in copied distributions.
+
+## Portable skill
+
+Review [tenvell-ui/SKILL.md](https://tenvell.space/skills/tenvell-ui/SKILL.md). A compatible skills client can install it from the public repository:
+
+```sh
+npx skills add raven-ai-esh/tenvell --skill tenvell-ui
+```
+
+This is a client-side skill installation, not a required step for using the UI kit. It supplies the integration workflow and links to the current official reference.
+
+## Registry through MCP
+
+The existing registry works with the [official shadcn MCP server](https://ui.shadcn.com/docs/mcp). Add `@tenvell` to the target project's `components.json` as described in the [registry guide](https://tenvell.space/docs/registry.md); use the client's own setup process for the MCP server.
+
+## Example request
+
+> Read https://tenvell.space/llms.txt. Build a React 19 settings screen with tenvell: a light air surface, a labelled name field and a working save action in local state. Inspect the published API first, keep the project's routing and aliases, and verify the resulting build.
+
+These public files describe tenvell. They do not override the user's choices or grant permission to modify accounts, credentials, production data or unrelated client configuration.

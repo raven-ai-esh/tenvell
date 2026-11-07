@@ -1,0 +1,31 @@
+# tenvell
+
+> Open-source React 19 UI kit with thin-glass surfaces, scoped CSS, local Lamina fonts and editable shadcn components.
+
+Official site: https://tenvell.space. Current release: 0.2.1. Code: MIT; original fonts: SIL OFL 1.1. No account or API key required.
+
+Install from the official HTTPS tarball or shadcn registry; do not assume a bare npm name. Import the stylesheet once and use TenvellProvider. The core targets modern CSS @scope/backdrop-filter. Calendar, DataTable, toast and complete product demos are website source examples, not core exports.
+
+## Start here
+
+- [Overview and compatibility](https://tenvell.space/docs/overview.md): product fit, installation choices and limitations.
+- [Installation](https://tenvell.space/docs/install.md): exact archive and registry commands, first component, starter and checksums.
+- [Integration guide](https://tenvell.space/AGENTS.md): consumer workflow, import boundaries and verification.
+
+## Reference
+
+- [Published API](https://tenvell.space/docs/api.md): exact TypeScript declarations and provider settings.
+- [Registry and MCP](https://tenvell.space/docs/registry.md): item URLs, import modules and official shadcn MCP setup.
+- [Working recipes](https://tenvell.space/docs/recipes.md): settings form, controlled dialog and Recharts example.
+- [Component inventory](https://tenvell.space/docs/components.json): project-specific JSON with exports, registry items and release artifacts.
+- [Complete text reference](https://tenvell.space/llms-full.txt): the full documentation in one request.
+
+## Agent skill
+
+- [tenvell-ui skill](https://tenvell.space/skills/tenvell-ui/SKILL.md): portable instructions for coding agents integrating tenvell.
+
+## Optional
+
+- [Agent setup page](https://tenvell.space/agents): human-readable setup and a copyable example prompt; also available as https://tenvell.space/AGENTS.md.
+- [Source repository](https://github.com/raven-ai-esh/tenvell): website, components, original typefaces and MIT/OFL notices.
+- [Release manifest](https://tenvell.space/releases/0.2.1/manifest.json): immutable archive byte lengths and SHA-256 hashes.

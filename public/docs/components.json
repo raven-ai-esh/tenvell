@@ -1,0 +1,479 @@
+{
+  "schemaVersion": 1,
+  "kind": "tenvell-component-catalog",
+  "name": "tenvell",
+  "version": "0.2.1",
+  "website": "https://tenvell.space",
+  "repository": "https://github.com/raven-ai-esh/tenvell",
+  "documentation": "https://tenvell.space/llms.txt",
+  "api": "https://tenvell.space/docs/api.md",
+  "requirements": {
+    "react": "19",
+    "nodeTooling": ">=22.12",
+    "browserFeatures": [
+      "CSS @scope",
+      "backdrop-filter"
+    ]
+  },
+  "distribution": {
+    "package": "https://tenvell.space/releases/0.2.1/tenvell-0.2.1.tgz",
+    "manifest": "https://tenvell.space/releases/0.2.1/manifest.json",
+    "artifacts": [
+      {
+        "file": "tenvell-0.2.1.tgz",
+        "bytes": 188610,
+        "sha256": "2b871b91f450124adf8c3b5fd1269e1c737834bfb5e96ef2999d356145645c79",
+        "url": "https://tenvell.space/releases/0.2.1/tenvell-0.2.1.tgz"
+      },
+      {
+        "file": "tenvell-starter-0.2.1.zip",
+        "bytes": 220178,
+        "sha256": "1ee3fc9d3d09b5d5293f148c7bfc6417a2a531af592a9a158348636ad93bf378",
+        "url": "https://tenvell.space/releases/0.2.1/tenvell-starter-0.2.1.zip"
+      },
+      {
+        "file": "tenvell-source-0.2.1.zip",
+        "bytes": 2982788,
+        "sha256": "12f9be3fe60bce897b085eade0f5c687e97365cb3362114466f79e6e2e0fc367",
+        "url": "https://tenvell.space/releases/0.2.1/tenvell-source-0.2.1.zip"
+      }
+    ]
+  },
+  "modules": {
+    "tenvell": {
+      "exports": [
+        "TenvellProvider",
+        "Button",
+        "Input",
+        "Textarea",
+        "Checkbox",
+        "Switch",
+        "Card",
+        "CardHeader",
+        "CardTitle",
+        "CardDescription",
+        "CardContent",
+        "CardFooter",
+        "glassMaterials",
+        "GlassSurface",
+        "GlassPicker",
+        "Select",
+        "Dialog",
+        "DialogTrigger",
+        "DialogClose",
+        "DialogTitle",
+        "DialogDescription",
+        "DialogContent",
+        "DropdownMenu",
+        "DropdownMenuTrigger",
+        "DropdownMenuGroup",
+        "DropdownMenuRadioGroup",
+        "DropdownMenuContent",
+        "DropdownMenuItem",
+        "DropdownMenuLabel",
+        "DropdownMenuSeparator",
+        "DropdownMenuCheckboxItem",
+        "DropdownMenuRadioItem",
+        "Tabs",
+        "TabsList",
+        "TabsTrigger",
+        "TabsContent",
+        "Accordion",
+        "AccordionItem",
+        "AccordionTrigger",
+        "AccordionContent",
+        "Popover",
+        "PopoverTrigger",
+        "PopoverClose",
+        "PopoverTitle",
+        "PopoverDescription",
+        "PopoverContent",
+        "Tooltip",
+        "Sheet",
+        "SheetTrigger",
+        "SheetClose",
+        "SheetTitle",
+        "SheetDescription",
+        "SheetContent",
+        "Combobox",
+        "Badge",
+        "Avatar",
+        "AvatarGroup",
+        "Separator",
+        "Skeleton",
+        "Progress",
+        "EmptyState",
+        "InputGroup",
+        "InputAddon",
+        "ButtonGroup",
+        "RadioGroup",
+        "Slider",
+        "Breadcrumb",
+        "Pagination",
+        "ToggleGroup"
+      ],
+      "types": "https://tenvell.space/docs/api.md#core-typescript-declarations"
+    },
+    "tenvell/charts": {
+      "exports": [
+        "GlassBar",
+        "GlassDot",
+        "GlassSector"
+      ],
+      "peerDependency": "recharts@3.10.1",
+      "types": "https://tenvell.space/docs/api.md#optional-chart-declarations"
+    }
+  },
+  "websiteOnly": [
+    "Calendar",
+    "DataTable",
+    "toast",
+    "messenger",
+    "task board",
+    "complete dashboard screens"
+  ],
+  "registry": {
+    "index": "https://tenvell.space/r/registry.json",
+    "namespace": "@tenvell",
+    "urlTemplate": "https://tenvell.space/r/{name}.json",
+    "items": [
+      {
+        "name": "tenvell",
+        "description": "Complete core with scoped thin-glass styling.",
+        "url": "https://tenvell.space/r/tenvell.json",
+        "importFrom": "@/components/tenvell",
+        "exports": [
+          "TenvellProvider",
+          "Button",
+          "Input",
+          "Textarea",
+          "Checkbox",
+          "Switch",
+          "Card",
+          "CardHeader",
+          "CardTitle",
+          "CardDescription",
+          "CardContent",
+          "CardFooter",
+          "glassMaterials",
+          "GlassSurface",
+          "GlassPicker",
+          "Select",
+          "Dialog",
+          "DialogTrigger",
+          "DialogClose",
+          "DialogTitle",
+          "DialogDescription",
+          "DialogContent",
+          "DropdownMenu",
+          "DropdownMenuTrigger",
+          "DropdownMenuGroup",
+          "DropdownMenuRadioGroup",
+          "DropdownMenuContent",
+          "DropdownMenuItem",
+          "DropdownMenuLabel",
+          "DropdownMenuSeparator",
+          "DropdownMenuCheckboxItem",
+          "DropdownMenuRadioItem",
+          "Tabs",
+          "TabsList",
+          "TabsTrigger",
+          "TabsContent",
+          "Accordion",
+          "AccordionItem",
+          "AccordionTrigger",
+          "AccordionContent",
+          "Popover",
+          "PopoverTrigger",
+          "PopoverClose",
+          "PopoverTitle",
+          "PopoverDescription",
+          "PopoverContent",
+          "Tooltip",
+          "Sheet",
+          "SheetTrigger",
+          "SheetClose",
+          "SheetTitle",
+          "SheetDescription",
+          "SheetContent",
+          "Combobox",
+          "Badge",
+          "Avatar",
+          "AvatarGroup",
+          "Separator",
+          "Skeleton",
+          "Progress",
+          "EmptyState",
+          "InputGroup",
+          "InputAddon",
+          "ButtonGroup",
+          "RadioGroup",
+          "Slider",
+          "Breadcrumb",
+          "Pagination",
+          "ToggleGroup"
+        ],
+        "dependencies": [
+          "@base-ui/react@1.8.0",
+          "lucide-react@1.59.0"
+        ],
+        "registryDependencies": []
+      },
+      {
+        "name": "provider",
+        "description": "Scoped themes and motion with scoped thin-glass styling.",
+        "url": "https://tenvell.space/r/provider.json",
+        "importFrom": "@/components/tenvell/provider",
+        "exports": [
+          "TenvellProvider"
+        ],
+        "dependencies": [
+          "@base-ui/react@1.8.0",
+          "lucide-react@1.59.0"
+        ],
+        "registryDependencies": []
+      },
+      {
+        "name": "button",
+        "description": "Buttons, input and textarea with scoped thin-glass styling.",
+        "url": "https://tenvell.space/r/button.json",
+        "importFrom": "@/components/tenvell/button",
+        "exports": [
+          "TenvellProvider",
+          "Button",
+          "Input",
+          "Textarea"
+        ],
+        "dependencies": [
+          "@base-ui/react@1.8.0",
+          "lucide-react@1.59.0"
+        ],
+        "registryDependencies": []
+      },
+      {
+        "name": "checkbox",
+        "description": "Checkbox with scoped thin-glass styling.",
+        "url": "https://tenvell.space/r/checkbox.json",
+        "importFrom": "@/components/tenvell/checkbox",
+        "exports": [
+          "TenvellProvider",
+          "Checkbox"
+        ],
+        "dependencies": [
+          "@base-ui/react@1.8.0",
+          "lucide-react@1.59.0"
+        ],
+        "registryDependencies": []
+      },
+      {
+        "name": "switch",
+        "description": "Switch with scoped thin-glass styling.",
+        "url": "https://tenvell.space/r/switch.json",
+        "importFrom": "@/components/tenvell/switch",
+        "exports": [
+          "TenvellProvider",
+          "Switch"
+        ],
+        "dependencies": [
+          "@base-ui/react@1.8.0",
+          "lucide-react@1.59.0"
+        ],
+        "registryDependencies": []
+      },
+      {
+        "name": "card",
+        "description": "Card family with scoped thin-glass styling.",
+        "url": "https://tenvell.space/r/card.json",
+        "importFrom": "@/components/tenvell/card",
+        "exports": [
+          "TenvellProvider",
+          "Card",
+          "CardHeader",
+          "CardTitle",
+          "CardDescription",
+          "CardContent",
+          "CardFooter"
+        ],
+        "dependencies": [
+          "@base-ui/react@1.8.0",
+          "lucide-react@1.59.0"
+        ],
+        "registryDependencies": []
+      },
+      {
+        "name": "glass",
+        "description": "Glass surfaces with scoped thin-glass styling.",
+        "url": "https://tenvell.space/r/glass.json",
+        "importFrom": "@/components/tenvell/glass",
+        "exports": [
+          "TenvellProvider",
+          "glassMaterials",
+          "GlassSurface",
+          "GlassPicker"
+        ],
+        "dependencies": [
+          "@base-ui/react@1.8.0",
+          "lucide-react@1.59.0"
+        ],
+        "registryDependencies": []
+      },
+      {
+        "name": "select",
+        "description": "Select with scoped thin-glass styling.",
+        "url": "https://tenvell.space/r/select.json",
+        "importFrom": "@/components/tenvell/select",
+        "exports": [
+          "TenvellProvider",
+          "Select"
+        ],
+        "dependencies": [
+          "@base-ui/react@1.8.0",
+          "lucide-react@1.59.0"
+        ],
+        "registryDependencies": []
+      },
+      {
+        "name": "menu",
+        "description": "Dropdown menu with scoped thin-glass styling.",
+        "url": "https://tenvell.space/r/menu.json",
+        "importFrom": "@/components/tenvell/menu",
+        "exports": [
+          "TenvellProvider",
+          "DropdownMenu",
+          "DropdownMenuTrigger",
+          "DropdownMenuGroup",
+          "DropdownMenuRadioGroup",
+          "DropdownMenuContent",
+          "DropdownMenuItem",
+          "DropdownMenuLabel",
+          "DropdownMenuSeparator",
+          "DropdownMenuCheckboxItem",
+          "DropdownMenuRadioItem"
+        ],
+        "dependencies": [
+          "@base-ui/react@1.8.0",
+          "lucide-react@1.59.0"
+        ],
+        "registryDependencies": []
+      },
+      {
+        "name": "dialog",
+        "description": "Dialog with scoped thin-glass styling.",
+        "url": "https://tenvell.space/r/dialog.json",
+        "importFrom": "@/components/tenvell/dialog",
+        "exports": [
+          "TenvellProvider",
+          "Dialog",
+          "DialogTrigger",
+          "DialogClose",
+          "DialogTitle",
+          "DialogDescription",
+          "DialogContent"
+        ],
+        "dependencies": [
+          "@base-ui/react@1.8.0",
+          "lucide-react@1.59.0"
+        ],
+        "registryDependencies": []
+      },
+      {
+        "name": "primitives",
+        "description": "Selection, identity and feedback primitives with scoped thin-glass styling.",
+        "url": "https://tenvell.space/r/primitives.json",
+        "importFrom": "@/components/tenvell/primitives",
+        "exports": [
+          "TenvellProvider",
+          "Badge",
+          "Avatar",
+          "AvatarGroup",
+          "Separator",
+          "Skeleton",
+          "Progress",
+          "EmptyState",
+          "InputGroup",
+          "InputAddon",
+          "ButtonGroup",
+          "RadioGroup",
+          "Slider",
+          "Breadcrumb",
+          "Pagination",
+          "ToggleGroup"
+        ],
+        "dependencies": [
+          "@base-ui/react@1.8.0",
+          "lucide-react@1.59.0"
+        ],
+        "registryDependencies": []
+      },
+      {
+        "name": "disclosure",
+        "description": "Tabs, accordion, popover, sheet and combobox with scoped thin-glass styling.",
+        "url": "https://tenvell.space/r/disclosure.json",
+        "importFrom": "@/components/tenvell/disclosure",
+        "exports": [
+          "TenvellProvider",
+          "Button",
+          "Input",
+          "Textarea",
+          "Tabs",
+          "TabsList",
+          "TabsTrigger",
+          "TabsContent",
+          "Accordion",
+          "AccordionItem",
+          "AccordionTrigger",
+          "AccordionContent",
+          "Popover",
+          "PopoverTrigger",
+          "PopoverClose",
+          "PopoverTitle",
+          "PopoverDescription",
+          "PopoverContent",
+          "Tooltip",
+          "Sheet",
+          "SheetTrigger",
+          "SheetClose",
+          "SheetTitle",
+          "SheetDescription",
+          "SheetContent",
+          "Combobox"
+        ],
+        "dependencies": [
+          "@base-ui/react@1.8.0",
+          "lucide-react@1.59.0"
+        ],
+        "registryDependencies": []
+      },
+      {
+        "name": "charts",
+        "description": "Actual-element Recharts shapes with scoped thin-glass styling.",
+        "url": "https://tenvell.space/r/charts.json",
+        "importFrom": "@/components/tenvell/charts",
+        "exports": [
+          "GlassBar",
+          "GlassDot",
+          "GlassSector"
+        ],
+        "dependencies": [
+          "@base-ui/react@1.8.0",
+          "lucide-react@1.59.0",
+          "recharts@3.10.1"
+        ],
+        "registryDependencies": []
+      },
+      {
+        "name": "button-demo",
+        "description": "A runnable button example with its provider, scoped styles, click feedback and light/dark toggle.",
+        "url": "https://tenvell.space/r/button-demo.json",
+        "importFrom": "@/components/tenvell/examples/button-demo",
+        "exports": [
+          "default"
+        ],
+        "dependencies": [],
+        "registryDependencies": [
+          "https://tenvell.space/r/button.json"
+        ]
+      }
+    ]
+  }
+}

@@ -16,6 +16,7 @@ test('explicit shared language wins over session and browser; invalid choices fa
 test('language links preserve routes, query parameters and anchors, while release and external URLs stay exact',()=>{
  assert.equal(withLanguage('/install?campaign=launch#start','en'),'/install?campaign=launch&lang=en#start');
  assert.equal(withLanguage('/?lang=ru#cards/card-note','en'),'/?lang=en#cards/card-note');
+ assert.equal(withLanguage('/agents?campaign=agent#reference','ru'),'/agents?campaign=agent&lang=ru#reference');
  for(const href of ['#charts','https://github.com/raven-ai-esh/tenvell','//example.test/path','/r/tenvell.json','/releases/0.1.1/tenvell-0.1.1.tgz'])assert.equal(withLanguage(href,'ru'),href);
 });
 

@@ -5,3 +5,5 @@
 .release-repository-link{display:inline-flex;align-items:center;gap:8px;text-decoration:underline!important;text-underline-offset:4px}
 
 .release-first{margin-block:44px;scroll-margin-top:110px}.release-first>.tenvell{margin:20px 0}.release-first h2{margin-bottom:12px}
+
+.release-agent-entry{border-top:1px solid var(--separator);padding:22px 0;display:flex;align-items:center;justify-content:space-between;gap:24px}.release-agent-entry p{margin:0}.release-agent-entry a{flex:none;display:inline-flex;align-items:center;gap:8px;font-size:12px;text-decoration:underline;text-underline-offset:4px}.release-agent-entry strong{font-size:13px;font-weight:400}@media(max-width:760px){.release-agent-entry{align-items:flex-start;flex-direction:column;gap:15px}}

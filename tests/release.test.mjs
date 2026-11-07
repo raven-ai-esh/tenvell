@@ -7,7 +7,7 @@ import path from 'node:path';
 import postcss from 'postcss';
 import selectorParser from 'postcss-selector-parser';
 import Ajv from 'ajv';
-import {root,output,sourceGraph,buildStyles} from '../release/build-utils.mjs';
+import {root,sourceGraph,buildStyles} from '../release/build-utils.mjs';
 import {color,colors,contexts,over,ratio,tokensFor} from './helpers/control-colors.mjs';
 
 const read=file=>readFile(path.join(root,file),'utf8');
@@ -76,5 +76,5 @@ test('release manifest identifies the actual archives and final source inputs',a
  const manifest=JSON.parse(await read('public/releases/0.2.1/manifest.json'));assert.equal(manifest.version,'0.2.1');
  for(const artifact of manifest.artifacts){const data=await readFile(path.join(root,'public',artifact.url));assert.equal(data.length,artifact.bytes);assert.equal(digest(data),artifact.sha256);}
  for(const [file,hash] of Object.entries(manifest.sourceHashes))assert.equal(digest(await readFile(path.join(root,file))),hash,'Stale generated release: '+file);
- const pkg=JSON.parse(await readFile(path.join(output,'package/package.json'),'utf8'));assert.equal(pkg.name,'tenvell');assert.equal(pkg.private,undefined);assert.ok(pkg.peerDependenciesMeta.recharts.optional);assert.equal(JSON.parse(await read('package.json')).private,true);
+ const pkg=JSON.parse(execFileSync('tar',['-xOf',path.join(root,'public/releases/0.2.1/tenvell-0.2.1.tgz'),'package/package.json'],{encoding:'utf8'}));assert.equal(pkg.name,'tenvell');assert.equal(pkg.private,undefined);assert.ok(pkg.peerDependenciesMeta.recharts.optional);assert.equal(JSON.parse(await read('package.json')).private,true);
 });

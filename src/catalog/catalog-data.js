@@ -30,6 +30,6 @@ export const catalogPages=order.map(id=>{const page=allPages.find(item=>item.id=
 export const catalogGroups=["Начало","Элементы","Структура","Данные","Слои","Сценарии"];
 
 export function readCatalogLocation() {
-  const [id, anchor = ""] = window.location.hash.slice(1).split("/");
+  const [id, anchor = ""] = (typeof window === "undefined" ? "" : window.location.hash).slice(1).split("/");
   return { id: catalogPages.some((page) => page.id === id) ? id : "overview", anchor };
 }

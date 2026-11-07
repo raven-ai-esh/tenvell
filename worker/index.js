@@ -1,6 +1,6 @@
 const legacyHost = "tenvell.esher1.chatgpt.site";
 const canonicalOrigin = "https://tenvell.space";
-const pagePaths = new Set(["/", "/install", "/sample", "/examples/messenger", "/examples/tasks", "/examples/dashboard", "/typeface.html", "/typeface"]);
+const pagePaths = new Set(["/", "/install", "/agents", "/agents.html", "/sample", "/examples/messenger", "/examples/tasks", "/examples/dashboard", "/typeface.html", "/typeface"]);
 
 export default {
   async fetch(request, env) {
@@ -10,7 +10,8 @@ export default {
     }
     const response = await env.ASSETS.fetch(request);
     const acceptsHtml = request.headers.get("accept")?.includes("text/html");
-    const reservedPath = /^\/(?:r|releases|assets|fonts|api)(?:\/|$)/.test(url.pathname);
+    const reservedPath = /^\/(?:r|releases|assets|fonts|api|docs|skills)(?:\/|$)/.test(url.pathname)
+      || /^\/(?:llms(?:-full)?\.txt|robots\.txt|sitemap\.xml|AGENTS\.md|(?:index|install|agents)\.md)$/.test(url.pathname);
 
     if (response.status !== 404 || reservedPath || !acceptsHtml || !["GET", "HEAD"].includes(request.method)) {
       return response;

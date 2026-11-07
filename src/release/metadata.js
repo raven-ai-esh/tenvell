@@ -1,0 +1,7 @@
+export const publicDocuments = [
+  { path: '/', markdown: '/index.md', title: 'tenvell — Thin glass. Clear interfaces.', description: 'tenvell — thin glass UI components, charts and product examples for React. Open source, four glass finishes and original typography.', descriptionRu: 'tenvell — дизайн-кит для React: тонкое стекло, компоненты, графики и примеры интерфейсов. Открытый код, четыре поверхности и собственный шрифт.' },
+  { path: '/install', markdown: '/install.md', title: 'Install tenvell — React UI kit and shadcn registry', description: 'Install tenvell in a React 19 project from the official package archive, editable shadcn registry or locked starter. Scoped CSS, local fonts and MIT code.', descriptionRu: 'Установка tenvell в React 19: архив пакета, редактируемые компоненты через shadcn и готовый стартовый проект. Стили в своей области, локальные шрифты и код MIT.' },
+  { path: '/agents', markdown: '/AGENTS.md', title: 'tenvell for AI agents — Skill, API reference and MCP', description: 'Use tenvell with a coding agent: llms.txt, a portable UI skill, exact component APIs, working React recipes and the official shadcn MCP registry integration.', descriptionRu: 'Tenvell для AI-агентов: llms.txt, переносимый skill, точный API компонентов, рабочие примеры React и подключение registry через официальный shadcn MCP.' },
+];
+
+export const documentMetadata = pathname => publicDocuments.find(document => document.path === pathname.replace(/\.html$/, '')) || publicDocuments[0];

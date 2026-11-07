@@ -50,12 +50,26 @@ tenvell.space {
         Cache-Control "no-cache"
     }
 
+    @agentDocs path /llms.txt /llms-full.txt /AGENTS.md /index.md /install.md /agents.md /docs/* /skills/*
+    header @agentDocs {
+        Access-Control-Allow-Origin "*"
+        Cache-Control "public, max-age=0, must-revalidate"
+        Link "</llms.txt>; rel=\"describedby\""
+    }
+    @markdown path_regexp markdown \.md$
+    header @markdown Content-Type "text/markdown; charset=utf-8"
+
+    @agentFiles path /llms.txt /llms-full.txt /AGENTS.md /index.md /install.md /agents.md /docs /docs/* /skills /skills/* /robots.txt /sitemap.xml
+    handle @agentFiles {
+        file_server
+    }
+
     @files path /r /r/* /releases /releases/* /assets /assets/* /fonts /fonts/* /api /api/*
     handle @files {
         file_server
     }
 
-    @pages path / /install /sample /examples/tasks /examples/messenger /examples/dashboard /typeface /typeface.html
+    @pages path / /install /agents /agents.html /sample /examples/tasks /examples/messenger /examples/dashboard /typeface /typeface.html
     handle @pages {
         try_files {path} {path}.html /index.html
         header Cache-Control "no-cache"

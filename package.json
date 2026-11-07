@@ -4,8 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node scripts/build-agent-docs.mjs",
     "dev": "vite",
-    "build": "vite build && node scripts/prepare-sites-build.mjs",
+    "build": "node scripts/build-agent-docs.mjs && vite build && node scripts/prerender-pages.mjs && node scripts/prepare-sites-build.mjs",
+    "agents:build": "node scripts/build-agent-docs.mjs",
+    "agents:verify": "node scripts/verify-agent-examples.mjs",
     "preview": "vite preview",
     "test:sites": "node --test tests/sites-worker.test.mjs",
     "release:build": "node release/build.mjs && node scripts/build-registry-examples.mjs",
