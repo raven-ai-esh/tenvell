@@ -12,6 +12,8 @@ An open-source React 19 UI kit for glassmorphism interfaces, settings and dashbo
 
 The website contains 83 live component examples plus a 16-tile showcase, messenger, dashboard and draggable task-board demonstrations. The published API distinguishes portable exports from complete website examples.
 
+If you find tenvell useful, consider [giving it a star on GitHub](https://github.com/raven-ai-esh/tenvell). Thanks for checking it out!
+
 ## Website languages
 
 The live catalog, installation guide and product examples support English and Russian. Use the EN/RU control in the shared toolbar, or share a direct URL with `?lang=en` or `?lang=ru`. The explicit URL wins over the language saved in the browser tab; new visitors otherwise follow their browser language, with English as the fallback.
